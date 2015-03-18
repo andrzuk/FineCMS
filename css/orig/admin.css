@@ -1,0 +1,21 @@
+/*
+ *  Własne style dla strony - szablon ADMIN
+ */
+
+div.GroupName { font-size: small; text-align: center; color: #ccc; margin: 10px; border-bottom: 1px dotted #ddd; }
+div.GroupElements { text-align: center; }
+td.GroupElement { padding: 10px 0px 10px 0px; margin: 10px; width: 300px; }
+td.GroupElement > a > p { margin: 0px; padding: 0px; font-size: small; }
+td.GroupElement > a { color: #777; }
+td.GroupElement > a:hover  { color: #c00; text-decoration: none; }
+
+td.ViewKey { color: #777; padding-right: 10px; width: 20%; border-bottom: 1px dotted #eee; }
+td.ViewData { color: #333; padding-left: 10px; width: 80%; border-bottom: 1px dotted #eee; }
+
+img.ListImage { width: 70px; height: 50px; padding: 1px; border: 1px solid #ddd; }
+span.gallery_item > a > img { margin: 5px; padding: 1px; border: 1px solid #ccc; width: 100px; height: 100px; }
+span.gallery_item > a > img:hover { cursor: pointer; border: 1px solid #00f; }
+
+span.options-item { float: right; padding: 0px 15px 0px 15px; }
+span.options-item > a > img { padding: 0px 10px 0px 0px; }
+

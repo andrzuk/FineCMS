@@ -1,0 +1,76 @@
+/*
+ *  Własne style dla strony - szablon SIMPLE
+ */
+
+body { margin: 0px; padding: 0px; font-family: courier; font-size: small; }
+a { text-decoration: none; color: #369; }
+a:hover { text-decoration: underline; color: #c00; }
+th { text-align: center; padding: 10px 3px 10px 3px; font-size: small; }
+td { font-size: small; }
+
+#logo { vertical-align: middle; }
+
+img.icon { vertical-align: middle; margin: 0px 10px 0px 10px; }
+img.ActionIcon { vertical-align: middle; margin: 2px 4px 2px 4px; }
+
+div.page-header { padding: 5px 30px 10px 30px; background-color: #f6f6f6; }
+div.page-content { padding: 10px 70px 30px 70px; background-color: #fcfcfc; }
+div.page-footer { text-align: center; padding: 10px; background-color: #f6f6f6; color: #777; }
+
+div.page-header > span.header-links { float: right; }
+div.page-header > span.header-links > div > ul > li { display: inline; }
+div.page-header > span.header-links > div.links-list, div.user-status, div.page-path { text-align: right; }
+
+div.user-status { margin: 12px 0px 12px 0px; }
+div.page-path { margin: 12px 0px 12px 0px; }
+
+input[type='text'], input[type='password'], select { border: 1px solid #aaa; padding: 3px; margin: 5px; }
+input[type='submit'], button { margin: 5px; }
+
+.Message, .Dialog { text-align: center; }
+.MessageBoxError { border: 1px solid #ff0000; background-color: #fdd7cd; vertical-align: middle; }
+.MessageBoxWarning { border: 1px solid #ffbb00; background-color: #ffffcc; vertical-align: middle; }
+.MessageBoxInformation { border: 1px solid #0000ff; background-color: #ddeeff; vertical-align: middle; }
+.MessageBoxQuestion { border: 1px solid #eeee00; background-color: #ffffdd; vertical-align: middle; }
+.MsgIcon { padding: 5px 20px 5px 20px; vertical-align: middle; }
+.MsgMessage { padding: 15px 10px 15px 20px; line-height: 20px; font-size: small; color: #000090; text-align: left; vertical-align: middle; }
+.MsgTitle { border-bottom: 1px dotted #C0D0E0; padding-bottom: 5px; font-size: medium; line-height: 20px; text-align: center; }
+.MsgSeparator { border-bottom: 1px dotted #C0D0E0; }
+.MsgButtons { padding: 5px; vertical-align: middle; border-top: 1px dotted #C0D0E0; }
+
+div.sorting { text-align: center; vertical-align: top; }
+
+.NaviBar { text-align: center; padding: 0px; }
+.NaviPointersLeft { font-size: small; text-align: right; vertical-align: middle; width: 20%; }
+.NaviPointers { font-size: small; padding: 10px; vertical-align: middle; text-align: center; width: 60%; }
+.NaviPointersRight { font-size: small; text-align: left; vertical-align: middle; width: 20%; }
+.NaviPointersCount { font-size: small; padding: 0px; vertical-align: middle; text-align: center; }
+.PagePointer { border: 1px solid #ccc; color: #369; background-color: #fff; padding: 5px; text-align: center; line-height: 30px; }
+.PagePointerCurrent { border: 1px solid #036; color: #fff; background-color: #369; padding: 5px; text-align: center; line-height: 30px; }
+.PagePointerDisabled { border: 1px solid #ccc; color: #ccc; background-color: #fff; padding: 5px; text-align: center; line-height: 30px; }
+.PagePointer:hover { color: #fff; background-color: #369; text-decoration: none; }
+.PagePointerCurrent:hover { text-decoration: none; }
+.PagePointerDisabled:hover { text-decoration: none; }
+.FormGoToPage {}
+.FormShowRows {}
+.PageInput { border: 1px solid #999; background-color: #fff; color: #000; text-align: center; width: 40px; font-size: small; }
+.PageGo { width: 40px; font-size: small; }
+
+.FormTitleBar { border-bottom: 1px dotted #ABC; text-align: left; padding-bottom: 7px; background-color: #eee; }
+.FormIcon { padding: 15px; }
+.FormTitle { font-size: medium; font-weight: bold; color: #369; line-height: 32px; vertical-align: top; }
+.FormSearch { float: right; padding-right: 5px; padding-top: 5px; }
+.FormSearchBar { text-align: center; vertical-align: middle; font-size: small; background-color: #fdb; }
+.FormSearchBar > form { margin: 10px 0px 10px 0px; }
+.FormSearchCaption { color: #999; }
+.FormSearchValue { color: #c00; }
+.FormSearchClose > img { vertical-align: middle; margin-left: 10px; }
+.FormSearchClose > img:hover { cursor: pointer; }
+
+th.TitleCell { font-weight: bold; color: #369; }
+tr.HeaderRow { background-color: #def; }
+tr.DataRowBright { background-color: #fff; }
+tr.DataRowDark { background-color: #f6f6f6; }
+td.DataCell { line-height: 14px; font-size: small; }
+td.ActionCell { padding: 4px; }
+td.DataCellMsg { line-height: 14px; font-size: small; text-align: center; padding: 10px; color: #c00; }

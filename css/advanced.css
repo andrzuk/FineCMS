@@ -1,0 +1,34 @@
+/*
+ *  Własne style dla strony - szablon ADVANCED
+ */
+
+nav > div > ul.navbar-nav > li { float: none; }
+nav > div > ul.navbar-nav > li:hover { background-color: #e6e6e6; }
+nav > div > ul.navbar-nav > li.nav-selected { background-color: #ececec; }
+nav > div > ul.navbar-nav > li.nav-selected > a { color: #c00; }
+
+ul.categories { margin: 0px 0px 0px 10px; padding: 0px; }
+ul.categories > li { list-style-image: url('http://mvc.net.pl/img/pointers/list_item.png'); }
+ul.categories > li:hover { color: #c00; }
+ul.categories > li.category-selected { list-style-image: url('http://mvc.net.pl/img/pointers/list_item_active.png'); }
+ul.categories > li.category-selected > a { color: #ff300a; }
+
+div.page-content > div.row > div.categories { margin-top: -10px; border-right: 1px dotted #aaa; }
+div.page-content > div.row > div.content { margin-top: -25px; }
+
+div.article { }
+div.article > div.article-title { padding: 0px 0px 0px 10px; color: #555; }
+div.article > div.article-timestamp { font-size: 0.8em; color: #777; padding-bottom: 10px; border-bottom: 1px dotted #aaa; }
+div.article > div.article-timestamp > img { padding: 0px 10px 0px 10px; }
+div.article > div.article-skip { padding: 5px 10px 25px 10px; border-bottom: 1px dotted #aaa; font-size: 0.9em; }
+div.article > div.article-skip > span.skip-left { float: left; }
+div.article > div.article-skip > span.skip-right { float: right; }
+div.article > div.article-content { color: #555; padding: 10px; }
+div.article > div.article-content > p, ul, ol { text-align: left; }
+div.article > div.article-content > p > img { padding: 10px 0px 10px 0px; }
+div.article > div.article-content > h1, h2, h3, h4, h5, h6 { text-align: left; }
+div.article > div.article-content > pre { color: #0a0; }
+div.article > div.article-continue { margin-right: 10px; text-align: right; font-size: 0.9em; }
+div.article > div.article-continue > a { color: #a00; }
+
+p.sup { border-top: 1px solid #ddd; font-size: 0.8em; padding-top: 10px; }

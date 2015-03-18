@@ -1,0 +1,113 @@
+/*
+ *  Własne style dla strony - szablon DEFAULT
+ */
+
+body { margin: 0px; padding: 0px; background-color: #FAFAFA; }
+a { text-decoration: none; color: #369; }
+a:hover { text-decoration: underline; color: #c00; }
+th { text-align: center; padding: 10px 3px 10px 3px; font-size: medium; }
+td { font-size: small; }
+
+div.center { float: none; margin-left: auto; margin-right: auto; }
+
+div.page-header { margin: 0px; padding: 0px; background-color: #e9ecef; border-bottom: 1px solid #ccc; }
+div.page-path { background-color: #f6f6f6; border-bottom: 1px solid #ccc; border-top: 1px solid #fff; }
+div.page-content { background-image: url("../img/background/bkg_egg.png"); margin: 0px; padding: 20px 30px 10px 30px; border-top: 1px solid #fff; border-bottom: 1px solid #ccc; }
+div.page-footer { width: 100%; text-align: center; padding: 10px; border-top: 1px solid #fff; border-bottom: 1px solid #ccc; color: #999; background-color: #eee; font-size: 0.8em; }
+div.page-footer > div.FooterCopyright { padding-top: 5px; }
+div.page-footer > div.FooterCopyright > a { color: #999; }
+div.page-footer > a { margin: 10px; }
+
+div.page-header > a > img.img-logo { width: 330px; margin: 5px 20px 5px 30px; }
+div.page-header > form.navbar-form.navbar-right { margin: 20px 10px 0px 5px; }
+div.page-header > div.navbar-text.navbar-right { margin: 28px 10px 0px 10px; }
+
+div.page-path > ol.breadcrumb { padding: 20px 10px 0px 30px; }
+div.page-path > div.navbar-text.navbar-right { padding: 5px 15px 5px 2px; }
+
+div.panel-heading { padding: 20px; }
+
+nav.navbar.navbar-default { margin: 0px; border-top: 1px solid #fff; border-bottom: 1px solid #ccc; }
+
+span.FormIcon { padding-right: 20px; }
+span.FormTitle { padding: 0px; margin: 0px; font-size: medium; font-weight: bold; color: #c40; }
+tr.HeaderRow { background-color: #f0f0f0; }
+span.FormSearch { text-align: right; margin: 0px; padding: 0px; }
+span.FormSearch > form.navbar-form { float: right; margin: 0px; }
+td.FormSearchBar { text-align: center; vertical-align: middle; font-size: small; }
+td.FormSearchBar > form { margin: 5px 0px 5px 0px; }
+span.FormSearchCaption { color: #999; }
+span.FormSearchValue { color: #c00; }
+span.FormSearchClose > img { vertical-align: middle; margin-left: 10px; }
+span.FormSearchClose > img:hover { cursor: pointer; }
+span.FormDates { text-align: right; margin: 0px; padding: 0px; }
+span.FormDates > form.navbar-form { float: right; margin: 0px; }
+
+table.NaviBar { text-align: center; padding: 0px; }
+td.NaviPointersLeft { text-align: right; vertical-align: middle; width: 20%; }
+td.NaviPointers { vertical-align: middle; text-align: center; width: 60%; }
+td.NaviPointersRight { text-align: left; vertical-align: middle; width: 20%; }
+td.NaviPointersCount { font-size: small; padding: 0px; vertical-align: middle; text-align: center; }
+td.NaviPointers > ul.pagination { margin: 5px; }
+a.PagePointer { }
+a.PagePointerCurrent { }
+a.PagePointerDisabled { }
+a.PagePointer:hover { }
+a.PagePointerCurrent:hover { }
+a.PagePointerDisabled:hover { }
+form.FormGoToPage { float: left; }
+form.FormShowRows { float: right; }
+
+div#goto-container { padding: 0px; }
+div#goto-page { width: 100px; }
+input#page-number { text-align: center; }
+select#page_rows { width: 80px; }
+
+span.options-item { float: right; padding: 0px 15px 0px 15px; }
+span.options-item > a > img { padding: 0px 10px 0px 0px; }
+
+nav > div > ul.navbar-nav > li { float: none; }
+nav > div > ul.navbar-nav > li:hover { background-color: #e6e6e6; }
+nav > div > ul.navbar-nav > li.nav-selected { background-color: #ececec; }
+nav > div > ul.navbar-nav > li.nav-selected > a { color: #c00; }
+
+ul.categories { margin: 0px 0px 0px 10px; padding: 0px; }
+ul.categories > li { list-style-image: url('http://mvc.net.pl/img/pointers/list_item.png'); }
+ul.categories > li:hover { color: #c00; }
+ul.categories > li.category-selected { list-style-image: url('http://mvc.net.pl/img/pointers/list_item_active.png'); }
+ul.categories > li.category-selected > a { color: #ff300a; }
+
+div.page-content > div.row > div.categories { margin-top: -10px; border-right: 1px dotted #aaa; }
+div.page-content > div.row > div.content { margin-top: -25px; }
+
+td.DataCell { color: #333; }
+td.DataLock { color: #d00; }
+td.ActionCell { }
+td.ActionCell > a { }
+td.ActionCell > a > img.ActionIcon { margin: 5px; }
+td.DataCellMsg { color: #c00; text-align: center; font-weight: bold; }
+
+div.panel-heading > h3.panel-title > img { padding-right: 20px; }
+div.panel-heading > h3.panel-title { font-weight: bold; color: #c40; }
+div.panel-footer > button { margin: 5px; }
+
+td.MsgIcon { padding: 0px 10px 0px 0px; vertical-align: middle; }
+td.MsgMessage { padding: 0px 5px 0px 10px; vertical-align: middle; }
+td.MsgButtons { padding: 0px 4px 0px 4px; }
+
+div.GroupName { font-size: small; text-align: center; color: #ccc; margin: 10px; border-bottom: 1px dotted #ddd; }
+div.GroupElements { text-align: center; }
+td.GroupElement { padding: 10px 0px 10px 0px; margin: 10px; width: 300px; }
+td.GroupElement > a > p { margin: 0px; padding: 0px; font-size: small; }
+td.GroupElement > a { color: #777; }
+td.GroupElement > a:hover  { color: #c00; text-decoration: none; }
+
+td.ViewKey { color: #777; padding-right: 10px; width: 20%; border-bottom: 1px dotted #eee; }
+td.ViewData { color: #333; padding-left: 10px; width: 80%; border-bottom: 1px dotted #eee; }
+
+tr.install > td > p { line-height: 20px; margin: 10px; }
+tr.install > td > ol > li { line-height: 20px; margin: 10px; }
+
+img.ListImage { width: 70px; height: 50px; padding: 1px; border: 1px solid #ddd; }
+span.gallery_item > a > img { margin: 5px; padding: 1px; border: 1px solid #ccc; width: 100px; height: 100px; }
+span.gallery_item > a > img:hover { cursor: pointer; border: 1px solid #00f; }
