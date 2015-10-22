@@ -82,9 +82,23 @@ class ViewBuilder extends Builder
 			$main_text .= '<td class="ViewData">';
 			if (is_array($value))
 			{
-				foreach ($value as $i => $j) 
+				if (array_key_exists('original', $value) && array_key_exists('converted', $value)) // linki referer i uri
 				{
-					$main_text .= '<div>' . $j . '</div>';
+					foreach ($value as $i => $j) 
+					{
+						if ($i == 'original') $original = $j;
+						if ($i == 'converted') $converted = $j;
+					}
+					$main_text .= '<div>';
+					$main_text .= '<a href="' . $original . '" target="_blank">' . $converted . '</a>';
+					$main_text .= '</div>';
+				}
+				else // zwykłe dane
+				{
+					foreach ($value as $i => $j) 
+					{
+						$main_text .= '<div>' . $j . '</div>';
+					}
 				}
 			}
 			else // normalne dane

@@ -116,11 +116,14 @@ class Visitors_Model extends Model
 					$this->row_item[$key] = array(
 						'ip' => $this->row_item[$key],
 						'name' => $this->host_name->find_host_name($this->row_item[$key]),
-						);
+					);
 				}
 				if ($key == 'http_referer' || $key == 'request_uri')
 				{
-					$this->row_item[$key] = str_replace(array("?", "&", "=", "%"), array(" ? ", " & ", " = ", " % "), $this->row_item[$key]);
+					$this->row_item[$key] = array(
+						'original' => $this->row_item[$key],
+						'converted' => str_replace(array("?", "&", "=", "%", "/"), array(" ? ", " & ", " = ", " % ", " / "), $this->row_item[$key]),
+					);
 				}
 			}
 		}
