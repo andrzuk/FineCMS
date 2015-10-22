@@ -4,7 +4,8 @@
 * users authentication (ACL)
 * admin panel (settings, templates, styles, navi, articles, gallery)
 * activity reports
-## General:
+
+### General:
 * Language: PHP / OOP
 * Database: MySQL
 * DB interface: PDO
