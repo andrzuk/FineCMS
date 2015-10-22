@@ -1,10 +1,10 @@
 # FineCMS
-Full featured CMS based on my own MVC architecture.
-Application features:
+## Full featured CMS based on my own MVC architecture.
+### Application features:
 * users authentication (ACL)
 * admin panel (settings, templates, styles, navi, articles, gallery)
 * activity reports
-General:
+### General:
 * Language: PHP / OOP
 * Database: MySQL
 * DB interface: PDO
