@@ -26,6 +26,7 @@ class Category_View extends View
 					if ($key == 'contents') $contents = $value;
 					if ($key == 'user_login') $user_login = $value;
 					if ($key == 'modified') $modified = $value;
+					if ($key == 'previews') $previews = $value;
 					if ($key == 'skip_bar') $skip_bar = $value;
 					if ($key == 'social_buttons') $soc_buttons = $value;
 				}
@@ -41,6 +42,7 @@ class Category_View extends View
 					$result .= '<div class="article-timestamp">';
 					$result .= '<img src="img/16x16/user.png" />' . $user_login;
 					$result .= '<img src="img/16x16/date.png" />' . $modified;
+					$result .= '<img src="img/16x16/web.png" />' . $previews;
 					$result .= $social_buttons;
 					$result .= '</div>';
 					$result .= '<div class="article-skip">';
@@ -89,6 +91,7 @@ class Category_View extends View
 					$result .= '<div class="article-timestamp">';
 					$result .= '<img src="img/16x16/user.png" />' . $user_login;
 					$result .= '<img src="img/16x16/date.png" />' . $modified;
+					$result .= '<img src="img/16x16/web.png" />' . $previews;
 					$result .= $social_buttons;
 					$result .= '</div>';
 					$result .= '<div class="article-skip">';

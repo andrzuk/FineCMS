@@ -30,7 +30,7 @@ $main_layout_content = '
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
       })(window,document,\'script\',\'//www.google-analytics.com/analytics.js\',\'ga\');
-      ga(\'create\', \'UA-16941734-21\', \'auto\');
+      ga(\'create\', \'UA-16941734-22\', \'auto\');
       ga(\'send\', \'pageview\');
     </script>
     <!--[if lt IE 9]>
@@ -50,7 +50,7 @@ $main_layout_content = '
         <button type="submit" name="button-search" class="btn btn-info"><i class="glyphicon glyphicon-search"></i> Szukaj</button>
       </form>
       '.$this->get_links().'
-      <a href="index.php"><img src="'.$this->get_logo().'" class="img-logo" alt="logo" /></a>
+      <a class="logo" href="index.php"><img src="'.$this->get_logo().'" class="img-logo" alt="logo" /><span class="company">'.$this->get_metadata('company_name').'</span></a>
     </div>
 
     <nav class="navbar navbar-default" role="navigation">

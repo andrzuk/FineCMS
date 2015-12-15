@@ -19,6 +19,8 @@ class Index_Model extends Model
 		$system_page = 0;
 		$visible = 1;
 
+		$this->UpdatePreviews();
+
 		try
 		{
 			$query = 	'SELECT * FROM ' . $this->table_name .
@@ -41,6 +43,38 @@ class Index_Model extends Model
 		}
 
 		return $this->row_item;
+	}
+	
+	private function UpdatePreviews()
+	{
+		$affected_rows = 0;
+
+		$main_page = 1;
+		$system_page = 0;
+		$visible = 1;
+
+		try
+		{
+			$query =	'UPDATE ' . $this->table_name .
+						' SET previews = previews + 1' .
+						' WHERE main_page = :main_page AND system_page = :system_page AND visible = :visible';
+
+			$statement = $this->db->prepare($query);
+
+			$statement->bindValue(':main_page', $main_page, PDO::PARAM_INT); 
+			$statement->bindValue(':system_page', $system_page, PDO::PARAM_INT); 
+			$statement->bindValue(':visible', $visible, PDO::PARAM_INT); 
+			
+			$statement->execute();
+			
+			$affected_rows = $statement->rowCount();
+		}
+		catch (PDOException $e)
+		{
+			die ($e->getMessage());
+		}
+
+		return $affected_rows;
 	}
 }
 

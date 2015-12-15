@@ -30,6 +30,7 @@ class Page
 
 		$this->metadata = array(
 			'base_domain' => $this->app->get_settings()->get_config_key('base_domain'), 
+			'company_name' => $this->app->get_settings()->get_config_key('company_name'), 
 			'main_title' => $this->app->get_settings()->get_config_key('main_title'), 
 			'main_description' => $this->app->get_settings()->get_config_key('main_description'), 
 			'main_keywords' => $this->app->get_settings()->get_config_key('main_keywords'), 

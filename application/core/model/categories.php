@@ -113,8 +113,8 @@ class Categories_Model extends Model
 			$description = NULL;
 
 			$query =	'INSERT INTO pages' .
-						' (main_page, system_page, category_id, title, contents, description, author_id, visible, modified) VALUES' .
-						' (:main_page, :system_page, :category_id, :title, :contents, :description, :author_id, :visible, :modified)';
+						' (main_page, system_page, category_id, title, contents, description, author_id, visible, modified, previews) VALUES' .
+						' (:main_page, :system_page, :category_id, :title, :contents, :description, :author_id, :visible, :modified, 0)';
 
 			$statement = $this->db->prepare($query);
 

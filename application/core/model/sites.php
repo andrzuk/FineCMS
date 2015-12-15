@@ -23,7 +23,7 @@ class Sites_Model extends Model
 
 		try
 		{
-			$query = 	'SELECT ' . $this->table_name . '.id, main_page, system_page, category_id, title, contents, description,' .
+			$query = 	'SELECT ' . $this->table_name . '.id, main_page, system_page, category_id, title, contents, description, previews,' .
 						' user_login, ' . $this->table_name . '.visible, ' . $this->table_name . '.modified' .
 						' FROM ' . $this->table_name . 
 						' INNER JOIN users ON users.id = ' . $this->table_name . '.author_id' .
@@ -82,8 +82,8 @@ class Sites_Model extends Model
 		try
 		{
 			$query =	'INSERT INTO ' . $this->table_name .
-						' (main_page, system_page, category_id, title, contents, description, author_id, visible, modified) VALUES' .
-						' (:main_page, :system_page, :category_id, :title, :contents, :description, :author_id, :visible, :modified)';
+						' (main_page, system_page, category_id, title, contents, description, author_id, visible, modified, previews) VALUES' .
+						' (:main_page, :system_page, :category_id, :title, :contents, :description, :author_id, :visible, :modified, 0)';
 
 			$statement = $this->db->prepare($query);
 
@@ -224,8 +224,8 @@ class Sites_Model extends Model
 			if ($result['licznik'] == 0) // nie ma jeszcze kopii rekordu
 			{
 				$query =	'INSERT INTO archives' .
-							' (page_id, main_page, system_page, category_id, title, contents, description, author_id, visible, modified) VALUES' .
-							' (:page_id, :main_page, :system_page, :category_id, :title, :contents, :description, :author_id, :visible, :modified)';
+							' (page_id, main_page, system_page, category_id, title, contents, description, author_id, visible, modified, previews) VALUES' .
+							' (:page_id, :main_page, :system_page, :category_id, :title, :contents, :description, :author_id, :visible, :modified, :previews)';
 
 				$statement = $this->db->prepare($query);
 
@@ -239,6 +239,7 @@ class Sites_Model extends Model
 				$statement->bindValue(':author_id', $original_row_item['author_id'], PDO::PARAM_INT); 
 				$statement->bindValue(':visible', $original_row_item['visible'], PDO::PARAM_INT); 
 				$statement->bindValue(':modified', $original_row_item['modified'], PDO::PARAM_STR); 
+				$statement->bindValue(':previews', $original_row_item['previews'], PDO::PARAM_INT); 
 				
 				$statement->execute();
 				

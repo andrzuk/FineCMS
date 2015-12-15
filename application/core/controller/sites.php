@@ -20,6 +20,7 @@ class Sites_Controller extends Controller
 			array('db_name' => 'title',       'column_name' => 'Tytuł',       'sorting' => 1),
 			array('db_name' => 'contents',    'column_name' => 'Treść',       'sorting' => 1),
 			array('db_name' => 'description', 'column_name' => 'Opis',       'sorting' => 1),
+			array('db_name' => 'previews',    'column_name' => 'Odsłon',      'sorting' => 1),
 			array('db_name' => 'user_login',  'column_name' => 'Autor',       'sorting' => 1),
 			array('db_name' => 'visible',     'column_name' => 'Aktywna',     'sorting' => 1),
 			array('db_name' => 'modified',    'column_name' => 'Modyfikacja', 'sorting' => 1),

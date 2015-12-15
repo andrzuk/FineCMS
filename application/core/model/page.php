@@ -19,10 +19,12 @@ class Page_Model extends Model
 		$system_page = 0;
 		$show_all_types = 1;
 		$visible = 1;
+		
+		$this->UpdatePreviews($id);
 
 		try
 		{
-			$query = 	'SELECT title, contents, description, category_id, user_login, ' . $this->table_name . '.modified' .
+			$query = 	'SELECT title, contents, description, category_id, user_login, ' . $this->table_name . '.modified, previews' .
 						' FROM ' . $this->table_name .
 						' INNER JOIN users ON users.id = ' . $this->table_name . '.author_id' .
 						' WHERE (:show_all_types OR main_page = :main_page AND system_page = :system_page)' .
@@ -46,6 +48,32 @@ class Page_Model extends Model
 		}
 
 		return $this->row_item;
+	}
+
+	private function UpdatePreviews($id)
+	{
+		$affected_rows = 0;
+
+		try
+		{
+			$query =	'UPDATE ' . $this->table_name .
+						' SET previews = previews + 1' .
+						' WHERE id = :id';
+
+			$statement = $this->db->prepare($query);
+
+			$statement->bindValue(':id', $id, PDO::PARAM_INT); 
+			
+			$statement->execute();
+			
+			$affected_rows = $statement->rowCount();
+		}
+		catch (PDOException $e)
+		{
+			die ($e->getMessage());
+		}
+
+		return $affected_rows;
 	}
 
 	public function GetCategory($id)

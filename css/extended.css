@@ -18,7 +18,7 @@ div.page-content > div.row > div.content { margin-top: -25px; }
 
 div.article { }
 div.article > div.article-title { padding: 0px 0px 0px 10px; color: #555; }
-div.article > div.article-timestamp { font-size: 0.8em; color: #777; padding-bottom: 10px; border-bottom: 1px dotted #aaa; }
+div.article > div.article-timestamp { font-size: 0.8em; font-weight: bold; color: #666; padding-bottom: 10px; border-bottom: 1px dotted #aaa; }
 div.article > div.article-timestamp > img { padding: 0px 10px 0px 10px; margin: 10px 0px 10px 0px; }
 div.article > div.article-skip { padding: 5px 10px 25px 10px; border-bottom: 1px dotted #aaa; font-size: 0.9em; }
 div.article > div.article-skip > span.skip-left { float: left; }

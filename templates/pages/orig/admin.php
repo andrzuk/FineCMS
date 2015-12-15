@@ -40,7 +40,7 @@ $main_layout_content = '
         <button type="submit" name="button-search" class="btn btn-info"><i class="glyphicon glyphicon-search"></i> Szukaj</button>
       </form>
       '.$this->get_links().'
-      <a href="index.php"><img src="'.$this->get_logo().'" class="img-logo" alt="logo" /></a>
+      <a class="logo" href="index.php"><img src="'.$this->get_logo().'" class="img-logo" alt="logo" /><span class="company">'.$this->get_metadata('company_name').'</span></a>
     </div>
 
     <div class="page-content">
