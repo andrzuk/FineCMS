@@ -14,17 +14,18 @@ a.logo { text-decoration: none; }
 a.logo:hover { text-decoration: none; }
 a.logo > span.company { padding-left: 20px; padding-right: 10px; font: italic bold 55px/55px Georgia, serif; vertical-align: middle; color: #d00; text-shadow: 4px 4px 6px #999; }
 
-div.page-header { margin: 0px; padding: 0px; background-color: #e9ecef; border-bottom: 1px solid #ccc; }
+div.page-header { margin: 0px; padding: 30px 0px; background-color: #e9ecef; border-bottom: 1px solid #ccc; }
 div.page-path { background-color: #f6f6f6; border-bottom: 1px solid #ccc; border-top: 1px solid #fff; }
-div.page-content { background-image: url("../img/background/wzor.jpg"); margin: 0px; padding: 20px 30px 10px 30px; border-top: 1px solid #fff; border-bottom: 1px solid #ccc; }
+div.page-content { background-image: url("../img/background/bkg_egg.png"); margin: 0px; padding: 20px 30px 10px 30px; border-top: 1px solid #fff; border-bottom: 1px solid #ccc; }
 div.page-footer { width: 100%; text-align: center; padding: 10px; border-top: 1px solid #fff; border-bottom: 1px solid #ccc; color: #999; background-color: #eee; font-size: 0.8em; }
 div.page-footer > div.FooterCopyright { padding-top: 5px; }
 div.page-footer > div.FooterCopyright > a { color: #999; }
 div.page-footer > a { margin: 10px; }
 
-div.page-header > a > img.img-logo { width: 150px; height: 100px; margin: 5px 20px 5px 30px; }
-div.page-header > form.navbar-form.navbar-right { margin: 40px 10px 0px 5px; }
-div.page-header > div.navbar-text.navbar-right { margin: 48px 10px 0px 10px; }
+div.page-header > a > img.img-logo { width: 330px; margin: 5px 20px 5px 30px; }
+div.page-header > form.navbar-form.navbar-right { margin: 20px 10px 0px 5px; }
+div.page-header > div.navbar-text.navbar-right { margin: 28px 10px 0px 10px; }
+div.page-header > div.navbar-text.navbar-right > a.navbar-link > img { margin: 0px 10px 0px 0px; }
 
 div.page-path > ol.breadcrumb { padding: 20px 10px 0px 30px; }
 div.page-path > div.navbar-text.navbar-right { padding: 5px 15px 5px 2px; }
@@ -115,3 +116,5 @@ tr.install > td > ol > li { line-height: 20px; margin: 10px; }
 img.ListImage { width: 70px; height: 50px; padding: 1px; border: 1px solid #ddd; }
 span.gallery_item > a > img { margin: 5px; padding: 1px; border: 1px solid #ccc; width: 100px; height: 100px; }
 span.gallery_item > a > img:hover { cursor: pointer; border: 1px solid #00f; }
+
+p.warning { color: red; }

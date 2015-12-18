@@ -197,12 +197,12 @@ class Page
 				array (
 					'link' => 'index.php?route=admin',
 					'caption' => 'Admin-panel',
-					'icon' => 'img/top/panel.png'
+					'icon' => 'img/top/tools.png'
 				),
 				array (
 					'link' => 'index.php?route=logout',
 					'caption' => 'Wyloguj',
-					'icon' => 'img/top/user.png'
+					'icon' => 'img/top/logout.png'
 				),
 				array (
 					'link' => 'index.php?route=contact',
@@ -217,7 +217,7 @@ class Page
 				array (
 					'link' => 'index.php?route=login',
 					'caption' => 'Zaloguj',
-					'icon' => 'img/top/login.png'
+					'icon' => 'img/top/user.png'
 				),
 				array (
 					'link' => 'index.php?route=contact',
@@ -246,7 +246,7 @@ class Page
 				if ($key == 'caption') $caption = $value;
 				if ($key == 'icon') $icon = $value;
 			}
-			$line .= '<div class="navbar-text navbar-right"><a href="'.$link.'" class="navbar-link">'.$caption.'</a></div>';
+			$line .= '<div class="navbar-text navbar-right"><a href="'.$link.'" class="navbar-link"><img src="'.$icon.'" />'.$caption.'</a></div>';
 		}
 
 		return $line;
