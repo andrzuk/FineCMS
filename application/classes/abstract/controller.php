@@ -26,6 +26,10 @@ class Controller
 
 	public function AccessDenied()
 	{
+		$layout = $this->app->get_settings()->get_config_key('page_template_default');
+
+		$this->app->get_page()->set_layout($layout);
+
 		$this->app->get_page()->set_dialog(
 			MSG_ERROR, 
 			'Brak uprawnień', 
