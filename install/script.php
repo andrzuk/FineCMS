@@ -28,6 +28,9 @@ $sql_script = array(
 			'DROP TABLE IF EXISTS `user_messages`;',
 			'DROP TABLE IF EXISTS `user_roles`;',
 			'DROP TABLE IF EXISTS `visitors`;',
+			'DROP TABLE IF EXISTS `stat_main`;',
+			'DROP TABLE IF EXISTS `stat_cat`;',
+			'DROP TABLE IF EXISTS `stat_ip`;',
 		),
 	),
 	array(
@@ -162,6 +165,40 @@ $sql_script = array(
 				  `search_text` varchar(128) NULL,
 				  `search_time` datetime NOT NULL,
 				  PRIMARY KEY (`id`)
+				) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+			",
+			"
+				CREATE TABLE `stat_cat` (
+				  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+				  `date` date NOT NULL,
+				  `category_id` int(10) unsigned NOT NULL,
+				  `counter` int(10) unsigned NOT NULL,
+				  PRIMARY KEY (`id`),
+				  KEY `date` (`date`)
+				) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+			",
+			"
+				CREATE TABLE `stat_ip` (
+				  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+				  `date` date NOT NULL,
+				  `ip` varchar(15) CHARACTER SET latin2 NOT NULL,
+				  `counter` int(10) unsigned NOT NULL,
+				  PRIMARY KEY (`id`),
+				  KEY `date` (`date`)
+				) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+			",
+			"
+				CREATE TABLE `stat_main` (
+				  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+				  `date` date NOT NULL,
+				  `start` int(10) unsigned NOT NULL,
+				  `contact` int(10) unsigned NOT NULL,
+				  `admin` int(10) unsigned NOT NULL,
+				  `login` int(10) unsigned NOT NULL,
+				  `reset` int(10) unsigned NOT NULL,
+				  `statistics` int(10) unsigned NOT NULL,
+				  PRIMARY KEY (`id`),
+				  KEY `date` (`date`)
 				) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 			",
 			"

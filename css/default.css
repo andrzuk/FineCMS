@@ -118,3 +118,5 @@ span.gallery_item > a > img { margin: 5px; padding: 1px; border: 1px solid #ccc;
 span.gallery_item > a > img:hover { cursor: pointer; border: 1px solid #00f; }
 
 p.warning { color: red; }
+
+div.action-bar { text-align: right; }

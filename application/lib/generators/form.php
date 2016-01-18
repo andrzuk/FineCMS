@@ -92,7 +92,7 @@ class FormBuilder extends Builder
 		$main_text .= $this->title;
 		$main_text .= '</h3>';
 		$main_text .= '</div>';
-
+		
 		$main_text .= '<div class="panel-body">';
 
 		foreach ($this->inputs as $k => $v)
@@ -107,7 +107,7 @@ class FormBuilder extends Builder
 				}
 				if ($key == 'data')
 				{
-					$type = NULL; $id = NULL; $name = NULL; $value = NULL; $label = NULL; $checked = NULL; $onchange = NULL; $rows = NULL; $required = NULL; $multiple = NULL;
+					$type = NULL; $id = NULL; $name = NULL; $value = NULL; $label = NULL; $checked = NULL; $onchange = NULL; $rows = NULL; $required = NULL; $multiple = NULL; $width = NULL; $height = NULL; $action = NULL; $style = NULL;
 
 					foreach ($val as $i => $j)
 					{
@@ -121,6 +121,10 @@ class FormBuilder extends Builder
 						if ($i == 'rows') $rows = $j;
 						if ($i == 'required') $required = $j;
 						if ($i == 'multiple') $multiple = $j;
+						if ($i == 'width') $width = $j;
+						if ($i == 'height') $height = $j;
+						if ($i == 'action') $action = $j;
+						if ($i == 'style') $style = $j;
 						if ($i == 'option')
 						{
 							$select_options = array();
@@ -144,24 +148,30 @@ class FormBuilder extends Builder
 						}
 						if ($i == 'items')
 						{
-							$radio_items = array();
+							$control_items = array();
 
 							foreach ($j as $ii => $jj)
 							{
-								$item_id = NULL; $item_label = NULL; $item_value = NULL; $item_checked = NULL;
+								$item_id = NULL; $item_name = NULL; $item_label = NULL; $item_value = NULL; $item_checked = NULL; $item_action = NULL; $item_style = NULL;
 
 								foreach ($jj as $iii => $jjj)
 								{
 									if ($iii == 'id') $item_id = $jjj;
+									if ($iii == 'name') $item_name = $jjj;
 									if ($iii == 'label') $item_label = $jjj;
 									if ($iii == 'value') $item_value = $jjj;
 									if ($iii == 'checked') $item_checked = $jjj;
+									if ($iii == 'action') $item_action = $jjj;
+									if ($iii == 'style') $item_style = $jjj;
 								}
-								$radio_items[] = array(
+								$control_items[] = array(
 									'id' => $item_id,
+									'name' => $item_name,
 									'label' => $item_label,
 									'value' => $item_value,
 									'checked' => $item_checked,
+									'action' => $item_action,
+									'style' => $item_style,
 									);
 							}
 						}
@@ -170,9 +180,29 @@ class FormBuilder extends Builder
 			}
 			if ($type == 'simple')
 			{
-				$main_text .= '<div class="form-group">';
+				$main_text .= '<div class="form-group" style="'.$style.'">';
 				$main_text .= $value;
 				$main_text .= '</div>';
+			}
+			if ($type == 'list')
+			{
+				if ($caption)
+				{
+					$main_text .= '<div style="'.$style.'">'.$caption.':</div>';
+				}
+
+				$main_text .= '<ul id="'.$id.'" name="'.$name.'" style="'.$style.'">';
+				
+				foreach ($control_items as $i => $j)
+				{
+					foreach ($j as $ii => $jj)
+					{
+						if ($ii == 'value') $item_value = $jj;
+						if ($ii == 'style') $item_style = $jj;
+					}
+					$main_text .= '<li style="'.$item_style.'">'.$item_value.'</li>';
+				}
+				$main_text .= '</ul>';
 			}
 			if ($type == 'label')
 			{
@@ -251,7 +281,7 @@ class FormBuilder extends Builder
 					$main_text .= '<label class="control-label">'.$caption.':</label>';
 				}
 
-				foreach ($radio_items as $i => $j)
+				foreach ($control_items as $i => $j)
 				{
 					foreach ($j as $ii => $jj)
 					{
@@ -273,6 +303,35 @@ class FormBuilder extends Builder
 				$main_text .= '<div class="form-group">';
 				$main_text .= '<label for="'.$name.'">'.$caption.':</label>';
 				$main_text .= '<input type="'.$type.'" id="'.$id.'" name="'.$name.'" '.$required.' '.$multiple.'>';
+				$main_text .= '</div>';
+			}
+			if ($type == 'canvas')
+			{
+				$main_text .= '<div class="container">';
+				$main_text .= '<canvas id="'.$id.'" name="'.$name.'" width="'.$width.'" height="'.$height.'">';
+				$main_text .= '</canvas>';
+				$main_text .= '</div>';
+			}
+			if ($type == 'button')
+			{
+				if ($caption)
+				{
+					$main_text .= '<label class="control-label">'.$caption.':</label>';
+				}
+				$main_text .= '<div class="form-group action-bar">';
+				
+				foreach ($control_items as $i => $j)
+				{
+					foreach ($j as $ii => $jj)
+					{
+						if ($ii == 'id') $item_id = $jj;
+						if ($ii == 'name') $item_name = $jj;
+						if ($ii == 'value') $item_value = $jj;
+						if ($ii == 'action') $item_action = $jj;
+						if ($ii == 'style') $item_style = $jj;
+					}
+					$main_text .= '<input type="'.$type.'" id="'.$item_id.'" name="'.$item_name.'" value="'.$item_value.'" onclick="'.$item_action.'" style="'.$item_style.'">';
+				}
 				$main_text .= '</div>';
 			}
 		}
