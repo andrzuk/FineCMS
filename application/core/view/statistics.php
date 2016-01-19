@@ -33,6 +33,12 @@ class Statistics_View extends View
 			array(
 				'caption' => NULL, 
 				'data' => array(
+					'type' => 'simple', 'id' => 'period', 'name' => 'period', 'value' => 'From - To', 'style' => 'text-align: center; font-size: 1.5em; color: #c00; margin: 5px 0 5px 0;',
+					),
+				),
+			array(
+				'caption' => NULL, 
+				'data' => array(
 					'type' => 'button',
 					'items' => array(
 						array(

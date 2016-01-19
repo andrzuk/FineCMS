@@ -180,7 +180,7 @@ class FormBuilder extends Builder
 			}
 			if ($type == 'simple')
 			{
-				$main_text .= '<div class="form-group" style="'.$style.'">';
+				$main_text .= '<div id="'.$id.'" name="'.$name.'" class="form-group" style="'.$style.'">';
 				$main_text .= $value;
 				$main_text .= '</div>';
 			}

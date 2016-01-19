@@ -62,9 +62,15 @@ if (isset($_SESSION[user_status]) && $_SESSION[user_status] > 0 || TRUE)
 	{
 		while ($row = mysqli_fetch_array($result)) $rows[] = $row;
 		
-		$xml_data .= '<?xml version="1.0" encoding="UTF-8"?>
-		
+		$xml_data .= '<?xml version="1.0" encoding="UTF-8"?>		
 			<response>
+		';
+		
+		$xml_data .= '
+			<period>
+			<date_from>'.$date_from.'</date_from>
+			<date_to>'.$date_to.'</date_to>
+			</period>
 		';
 
 		foreach ($rows as $row)

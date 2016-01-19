@@ -19,12 +19,16 @@ function update_chart(period)
 	}
 	xhttp.onreadystatechange = function() {
 		if (xhttp.readyState == 4 && xhttp.status == 200) {
+			var response_info = xhttp.responseXML.getElementsByTagName("period");
+			var date_from = response_info[0].getElementsByTagName("date_from")[0].childNodes[0].nodeValue;
+			var date_to = response_info[0].getElementsByTagName("date_to")[0].childNodes[0].nodeValue;
 			var response_elements = xhttp.responseXML.getElementsByTagName("item");
 			for (i = 0; i < response_elements.length; i++) {
 				labels[i] = response_elements[i].getElementsByTagName("date_label")[0].childNodes[0].nodeValue;
 				counters[i] = response_elements[i].getElementsByTagName("date_counter")[0].childNodes[0].nodeValue;
 			}
 			console.log("Received elements: %d.", response_elements.length);
+			document.getElementById("period").innerHTML = date_from + " ~ " + date_to;
 			var canvas = document.getElementById("chart");
 			var ctx = canvas.getContext("2d");
 			var statChartData = {
