@@ -1,15 +1,34 @@
 <?php
 
-$main_template_content = $this->get_content() . $this->show_message() .
-'
-<script type="text/javascript">
+$mode = isset($_GET['mode']) ? $_GET['mode'] : NULL;
 
-$(document).ready(function(){
-	$("#months_1").click();
-});
+if ($mode == 'ip')
+{
+	$main_template_content = $this->get_content() . $this->show_message() .
+	'
+	<script type="text/javascript">
 
-</script>
-'
-;
+		$(document).ready(function(){
+			horizontal_chart();
+		});
+
+	</script>
+	'
+	;
+}
+else
+{
+	$main_template_content = $this->get_content() . $this->show_message() .
+	'
+	<script type="text/javascript">
+
+		$(document).ready(function(){
+			$("#months_1").click();
+		});
+
+	</script>
+	'
+	;
+}
 
 ?>

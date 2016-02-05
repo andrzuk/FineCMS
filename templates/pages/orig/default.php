@@ -24,6 +24,7 @@ $main_layout_content = '
     <link href="gallery/logo/favicon.ico" rel="shortcut icon"> 
     <base href="'.$this->get_metadata('base_domain').'" target="_self" />
     <script src="js/chart/Chart.js"></script>
+    <script src="js/chart/Chart.HorizontalBar.js"></script>
     <script src="js/chart/Ajax.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>

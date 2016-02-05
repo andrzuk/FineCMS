@@ -98,6 +98,34 @@ class Statistics_Model extends Model
 
 		return $this->rows_list;
 	}
+	
+	public function GetIpStats()
+	{
+		$this->rows_list = array();
+		$this->row_item = array();
+
+		try
+		{
+			// całkowita ilość adresów IP:
+			
+			$query = 	"SELECT COUNT(DISTINCT visitor_ip) AS ip_counter" .
+						" FROM visitors";
+
+			$statement = $this->db->prepare($query);
+			
+			$statement->execute();
+			
+			$this->row_item = $statement->fetch(PDO::FETCH_ASSOC);
+			
+			$this->rows_list['all'] = $this->row_item;			
+		}
+		catch (PDOException $e)
+		{
+			die ($e->getMessage());
+		}
+
+		return $this->rows_list;
+	}
 }
 
 ?>

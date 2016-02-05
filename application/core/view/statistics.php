@@ -13,7 +13,7 @@ class Statistics_View extends View
 
 		$form_object = new FormBuilder();
 
-		$form_title = 'Statystyki serwisu';
+		$form_title = 'Statystyki serwisu - Odsłony';
 		$form_image = 'img/32x32/chart_line.png';
 		$form_width = '100%';
 		
@@ -91,6 +91,68 @@ class Statistics_View extends View
 							),
 						array(
 							'value' => 'Narastający: <b>'.$data['all']['period_counter'].'</b>', 'style' => 'display: inline; margin: 5px;',
+							),
+						array(
+							'value' => '<a href="/?route=statistics&mode=ip">Statystyka adresów IP</a>', 'style' => 'display: inline; margin: 5px;',
+							),
+						),
+					),
+				),
+			);
+
+		$form_object->set_inputs($form_inputs);
+		
+		$form_hiddens = array();
+			
+		$form_object->set_hiddens($form_hiddens);
+
+		$form_buttons = array(
+			array(
+				'type' => 'submit', 'id' => 'submit', 'name' => 'submit', 'value' => 'Zamknij',
+				),
+			);
+		
+		$form_object->set_buttons($form_buttons);
+
+		$result = $form_object->build_form();
+
+		return $result;
+	}
+	
+	public function ShowIpStatsForm($data)
+	{
+		include GENER_DIR . 'form.php';
+
+		$form_object = new FormBuilder();
+
+		$form_title = 'Statystyki serwisu - Adresy IP';
+		$form_image = 'img/32x32/chart_line.png';
+		$form_width = '100%';
+		
+		$form_object->init($form_title, $form_image, $form_width);
+
+		$form_action = 'index.php';
+
+		$form_object->set_action($form_action);
+
+		$form_inputs = array(
+			array(
+				'caption' => NULL, 
+				'data' => array(
+					'type' => 'canvas', 'id' => 'chart', 'name' => 'chart', 'width' => '220px', 'height' => '100px',
+					),
+				),
+			array(
+				'caption' => '', 
+				'data' => array(
+					'type' => 'list',
+					'id' => 'counters', 'name' => 'counters', 'style' => 'text-align: center; padding: 10px;',
+					'items' => array(
+						array(
+							'value' => 'Licznik adresów IP: <b>'.$data['all']['ip_counter'].'</b>', 'style' => 'display: inline; margin: 5px;',
+							),
+						array(
+							'value' => '<a href="/?route=statistics">Statystyka odsłon</a>', 'style' => 'display: inline; margin: 5px;',
 							),
 						),
 					),
