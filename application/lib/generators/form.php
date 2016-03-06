@@ -370,6 +370,14 @@ class FormBuilder extends Builder
 				{
 					$main_text .= '<button type="'.$type.'" id="'.$id.'" name="'.$name.'" class="btn btn-primary" value="'.$value.'" onclick="'.$onclick.'">'.$value.'</button>';
 				}
+				else if ($type == 'save')
+				{
+					$main_text .= '<button type="'.$type.'" id="'.$id.'" name="'.$name.'" class="btn btn-success" value="'.$value.'" onclick="'.$onclick.'">'.$value.'</button>';
+				}
+				else if ($type == 'close')
+				{
+					$main_text .= '<button type="'.$type.'" id="'.$id.'" name="'.$name.'" class="btn btn-primary" value="'.$value.'" onclick="'.$onclick.'">'.$value.'</button>';
+				}
 				else // anuluj
 				{
 					$main_text .= '<button type="button" id="'.$id.'" name="'.$name.'" class="btn btn-warning" value="'.$value.'" onclick="submit()">'.$value.'</button>';

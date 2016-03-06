@@ -6,9 +6,6 @@ session_start();
 
 $rows = array();
 $xml_data = NULL;
-$idx = 0;
-$days = 0;
-$offset = 0;
 
 if (isset($_SESSION[user_status]) && $_SESSION[user_status] > 0 || TRUE)
 {
@@ -17,8 +14,6 @@ if (isset($_SESSION[user_status]) && $_SESSION[user_status] > 0 || TRUE)
 	$connection = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 	mysqli_query ($connection, 'SET NAMES utf8');
 
-	$rows = array();
-	
 	$excludes = "'localhost' ";
 
 	$query = 	'SELECT visitor_ip FROM excludes WHERE active = 1 ORDER BY id';
