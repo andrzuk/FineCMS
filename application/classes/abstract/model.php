@@ -109,9 +109,20 @@ class Model
 
 	public function convert_to_html($subject, $content)
 	{
-		$main_text = "<html><head><title>" . $subject . "</title></head><body><p>" . $content . "</p></body></html>";
-		$main_text = str_replace("\n", "<br />", $main_text);
-
+		$main_text = '
+		
+			<!DOCTYPE html>
+			<html lang="pl">
+				<head>
+					<meta charset="utf-8">
+					<title>'.$subject.'</title>
+				</head>
+				<body>
+					<p>'.str_replace("\n", "<br />", $content).'</p>
+				</body>
+			</html>
+		';
+		
 		return $main_text;
 	}
 }

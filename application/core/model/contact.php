@@ -89,6 +89,9 @@ class Contact_Model extends Model
 		{
 			if ($key == 'send_new_message_report') $send_new_message_report = $value;
 			if ($key == 'base_domain') $base_domain = $value;
+			if ($key == 'email_host') $email_host = $value;
+			if ($key == 'email_port') $email_port = $value;
+			if ($key == 'email_password') $email_password = $value;
 			if ($key == 'email_sender_name') $email_sender_name = $value;
 			if ($key == 'email_sender_address') $email_sender_address = $value;
 			if ($key == 'email_report_address') $email_report_address = $value;
@@ -96,29 +99,43 @@ class Contact_Model extends Model
 			if ($key == 'email_report_body_1') $email_report_body_1 = $value;
 			if ($key == 'email_report_body_2') $email_report_body_2 = $value;
 		}
+		
+		include LIB_DIR . 'mailer/class.phpmailer.php';
+		include LIB_DIR . 'mailer/class.smtp.php';
+		
+		$mail = new PHPMailer();
+		
+		$mail->IsSMTP();
+		$mail->SMTPDebug = 0;
+		$mail->SMTPAuth = true;
+		$mail->Host = $email_host;
+		$mail->Port = $email_port;
+		$mail->Username = $email_sender_address;
+		$mail->Password = $email_password;
+		$mail->SetFrom($email_sender_address, $email_sender_name);
+		$mail->Subject = $email_report_subject;
+		$mail->CharSet = "UTF-8";
 
 		if ($send_new_message_report == 'true')
 		{
 			// wysyła e-mailem informację do admina o napisaniu wiadomosci przez usera:
-			$recipient = $email_report_address;
 			$mail_body = $email_report_body_1 ."\n\nUżytkownik {".$login."} (e-mail: ".$email.") napisał do serwisu wiadomość:\n\n\"".$contents."\"\n\n".$base_domain."\n";
-			$subject = $email_report_subject;
-			$header = "From: ". $email_sender_name . " <" . $email_sender_address . ">\r\n";
-			$header = "MIME-Version: 1.0\r\n" . "Content-type: text/html; charset=UTF-8\r\n" . $header;
-			$mail_body = $this->convert_to_html($subject, $mail_body);
-			mail($recipient, $subject, $mail_body, $header);
+			$mail_html = $this->convert_to_html($email_report_subject, $mail_body);
+			$mail->AddAddress($email_report_address, $email_sender_name);
+			$mail->MsgHTML($mail_html);
+			$mail->AltBody = $mail_body;
+			$mail->send();
 		}
 
 		if ($sendme)
 		{
 			// wysyła e-mailem kopie wiadomosci do autora:
-			$recipient = $email;
 			$mail_body = "Drogi Użytkowniku,\n\nPodając się jako {".$login."} napisałe(a)ś do serwisu wiadomość:\n\n\"".$contents."\"\n\nBardzo dziękujemy.\n\n".$base_domain."\n";
-			$subject = $email_report_subject;
-			$header = "From: ". $email_sender_name . " <" . $email_sender_address . ">\r\n";
-			$header = "MIME-Version: 1.0\r\n" . "Content-type: text/html; charset=UTF-8\r\n" . $header;
-			$mail_body = $this->convert_to_html($subject, $mail_body);
-			mail($recipient, $subject, $mail_body, $header);
+			$mail_html = $this->convert_to_html($email_report_subject, $mail_body);
+			$mail->AddAddress($email, $login);
+			$mail->MsgHTML($mail_html);
+			$mail->AltBody = $mail_body;
+			$mail->send();
 		}
 
 		$result = $this->Store($login, $email, $contents); // rejestruje wiadomość

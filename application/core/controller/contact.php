@@ -40,6 +40,9 @@ class Contact_Controller extends Controller
 		$message_options = array(
 			'send_new_message_report' => $this->app->get_settings()->get_config_key('send_new_message_report'),
 			'base_domain' => $this->app->get_settings()->get_config_key('base_domain'),
+			'email_host' => $this->app->get_settings()->get_config_key('email_host'),
+			'email_port' => $this->app->get_settings()->get_config_key('email_port'),
+			'email_password' => $this->app->get_settings()->get_config_key('email_password'),
 			'email_sender_name' => $this->app->get_settings()->get_config_key('email_sender_name'),
 			'email_sender_address' => $this->app->get_settings()->get_config_key('email_sender_address'),
 			'email_report_address' => $this->app->get_settings()->get_config_key('email_report_address'),

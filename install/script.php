@@ -302,15 +302,18 @@ $sql_script = array(
 				(21, 'page_pointer_band', '4', 'liczebność (połowa) paska ze wskaźnikami stron w pasku nawigacji', 1, 1, :save_time),
 				(22, 'send_new_message_report', 'true', 'wysyłanie e-mailem raportów do admina o pojawieniu się nowej wiadomości', 3, 1, :save_time),
 				(23, 'email_sender_name', 'Mail Manager', 'nazwa konta e-mailowego serwisu', 1, 1, :save_time),
-				(24, 'email_sender_address', :email_sender_address, 'adres konta e-mailowego serwisu', 1, 1, :save_time),
-				(25, 'email_admin_address', :email_admin_address, 'adres e-mail administratora serwisu', 1, 1, :save_time),
-				(26, 'email_report_address', :email_report_address, 'adres e-mail odbiorcy raportów', 1, 1, :save_time),
-				(27, 'email_report_subject', 'Raport serwisu', 'temat maila raportującego zdarzenie', 1, 1, :save_time),
-				(28, 'email_report_body_1', 'Raport o zdarzeniu w serwisie', 'treść maila rapotującego - część przed zmiennymi', 2, 1, :save_time),
-				(29, 'email_report_body_2', '(brak)', 'treść maila rapotującego - część za zmiennymi', 2, 1, :save_time),
-				(30, 'email_remindpwd_subject', 'Nowe hasło do konta', 'temat generowanego maila z nowym hasłem', 1, 1, :save_time),
-				(31, 'email_remindpwd_body_1', 'Na Twoją prośbę przesyłamy Ci nowe hasło logowania.', 'treść generowanego maila z nowym hasłem - przed hasłem', 2, 1, :save_time),
-				(32, 'email_remindpwd_body_2', 'Zaloguj się, a następnie zmień hasło na swoje własne.', 'treść generowanego maila z nowym hasłem - za hasłem', 2, 1, :save_time);
+				(24, 'email_host', 'mail.mvc.net.pl', 'host wysyłania maili', 1, 1, '2016-03-30 15:36:02'),
+				(25, 'email_port', '587', 'port smtp', 1, 1, '2016-03-30 15:37:03'),
+				(26, 'email_password', 'Kns6hT42WkbM', 'hasło konta mailingowego', 1, 1, '2016-03-30 15:40:37'),
+				(27, 'email_sender_address', :email_sender_address, 'adres konta e-mailowego serwisu', 1, 1, :save_time),
+				(28, 'email_admin_address', :email_admin_address, 'adres e-mail administratora serwisu', 1, 1, :save_time),
+				(29, 'email_report_address', :email_report_address, 'adres e-mail odbiorcy raportów', 1, 1, :save_time),
+				(30, 'email_report_subject', 'Raport serwisu', 'temat maila raportującego zdarzenie', 1, 1, :save_time),
+				(31, 'email_report_body_1', 'Raport o zdarzeniu w serwisie', 'treść maila rapotującego - część przed zmiennymi', 2, 1, :save_time),
+				(32, 'email_report_body_2', '(brak)', 'treść maila rapotującego - część za zmiennymi', 2, 1, :save_time),
+				(33, 'email_remindpwd_subject', 'Nowe hasło do konta', 'temat generowanego maila z nowym hasłem', 1, 1, :save_time),
+				(34, 'email_remindpwd_body_1', 'Na Twoją prośbę przesyłamy Ci nowe hasło logowania.', 'treść generowanego maila z nowym hasłem - przed hasłem', 2, 1, :save_time),
+				(35, 'email_remindpwd_body_2', 'Zaloguj się, a następnie zmień hasło na swoje własne.', 'treść generowanego maila z nowym hasłem - za hasłem', 2, 1, :save_time);
 			",
 			"
 				INSERT INTO `pages` (`id`, `main_page`, `system_page`, `category_id`, `title`, `contents`, `description`, `author_id`, `visible`, `modified`, `previews`) VALUES

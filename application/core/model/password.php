@@ -76,6 +76,9 @@ class Password_Model extends Model
 		foreach ($message_options as $key => $value)
 		{
 			if ($key == 'base_domain') $base_domain = $value;
+			if ($key == 'email_host') $email_host = $value;
+			if ($key == 'email_port') $email_port = $value;
+			if ($key == 'email_password') $email_password = $value;
 			if ($key == 'email_sender_name') $email_sender_name = $value;
 			if ($key == 'email_sender_address') $email_sender_address = $value;
 			if ($key == 'email_remindpwd_subject') $email_remindpwd_subject = $value;
@@ -83,14 +86,29 @@ class Password_Model extends Model
 			if ($key == 'email_remindpwd_body_2') $email_remindpwd_body_2 = $value;
 		}
 
+		include LIB_DIR . 'mailer/class.phpmailer.php';
+		include LIB_DIR . 'mailer/class.smtp.php';
+		
+		$mail = new PHPMailer();
+		
+		$mail->IsSMTP();
+		$mail->SMTPDebug = 0;
+		$mail->SMTPAuth = true;
+		$mail->Host = $email_host;
+		$mail->Port = $email_port;
+		$mail->Username = $email_sender_address;
+		$mail->Password = $email_password;
+		$mail->SetFrom($email_sender_address, $email_sender_name);
+		$mail->Subject = $email_remindpwd_subject;
+		$mail->CharSet = "UTF-8";
+
 		// wysyła e-maila do usera z nowym hasłem:
-		$recipient = $data['email'];
 		$mail_body = "Szanowny użytkowniku,\n\n" . $email_remindpwd_body_1 . "\n\n login: <b>". $data['user_login']. "</b>\n hasło: <b>". $new_password . "</b>\n\n" . $email_remindpwd_body_2 . "\n\nPozdrawiamy,\n\n" . $base_domain . "\n";
-		$subject = $email_remindpwd_subject;
-		$header = "From: ". $email_sender_name . " <" . $email_sender_address . ">\r\n";
-		$header = "MIME-Version: 1.0\r\n" . "Content-type: text/html; charset=UTF-8\r\n" . $header;
-		$mail_body = $this->convert_to_html($subject, $mail_body);
-		mail($recipient, $subject, $mail_body, $header);
+		$mail_html = $this->convert_to_html($email_remindpwd_subject, $mail_body);
+		$mail->AddAddress($data['email'], $data['user_login']);
+		$mail->MsgHTML($mail_html);
+		$mail->AltBody = $mail_body;
+		$mail->send();
 	}
 }
 
