@@ -261,7 +261,7 @@ class Sites_View extends View
 					if ($key == 'id') $id = $value;
 					if ($key == 'modified') $modified = $value;
 				}
-				$form_items[] = array('id' => $id, 'label' => $modified, 'value' => $id,);
+				$form_items[] = array('id' => $id, 'label' => $modified, 'value' => $id, 'button' => '<a href="index.php?route=sites&action=preview&id='.$id.'" class="btn btn-success btn-xs">Podgląd</a>');
 			}
 		}
 
@@ -309,6 +309,24 @@ class Sites_View extends View
 		$form_object->set_buttons($form_buttons);
 
 		$result = $form_object->build_form();
+
+		return $result;
+	}
+	
+	public function ShowPage($data)
+	{
+		$result = NULL;
+
+		if (is_array($data))
+		{
+			foreach ($data as $key => $value)
+			{
+				if ($key == 'contents')
+				{
+					$result .= $value;
+				}
+			}
+		}
 
 		return $result;
 	}

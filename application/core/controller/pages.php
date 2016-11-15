@@ -433,6 +433,29 @@ class Pages_Controller extends Controller
 			parent::AccessDenied();
 		}
 	}
+
+	public function Preview_Action()
+	{
+		if ($this->app->get_acl()->allowed(OPERATOR)) // są uprawnienia
+		{
+			$id = isset($_GET['id']) ? intval($_GET['id']) : 0;
+
+			$data = $this->app->get_model_object()->Preview($id);
+
+			$data['skip_bar'] = $this->app->get_menu()->GetSkipBar($data['category_id']);
+			$data['social_buttons'] = $this->app->get_settings()->get_config_key('social_buttons');
+
+			$this->app->get_page()->set_content($this->app->get_view_object()->ShowPage($data));
+			
+			$layout = $this->app->get_settings()->get_config_key('page_template_extended');
+			$this->app->get_page()->set_layout($layout);
+			$this->app->get_page()->set_template('index');
+		}
+		else // brak uprawnień
+		{
+			parent::AccessDenied();
+		}
+	}
 }
 
 ?>

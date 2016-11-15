@@ -332,6 +332,43 @@ class Sites_Model extends Model
 
 		return $affected_rows;
 	}
+	
+	public function Preview($id)
+	{
+		$this->row_item = array();
+
+		$main_page = 1;
+		$system_page = 1;
+		$show_all_types = 1;
+		$visible = 1;
+
+		try
+		{
+			$query = 	'SELECT title, contents, description, category_id, user_login, archives.modified, previews' .
+						' FROM archives' .
+						' INNER JOIN users ON users.id = archives.author_id' .
+						' WHERE (:show_all_types OR main_page = :main_page AND system_page = :system_page)' .
+						' AND archives.id = :id AND visible = :visible';
+			
+			$statement = $this->db->prepare($query);
+
+			$statement->bindValue(':id', $id, PDO::PARAM_INT); 
+			$statement->bindValue(':main_page', $main_page, PDO::PARAM_INT); 
+			$statement->bindValue(':system_page', $system_page, PDO::PARAM_INT); 
+			$statement->bindValue(':show_all_types', $show_all_types, PDO::PARAM_INT); 
+			$statement->bindValue(':visible', $visible, PDO::PARAM_INT); 
+
+			$statement->execute();
+			
+			$this->row_item = $statement->fetch(PDO::FETCH_ASSOC);			
+		}
+		catch (PDOException $e)
+		{
+			die ($e->getMessage());
+		}
+
+		return $this->row_item;
+	}
 }
 
 ?>

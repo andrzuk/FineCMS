@@ -19,3 +19,4 @@ span.gallery_item > a > img:hover { cursor: pointer; border: 1px solid #00f; }
 span.options-item { float: right; padding: 0px 15px 0px 15px; }
 span.options-item > a > img { padding: 0px 10px 0px 0px; }
 
+div.radio > label > a { margin-left: 20px; }

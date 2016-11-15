@@ -152,7 +152,7 @@ class FormBuilder extends Builder
 
 							foreach ($j as $ii => $jj)
 							{
-								$item_id = NULL; $item_name = NULL; $item_label = NULL; $item_value = NULL; $item_checked = NULL; $item_action = NULL; $item_style = NULL;
+								$item_id = NULL; $item_name = NULL; $item_label = NULL; $item_value = NULL; $item_checked = NULL; $item_action = NULL; $item_style = NULL; $item_button = NULL;
 
 								foreach ($jj as $iii => $jjj)
 								{
@@ -163,6 +163,7 @@ class FormBuilder extends Builder
 									if ($iii == 'checked') $item_checked = $jjj;
 									if ($iii == 'action') $item_action = $jjj;
 									if ($iii == 'style') $item_style = $jjj;
+									if ($iii == 'button') $item_button = $jjj;
 								}
 								$control_items[] = array(
 									'id' => $item_id,
@@ -172,6 +173,7 @@ class FormBuilder extends Builder
 									'checked' => $item_checked,
 									'action' => $item_action,
 									'style' => $item_style,
+									'button' => $item_button,
 									);
 							}
 						}
@@ -244,7 +246,7 @@ class FormBuilder extends Builder
 				$value = array_key_exists($name, $_SESSION['form_fields']) ? $_SESSION['form_fields'][$name] : $value;
 				$main_text .= '<div class="'.$style_name.'">';
 				$main_text .= '<label for="'.$name.'" class="control-label">'.$caption.':</label>';
-				$main_text .= '<textarea class="form-control" id="'.$id.'" name="'.$name.'" rows="'.$rows.'" '.$required.'>'.$value.'</textarea>';
+				$main_text .= '<textarea class="form-control" id="'.$id.'" name="'.$name.'" rows="'.$rows.'" '.$required.' autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">'.$value.'</textarea>';
 				$main_text .= '</div>';
 			}
 			if ($type == 'select')
@@ -289,11 +291,12 @@ class FormBuilder extends Builder
 						if ($ii == 'label') $item_label = $jj;
 						if ($ii == 'value') $item_value = $jj;
 						if ($ii == 'checked') $item_checked = $jj;
+						if ($ii == 'button') $item_button = $jj;
 					}
 					$main_text .= '<div class="radio">';
 					$main_text .= '<label>';
 					$main_text .= '<input type="'.$type.'" id="'.$item_id.'" name="'.$name.'" value="'.$item_value.'" '.$item_checked.'>';
-					$main_text .= $item_label;
+					$main_text .= $item_label . $item_button;
 					$main_text .= '</label>';
 					$main_text .= '</div>';
 				}
