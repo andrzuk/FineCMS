@@ -265,17 +265,18 @@ $sql_script = array(
 				(2, 'config', 'Konfiguracja', 'config'),
 				(3, 'template', 'Szablon strony', 'template'),
 				(4, 'style', 'Styl strony', 'style'),
-				(5, 'users', 'Użytkownicy', 'users'),
-				(6, 'ACL', 'Access Control List', 'roles'),
-				(7, 'visitors', 'Odwiedziny', 'visitors'),
-				(8, 'gallery', 'Galeria', 'images'),
-				(9, 'categories', 'Kategorie', 'categories'),
-				(10, 'pages', 'Strony', 'pages'),
-				(11, 'sites', 'Opisy', 'sites'),
-				(12, 'messages', 'Wiadomości', 'messages'),
-				(13, 'searches', 'Wyszukiwania', 'searches'),
-				(14, 'logins', 'Logowania', 'logins'),
-				(15, 'excludes', 'Wykluczenia adresów', 'excludes');
+				(5, 'script', 'Skrypt strony', 'script'),
+				(6, 'users', 'Użytkownicy', 'users'),
+				(7, 'ACL', 'Access Control List', 'roles'),
+				(8, 'visitors', 'Odwiedziny', 'visitors'),
+				(9, 'gallery', 'Galeria', 'images'),
+				(10, 'categories', 'Kategorie', 'categories'),
+				(11, 'pages', 'Strony', 'pages'),
+				(12, 'sites', 'Opisy', 'sites'),
+				(13, 'messages', 'Wiadomości', 'messages'),
+				(14, 'searches', 'Wyszukiwania', 'searches'),
+				(15, 'logins', 'Logowania', 'logins'),
+				(16, 'excludes', 'Wykluczenia adresów', 'excludes');
 			",
 			"
 				INSERT INTO `configuration` (`id`, `key_name`, `key_value`, `meaning`, `field_type`, `active`, `modified`) VALUES
@@ -342,7 +343,8 @@ $sql_script = array(
 				(12, 1, 12, 1),
 				(13, 1, 13, 1),
 				(14, 1, 14, 1),
-				(15, 1, 15, 1);
+				(15, 1, 15, 1),
+				(16, 1, 16, 1);
 			",
 		),
 	),

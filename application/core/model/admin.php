@@ -132,6 +132,9 @@ class Admin_Model extends Model
 			case 'Styl':
 				$file = 'css/' . $layout . '.css';
 				break;
+			case 'Skrypt':
+				$file = 'js/' . $layout . '.js';
+				break;
 		}
 
 		if (file_exists($file))

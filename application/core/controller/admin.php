@@ -50,6 +50,12 @@ class Admin_Controller extends Controller
 							'icon' => '44.png',
 							),
 						array(
+							'profile' => ADMIN,
+							'caption' => 'Skrypt ('.$this->app->get_model_object()->GetFileLines('Skrypt', $this->app->get_page()->get_layout()).')', 
+							'link' => 'index.php?route=script', 
+							'icon' => '55.png',
+							),
+						array(
 							'profile' => USER,
 							'caption' => 'Użytkownicy ('.$this->app->get_model_object()->GetTableCount('Użytkownicy').')', 
 							'link' => 'index.php?route=users', 
