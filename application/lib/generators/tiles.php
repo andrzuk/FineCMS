@@ -103,7 +103,7 @@ class TilesBuilder extends Builder
 
 				$main_text .= '<span class="gallery_item">';
 				$main_text .= '<a href="'.$img_link.'">';
-				$main_text .= '<img src="gallery/images/'.$picture_id.'" title="Nazwa: '.$file_name.'&#13;&#10;Rozmiar: '.$file_size.'&#13;&#10;Wymiary: '.$picture_width.' x '.$picture_height.' px &#13;&#10;Modyfikacja: '.$modified.'" onclick="select('.$picture_id.')">';
+				$main_text .= '<img src="'. GALLERY_DIR . IMG_DIR . $picture_id .'" title="Nazwa: '.$file_name.'&#13;&#10;Rozmiar: '.$file_size.'&#13;&#10;Wymiary: '.$picture_width.' x '.$picture_height.' px &#13;&#10;Modyfikacja: '.$modified.'" onclick="select('.$picture_id.')">';
 				$main_text .= '</a>';
 				$main_text .= '</span>';
 			}

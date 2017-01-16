@@ -99,7 +99,7 @@ class Sites_View extends View
 		$main_page = $main_main_page ? 'checked' : NULL;
 		$system_page = $main_system_page ? 'checked' : NULL;
 
-		$main_contents = $image ? $main_contents . '<img src="gallery/images/'.$image.'" class="Image" />' : $main_contents;
+		$main_contents = $image ? $main_contents . '<img src="'. GALLERY_DIR . IMG_DIR . $image .'" class="Image" />' : $main_contents;
 
 		include GENER_DIR . 'form.php';
 
