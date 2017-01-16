@@ -282,7 +282,7 @@ class Images_View extends View
 				'caption' => 'Obrazek', 
 				'data' => array(
 					'type' => 'select', 'id' => 'image_selector', 'name' => 'image_selector', 
-					'onchange' => 'ajax_load()',
+					'onchange' => 'ajax_load(\''. GALLERY_DIR . IMG_DIR .'\')',
 					'option' => $images, 
 					),
 				),
