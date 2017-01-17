@@ -20,7 +20,7 @@ class Settings
 		if (isset($_SESSION['install_mode']))
 		{			
 			if ($key == 'base_domain') return $_SERVER['HTTP_HOST'];
-			else if ($key == 'page_footer') return '&copy; MyMVC ' . date("Y");
+			else if ($key == 'page_footer') return '&copy; MyCMS ' . date("Y");
 			else return NULL;
 		}
 

@@ -8,8 +8,10 @@ $sql_script = array(
 			'ALTER TABLE `pages` DROP FOREIGN KEY `fk_pages_users`;',
 			'ALTER TABLE `user_roles` DROP FOREIGN KEY `fk_roles_users`;',
 			'ALTER TABLE `user_roles` DROP FOREIGN KEY `fk_roles_functions`;',
-			'ALTER TABLE `archives` DROP FOREIGN KEY `archives_users`;',
-			'ALTER TABLE `archives` DROP FOREIGN KEY `archives_pages`;',
+			'ALTER TABLE `archives` DROP FOREIGN KEY `fk_archives_users`;',
+			'ALTER TABLE `archives` DROP FOREIGN KEY `fk_archives_pages`;',
+			'ALTER TABLE `comments` DROP FOREIGN KEY `fk_comments_users`;',
+			'ALTER TABLE `comments` DROP FOREIGN KEY `fk_comments_pages`;',
 		),
 	),
 	array(
@@ -17,6 +19,7 @@ $sql_script = array(
 			'DROP TABLE IF EXISTS `admin_functions`;',
 			'DROP TABLE IF EXISTS `archives`;',
 			'DROP TABLE IF EXISTS `categories`;',
+			'DROP TABLE IF EXISTS `comments`;',
 			'DROP TABLE IF EXISTS `configuration`;',
 			'DROP TABLE IF EXISTS `excludes`;',
 			'DROP TABLE IF EXISTS `hosts`;',
@@ -81,6 +84,20 @@ $sql_script = array(
 				  PRIMARY KEY (`id`),
 				  KEY `page_id` (`page_id`)
 				) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=1 ;
+			",
+			"
+				CREATE TABLE IF NOT EXISTS `comments` (
+				  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+				  `ip` varchar(20) NOT NULL,
+				  `user_id` int(11) unsigned NOT NULL,
+				  `page_id` int(11) unsigned NOT NULL,
+				  `comment_content` longtext NOT NULL,
+				  `send_date` datetime NOT NULL,
+				  `visible` tinyint(1) NOT NULL,
+				  PRIMARY KEY (`id`),
+				  KEY `user_id` (`user_id`),
+				  KEY `page_id` (`page_id`)
+				) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 			",
 			"
 				CREATE TABLE IF NOT EXISTS `configuration` (
@@ -273,10 +290,11 @@ $sql_script = array(
 				(10, 'categories', 'Kategorie', 'categories'),
 				(11, 'pages', 'Strony', 'pages'),
 				(12, 'sites', 'Opisy', 'sites'),
-				(13, 'messages', 'Wiadomości', 'messages'),
-				(14, 'searches', 'Wyszukiwania', 'searches'),
-				(15, 'logins', 'Logowania', 'logins'),
-				(16, 'excludes', 'Wykluczenia adresów', 'excludes');
+				(13, 'comments', 'Komentarze', 'comments'),
+				(14, 'messages', 'Wiadomości', 'messages'),
+				(15, 'searches', 'Wyszukiwania', 'searches'),
+				(16, 'logins', 'Logowania', 'logins'),
+				(17, 'excludes', 'Wykluczenia adresów', 'excludes');
 			",
 			"
 				INSERT INTO `configuration` (`id`, `key_name`, `key_value`, `meaning`, `field_type`, `active`, `modified`) VALUES
@@ -287,7 +305,7 @@ $sql_script = array(
 				(5, 'main_keywords', :main_keywords, 'meta dane keywords strony internetowej', 2, 1, :save_time),
 				(6, 'main_author', 'application logic & design: Andrzej Żukowski', 'autor serwisu - logiki biznesowej i designu', 2, 1, :save_time),
 				(7, 'base_domain', :base_domain, 'domena (adres) serwisu', 1, 1, :save_time),
-				(8, 'page_footer', '<a href=\"https://www.facebook.com/WlasnaStronaInternetowa\" target=\"_blank\"><img src=\"img/footer/facebook.png\" alt=\"facebook\" title=\"Znajdź nas na Facebooku\" /></a> <a href=\"http://www.linkedin.com/profile/view?id=93739159&trk=hb_tab_pro_top\" target=\"_blank\"><img src=\"img/footer/linkedin.png\" alt=\"linkedin\" title=\"Znajdź nas na LinkedIn\" /></a> <a href=\"https://twitter.com/andy_zukowski\" target=\"_blank\"><img src=\"img/footer/twitter.png\" alt=\"twitter\" title=\"Znajdź nas na Twitterze\" /></a> <a href=\"https://plus.google.com/u/0/113303165754486219878\" target=\"_blank\"><img src=\"img/footer/google_plus.png\" alt=\"google+\" title=\"Znajdź nas na Google Plus\" /></a><div class=\"FooterCopyright\">&copy; {_year_} MyMVC <a href=\"https://plus.google.com/113303165754486219878?rel=author\" class=\"FooterLink\" target=\"_blank\">Andrzej Żukowski</a></div>', 'treść w stopce strony', 2, 1, :save_time),
+				(8, 'page_footer', '<a href=\"https://www.facebook.com/WlasnaStronaInternetowa\" target=\"_blank\"><img src=\"img/footer/facebook.png\" alt=\"facebook\" title=\"Znajdź nas na Facebooku\" /></a> <a href=\"https://pl.linkedin.com/in/andrzejzukowski\" target=\"_blank\"><img src=\"img/footer/linkedin.png\" alt=\"linkedin\" title=\"Znajdź nas na LinkedIn\" /></a> <a href=\"https://twitter.com/andy_zukowski\" target=\"_blank\"><img src=\"img/footer/twitter.png\" alt=\"twitter\" title=\"Znajdź nas na Twitterze\" /></a> <a href=\"https://plus.google.com/u/0/113303165754486219878\" target=\"_blank\"><img src=\"img/footer/google_plus.png\" alt=\"google+\" title=\"Znajdź nas na Google Plus\" /></a><div class=\"FooterCopyright\">&copy; {_year_} MyCMS <a href=\"https://plus.google.com/113303165754486219878?rel=author\" class=\"FooterLink\" target=\"_blank\">Andrzej Żukowski</a></div>', 'treść w stopce strony', 2, 1, :save_time),
 				(9, 'social_buttons', '<span class=\"distance\"></span><span class=\"st_twitter\" displayText=\"&nbsp;\" st_url=\"{{_url_}}\" st_title=\"{{_title_}}\" title=\"Udostępnij na Twitterze\"></span><span class=\"st_googleplus\" displayText=\"&nbsp;\" st_url=\"{{_url_}}\" st_title=\"{{_title_}}\" title=\"Udostępnij w Google+\"></span><span class=\"st_facebook\" displayText=\"&nbsp;\" st_url=\"{{_url_}}\" st_title=\"{{_title_}}\" title=\"Udostępnij na Facebooku\"></span><span class=\"st_linkedin\" displayText=\"&nbsp;\" st_url=\"{{_url_}}\" st_title=\"{{_title_}}\" title=\"Udostępnij w LinkedIn\"></span>', 'przyciski społecznościowe w paskach tytułu artykułów', 2, 1, :save_time),
 				(10, 'page_template_default', 'default', 'domyślny (nawigacja i treść) szablon strony (nazwa templatki i stylu)', 1, 1, :save_time),
 				(11, 'page_template_extended', 'extended', 'rozszerzony (nawigacja, kategorie i treść) szablon strony (nazwa templatki i stylu)', 1, 1, :save_time),
@@ -298,23 +316,25 @@ $sql_script = array(
 				(16, 'path_panel_visible', 'true', 'panel ze scieżką strony widoczny', 3, 1, :save_time),
 				(17, 'logged_panel_visible', 'true', 'panel z nazwiskiem zalogowanego usera widoczny', 3, 1, :save_time),
 				(18, 'options_panel_visible', 'true', 'panel menu kontekstowego widoczny', 3, 1, :save_time),
-				(19, 'display_list_rows', '20', 'liczba wierszy listy na jednej stronie', 1, 1, :save_time),
-				(20, 'description_length', '50', 'maksymalna długość opisu pozycji na liście znalezionych', 1, 1, :save_time),
-				(21, 'page_pointer_band', '4', 'liczebność (połowa) paska ze wskaźnikami stron w pasku nawigacji', 1, 1, :save_time),
-				(22, 'send_new_message_report', 'true', 'wysyłanie e-mailem raportów do admina o pojawieniu się nowej wiadomości', 3, 1, :save_time),
-				(23, 'email_sender_name', 'Mail Manager', 'nazwa konta e-mailowego serwisu', 1, 1, :save_time),
-				(24, 'email_host', 'mail.mvc.net.pl', 'host wysyłania maili', 1, 1, '2016-03-30 15:36:02'),
-				(25, 'email_port', '587', 'port smtp', 1, 1, '2016-03-30 15:37:03'),
-				(26, 'email_password', 'Kns6hT42WkbM', 'hasło konta mailingowego', 1, 1, '2016-03-30 15:40:37'),
-				(27, 'email_sender_address', :email_sender_address, 'adres konta e-mailowego serwisu', 1, 1, :save_time),
-				(28, 'email_admin_address', :email_admin_address, 'adres e-mail administratora serwisu', 1, 1, :save_time),
-				(29, 'email_report_address', :email_report_address, 'adres e-mail odbiorcy raportów', 1, 1, :save_time),
-				(30, 'email_report_subject', 'Raport serwisu', 'temat maila raportującego zdarzenie', 1, 1, :save_time),
-				(31, 'email_report_body_1', 'Raport o zdarzeniu w serwisie', 'treść maila rapotującego - część przed zmiennymi', 2, 1, :save_time),
-				(32, 'email_report_body_2', '(brak)', 'treść maila rapotującego - część za zmiennymi', 2, 1, :save_time),
-				(33, 'email_remindpwd_subject', 'Nowe hasło do konta', 'temat generowanego maila z nowym hasłem', 1, 1, :save_time),
-				(34, 'email_remindpwd_body_1', 'Na Twoją prośbę przesyłamy Ci nowe hasło logowania.', 'treść generowanego maila z nowym hasłem - przed hasłem', 2, 1, :save_time),
-				(35, 'email_remindpwd_body_2', 'Zaloguj się, a następnie zmień hasło na swoje własne.', 'treść generowanego maila z nowym hasłem - za hasłem', 2, 1, :save_time);
+				(19, 'comments_panel_visible', 'true', 'panel z komentarzami do artykułu widoczny', 3, 1, :save_time),
+				(20, 'moderate_comments', 'false', 'wymagane moderowanie komentarzy - widoczne po akceptacji', 3, 1, :save_time),
+				(21, 'display_list_rows', '20', 'liczba wierszy listy na jednej stronie', 1, 1, :save_time),
+				(22, 'description_length', '50', 'maksymalna długość opisu pozycji na liście znalezionych', 1, 1, :save_time),
+				(23, 'page_pointer_band', '4', 'liczebność (połowa) paska ze wskaźnikami stron w pasku nawigacji', 1, 1, :save_time),
+				(24, 'send_new_message_report', 'true', 'wysyłanie e-mailem raportów do admina o pojawieniu się nowej wiadomości', 3, 1, :save_time),
+				(25, 'email_sender_name', 'Mail Manager', 'nazwa konta e-mailowego serwisu', 1, 1, :save_time),
+				(26, 'email_host', 'mail.mvc.net.pl', 'host wysyłania maili', 1, 1, '2016-03-30 15:36:02'),
+				(27, 'email_port', '587', 'port smtp', 1, 1, '2016-03-30 15:37:03'),
+				(28, 'email_password', 'Kns6hT42WkbM', 'hasło konta mailingowego', 1, 1, '2016-03-30 15:40:37'),
+				(29, 'email_sender_address', :email_sender_address, 'adres konta e-mailowego serwisu', 1, 1, :save_time),
+				(30, 'email_admin_address', :email_admin_address, 'adres e-mail administratora serwisu', 1, 1, :save_time),
+				(31, 'email_report_address', :email_report_address, 'adres e-mail odbiorcy raportów', 1, 1, :save_time),
+				(32, 'email_report_subject', 'Raport serwisu', 'temat maila raportującego zdarzenie', 1, 1, :save_time),
+				(33, 'email_report_body_1', 'Raport o zdarzeniu w serwisie', 'treść maila rapotującego - część przed zmiennymi', 2, 1, :save_time),
+				(34, 'email_report_body_2', '(brak)', 'treść maila rapotującego - część za zmiennymi', 2, 1, :save_time),
+				(35, 'email_remindpwd_subject', 'Nowe hasło do konta', 'temat generowanego maila z nowym hasłem', 1, 1, :save_time),
+				(36, 'email_remindpwd_body_1', 'Na Twoją prośbę przesyłamy Ci nowe hasło logowania.', 'treść generowanego maila z nowym hasłem - przed hasłem', 2, 1, :save_time),
+				(37, 'email_remindpwd_body_2', 'Zaloguj się, a następnie zmień hasło na swoje własne.', 'treść generowanego maila z nowym hasłem - za hasłem', 2, 1, :save_time);
 			",
 			"
 				INSERT INTO `pages` (`id`, `main_page`, `system_page`, `category_id`, `title`, `contents`, `description`, `author_id`, `visible`, `modified`, `previews`) VALUES
@@ -344,7 +364,8 @@ $sql_script = array(
 				(13, 1, 13, 1),
 				(14, 1, 14, 1),
 				(15, 1, 15, 1),
-				(16, 1, 16, 1);
+				(16, 1, 16, 1),
+				(17, 1, 17, 1);
 			",
 		),
 	),
@@ -369,8 +390,13 @@ $sql_script = array(
 			',
 			'
 				ALTER TABLE `archives`
-				  ADD CONSTRAINT `archives_users` FOREIGN KEY (`author_id`) REFERENCES `users` (`id`),
-				  ADD CONSTRAINT `archives_pages` FOREIGN KEY (`page_id`) REFERENCES `pages` (`id`);
+				  ADD CONSTRAINT `fk_archives_users` FOREIGN KEY (`author_id`) REFERENCES `users` (`id`),
+				  ADD CONSTRAINT `fk_archives_pages` FOREIGN KEY (`page_id`) REFERENCES `pages` (`id`);
+			',
+			'
+				ALTER TABLE `comments`
+				  ADD CONSTRAINT `fk_comments_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
+				  ADD CONSTRAINT `fk_comments_pages` FOREIGN KEY (`page_id`) REFERENCES `pages` (`id`);
 			',
 		),
 	),

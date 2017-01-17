@@ -198,6 +198,32 @@ class Categories_Model extends Model
 
 		try
 		{
+			// usuwa komentarze do wszystkich podstron danej kategorii:
+
+			$query = 	'SELECT id FROM pages' .
+						' WHERE category_id = :category_id';
+						' ORDER BY id';
+
+			$statement = $this->db->prepare($query);
+
+			$statement->bindValue(':category_id', $id, PDO::PARAM_INT); 
+
+			$statement->execute();
+			
+			$rows_result = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+			foreach ($rows_result as $row)
+			{
+				$query =	'DELETE FROM comments' .
+							' WHERE page_id = :page_id';
+
+				$statement = $this->db->prepare($query);
+
+				$statement->bindValue(':page_id', $row['id'], PDO::PARAM_INT); 
+				
+				$statement->execute();
+			}
+
 			// usuwa archiwa powiązanej strony:
 
 			$query =	'DELETE FROM archives' .

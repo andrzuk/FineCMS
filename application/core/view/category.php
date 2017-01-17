@@ -11,10 +11,6 @@ class Category_View extends View
 	{
 		$result = NULL;
 
-		include GENER_DIR . 'builder.php';
-
-		$intro_content = new Builder();
-
 		if (is_array($data))
 		{
 			foreach ($data as $k => $v)
@@ -72,7 +68,7 @@ class Category_View extends View
 					}
 					else
 					{
-						$result .= '<p>' . $intro_content->get_split_text(strip_tags($contents), 100) . '</p>';
+						$result .= $contents;
 					}
 					$result .= '</div>';
 					$result .= '<div class="article-continue">';
@@ -125,9 +121,97 @@ class Category_View extends View
 					}					
 					$result .= '</div>';
 					$result .= '</div>';
+
+					// Comments Panel:
+					if ($data[0]['comments_panel_visible'])
+					{
+						if (count($data[0]['comments']))
+						{
+							// Comments List:
+							$result .= '<div class="article-comments-title">Komentarze:</div>';
+							$result .= '<div class="article-comments-list">';
+							foreach ($data[0]['comments'] as $comment)
+							{
+								foreach ($comment as $key => $value)
+								{
+									if ($key == 'ip') $ip = $value;
+									if ($key == 'user_login') $user_login = $value;
+									if ($key == 'comment_content') $comment_content = $value;
+									if ($key == 'send_date') $send_date = $value;
+								}
+								$result .= '<div class="article-comments-header">';
+								$result .= '<img src="img/16x16/user.png" />' . $user_login;
+								$result .= '<img src="img/16x16/date.png" />' . $send_date;
+								$result .= '<img src="img/16x16/web.png" />' . $ip;
+								$result .= '</div>';
+								$result .= '<div class="article-comments-content">';
+								$result .= '<p>' . $comment_content . '</p>';
+								$result .= '</div>';
+							}
+							$result .= '</div>';
+						}
+						if ($data[0]['logged_in'])
+						{
+							// Comment Form:
+							$result .= '<div class="article-comment">';
+							$result .= $this->ShowCommentForm($data[0]['category_id']);
+							$result .= '</div>';
+						}
+						else
+						{
+							// Login required for sending comments:
+							$result .= '<div class="article-comments-info">';
+							$result .= 'Aby napisać komentarz, musisz być zalogowany. <a href="index.php?route=login">Zaloguj się.</a>';
+							$result .= '</div>';
+						}
+					}
 				}
 			}
 		}
+
+		return $result;
+	}
+
+	private function ShowCommentForm($id)
+	{
+		include GENER_DIR . 'form.php';
+
+		$form_object = new FormBuilder();
+
+		$form_title = 'Napisz komentarz';
+		$form_image = 'img/32x32/list_edit.png';
+		$form_width = '50%';
+		
+		$form_object->init($form_title, $form_image, $form_width);
+
+		$form_action = 'index.php?route=' . MODULE_NAME . '&action=comment&id=' . $id;
+
+		$form_object->set_action($form_action);
+
+		$form_inputs = array(
+			array(
+				'caption' => 'Treść', 
+				'data' => array(
+					'type' => 'textarea', 'id' => 'contents', 'name' => 'contents', 'rows' => 5, 'value' => NULL, 'required' => 'required',
+					),
+				),
+			);
+
+		$form_object->set_inputs($form_inputs);
+		
+		$form_hiddens = array();
+			
+		$form_object->set_hiddens($form_hiddens);
+
+		$form_buttons = array(
+			array(
+				'type' => 'submit', 'id' => 'submit', 'name' => 'submit', 'value' => 'Wyślij',
+				),
+			);
+		
+		$form_object->set_buttons($form_buttons);
+
+		$result = $form_object->build_form();
 
 		return $result;
 	}

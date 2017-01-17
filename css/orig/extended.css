@@ -30,6 +30,13 @@ div.article > div.article-content > h1, h2, h3, h4, h5, h6 { text-align: left; }
 div.article > div.article-content > pre { color: #0a0; }
 div.article > div.article-continue { margin-right: 10px; text-align: right; font-size: 0.9em; }
 div.article > div.article-continue > a { color: #a00; }
+div.article-comment { padding: 20px 10px 0 10px; margin: 20px 10px 0 10px; border-top: 1px dotted #ccc; }
+div.article-comments-title { padding: 20px 10px 0 10px; margin: 20px 10px 0 10px; border-top: 1px dotted #ccc; color: #999; font-size: 1.15em; text-align: center; }
+div.article-comments-list { padding: 20px 10px 0 10px; margin: 20px 10px 0 10px; border-top: 1px dotted #ccc; }
+div.article-comments-header { font-size: 0.75em; }
+div.article-comments-header > img { padding: 0px 10px 0px 10px; margin: 10px 0px 10px 0px; }
+div.article-comments-content > p { font-size: 0.95em; font-style: italic; padding: 0 10px; }
+div.article-comments-info { padding: 20px 10px 0 10px; margin: 20px 10px 0 10px; border-top: 1px dotted #ccc; color: #666; font-size: 0.85em; text-align: center; }
 
 span.distance { margin: 15px; }
 span.st_twitter { margin: 0px; padding: 0px; }

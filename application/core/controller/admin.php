@@ -90,6 +90,12 @@ class Admin_Controller extends Controller
 							),
 						array(
 							'profile' => OPERATOR,
+							'caption' => 'Komentarze ('.$this->app->get_model_object()->GetTableCount('Komentarze').')', 
+							'link' => 'index.php?route=comments', 
+							'icon' => '01.png',
+							),
+						array(
+							'profile' => OPERATOR,
 							'caption' => 'Galeria ('.$this->app->get_model_object()->GetTableCount('Galeria').')', 
 							'link' => 'index.php?route=images', 
 							'icon' => '23.png',
@@ -128,6 +134,8 @@ class Admin_Controller extends Controller
 			unset($_SESSION['last_url']);
 			unset($_SESSION['form_fields']);
 			unset($_SESSION['form_failed']);
+			unset($_SESSION['messages_list_mode']);
+			unset($_SESSION['comments_list_mode']);
 
 			$this->app->get_page()->set_options($options);
 

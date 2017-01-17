@@ -155,6 +155,17 @@ class Pages_Model extends Model
 
 		try
 		{
+			// usuwa komentarze do strony:
+
+			$query =	'DELETE FROM comments' .
+						' WHERE page_id = :page_id';
+
+			$statement = $this->db->prepare($query);
+
+			$statement->bindValue(':page_id', $id, PDO::PARAM_INT); 
+			
+			$statement->execute();
+
 			// usuwa archiwa strony:
 
 			$query =	'DELETE FROM archives' .

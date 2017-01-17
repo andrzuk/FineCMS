@@ -129,6 +129,74 @@ class Page_Model extends Model
 
 		return $rows_result;
 	}
+
+	public function Comment($record)
+	{
+		if (!parent::check_required($record)) return NULL;
+
+		$user_id = $record['user_id'];
+		$page_id = $record['page_id'];
+		$contents = $record['contents'];
+		$send_date = date("Y-m-d H:i:s");
+		$visible = $record['visible'];
+
+		$inserted_id = 0;
+
+		try
+		{
+			$query = 	'INSERT INTO comments' .
+						' (ip, user_id, page_id, comment_content, send_date, visible) VALUES' .
+						' (:ip, :user_id, :page_id, :comment_content, :send_date, :visible)';
+
+			$statement = $this->db->prepare($query);
+
+			$statement->bindValue(':ip', $_SERVER['REMOTE_ADDR'], PDO::PARAM_STR); 
+			$statement->bindValue(':user_id', $user_id, PDO::PARAM_INT); 
+			$statement->bindValue(':page_id', $page_id, PDO::PARAM_INT); 
+			$statement->bindValue(':comment_content', $contents, PDO::PARAM_STR); 
+			$statement->bindValue(':send_date', $send_date, PDO::PARAM_STR); 
+			$statement->bindValue(':visible', $visible, PDO::PARAM_INT); 
+			
+			$statement->execute();
+
+			$inserted_id = $this->db->lastInsertId();
+		}
+		catch (PDOException $e)
+		{
+			die ($e->getMessage());
+		}
+
+		return $inserted_id;
+	}
+
+	public function GetComments($id)
+	{
+		$rows_result = array();
+		$visible = 1;
+
+		try
+		{
+			$query = 	'SELECT ip, user_login, comment_content, send_date FROM comments' . 
+						' INNER JOIN users ON users.id = comments.user_id' .
+						' WHERE page_id = :id AND visible = :visible' .
+						' ORDER BY comments.id';
+
+			$statement = $this->db->prepare($query);
+
+			$statement->bindValue(':id', $id, PDO::PARAM_INT); 
+			$statement->bindValue(':visible', $visible, PDO::PARAM_INT); 
+
+			$statement->execute();
+			
+			$rows_result = $statement->fetchAll(PDO::FETCH_ASSOC);
+		}
+		catch (PDOException $e)
+		{
+			die ($e->getMessage());
+		}
+
+		return $rows_result;
+	}
 }
 
 ?>

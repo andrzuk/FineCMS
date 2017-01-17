@@ -29,13 +29,19 @@ class Category_Controller extends Controller
 				$this->app->get_page()->set_metadata('main_title', $main_title .' - '. $data[0]['title']);
 				$this->app->get_page()->set_metadata('main_description', $data[0]['description']);
 
+				$data[0]['category_id'] = $id;
 				$data[0]['skip_bar'] = $this->app->get_menu()->GetSkipBar($id);
 				$data[0]['social_buttons'] = $this->app->get_settings()->get_config_key('social_buttons');
+				$data[0]['comments_panel_visible'] = $this->app->get_settings()->get_config_key('comments_panel_visible') == 'true';
+				$data[0]['logged_in'] = $user_status > 0;
 
 				if (empty($data[0]['contents'])) // strona bez treści - ładuje podkategorie
 				{
 					$data[0]['contents'] = $this->app->get_model_object()->GetChildren($id);
 				}
+				// load article comments:
+				$data[0]['comments'] = $this->app->get_model_object()->GetComments($id);
+
 				$this->app->get_page()->set_content($this->app->get_view_object()->ShowPage($data));
 			}
 			else
@@ -53,6 +59,37 @@ class Category_Controller extends Controller
 		$this->app->get_page()->set_layout($layout);
 
 		$this->app->get_page()->set_template('index');
+	}
+
+	public function Comment_Action()
+	{
+		parent::Add_Action();
+
+		$id = isset($_GET['id']) ? intval($_GET['id']) : 0;
+
+		$record = array(
+			'user_id' => isset($_SESSION['user_id']) ? $_SESSION['user_id'] : 0,
+			'page_id' => $this->app->get_model_object()->GetPageId($id),
+			'contents' => isset($_POST['contents']) ? $_POST['contents'] : NULL,
+			'visible' => $this->app->get_settings()->get_config_key('moderate_comments') == 'true' ? 0 : 1,
+			);
+
+		$result = $this->app->get_model_object()->Comment($record);
+
+		if ($result) // wysyłanie poprawne
+		{
+			$this->app->get_page()->set_message(MSG_INFORMATION, 'Twój komentarz został pomyślnie wysłany do serwisu.');
+			
+			header('Location: index.php?route=' . MODULE_NAME . '&id=' . $id);
+			exit;
+		}
+		else // wysyłanie nieudane
+		{
+			$this->app->get_page()->set_message(MSG_ERROR, 'Twój komentarz nie został wysłany.');
+
+			header('Location: index.php?route=' . MODULE_NAME . '&id=' . $id);
+			exit;
+		}
 	}
 }
 

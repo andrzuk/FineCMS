@@ -13,6 +13,13 @@ class Install_Model extends Model
 
 		try
 		{
+			// sprawdza, czy istnieja constrainty:
+			$query = "SELECT COUNT(*) AS licznik FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE CONSTRAINT_TYPE = 'FOREIGN KEY' AND TABLE_SCHEMA = '". DB_NAME ."'";
+			$statement = $this->db->prepare($query);			
+			$statement->execute();
+			$check_item = $statement->fetch(PDO::FETCH_ASSOC);
+			$constraints_exist = $check_item['licznik'];
+
 			foreach($script as $k => $v)
 			{
 				foreach($v as $key => $val)
@@ -21,7 +28,8 @@ class Install_Model extends Model
 					{
 						foreach($val as $i => $query)
 						{
-							if ($key == 'drop_constraints') continue;
+							// jesli nie ma constraintow, omija sekcje:
+							if ($key == 'drop_constraints' && $constraints_exist == 0) continue;
 
 							$statement = $this->db->prepare($query);
 							

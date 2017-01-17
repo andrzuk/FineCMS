@@ -51,6 +51,11 @@ class Admin_Model extends Model
 				'condition' => 'category_id = 0',
 			),
 			array(
+				'module' => 'Komentarze',
+				'table' => 'comments',
+				'condition' => 'visible = 0',
+			),
+			array(
 				'module' => 'Odwiedziny',
 				'table' => 'visitors',
 				'condition' => '1',
