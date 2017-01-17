@@ -165,7 +165,12 @@ class Comments_Controller extends Controller
 					array(
 						'link' => 'index.php?route='.MODULE_NAME.'&action=confirm&id='.$id,
 						'caption' => 'Zatwierdź komentarz',
-						'icon' => 'img/checked.png',
+						'icon' => 'img/accept.png',
+						),
+					array(
+						'link' => 'index.php?route='.MODULE_NAME.'&action=disable&id='.$id,
+						'caption' => 'Zablokuj komentarz',
+						'icon' => 'img/remove.png',
 						),
 					array(
 						'link' => 'index.php?route='.MODULE_NAME.'&action=delete&id='.$id,
