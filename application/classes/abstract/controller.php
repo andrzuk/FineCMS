@@ -112,8 +112,8 @@ class Controller
 			'Usuwanie rekordu', 
 			'Uwaga! Rekord zostanie bezpowrotnie usunięty. <br />Czy na pewno chcesz usunąć rekord?',
 			array(
-				array('link' => 'index.php?route='.MODULE_NAME.'&action=delete&id='.$id.'&confirm=yes', 'caption' => 'Tak', 'onclick' => NULL),
-				array('link' => 'index.php?route='.MODULE_NAME, 'caption' => 'Nie', 'onclick' => NULL),
+				array('link' => 'index.php?route='.MODULE_NAME.'&action=delete&id='.$id.'&confirm=yes', 'caption' => 'Skasuj', 'onclick' => NULL),
+				array('link' => 'index.php?route='.MODULE_NAME, 'caption' => 'Anuluj', 'onclick' => NULL),
 				)
 			);
 
@@ -137,8 +137,8 @@ class Controller
 			'Reset pliku', 
 			'Uwaga! Plik zostanie bezpowrotnie zresetowany. <br />Czy na pewno chcesz zresetować plik?',
 			array(
-				array('link' => 'index.php?route='.MODULE_NAME.'&action=reset&confirm=yes', 'caption' => 'Tak', 'onclick' => NULL),
-				array('link' => 'index.php?route='.MODULE_NAME, 'caption' => 'Nie', 'onclick' => NULL),
+				array('link' => 'index.php?route='.MODULE_NAME.'&action=reset&confirm=yes', 'caption' => 'Resetuj', 'onclick' => NULL),
+				array('link' => 'index.php?route='.MODULE_NAME, 'caption' => 'Anuluj', 'onclick' => NULL),
 				)
 			);
 

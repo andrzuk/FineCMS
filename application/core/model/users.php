@@ -113,7 +113,7 @@ class Users_Model extends Model
 	
 				// dopisuje role usera:
 
-				$granted_roles = array(1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); // funkcje przydzielone nowemu userowi
+				$granted_roles = array(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); // funkcje przydzielone nowemu userowi
 
 				$query =	'INSERT INTO user_roles' .
 							' (user_id, function_id, access) VALUES' .

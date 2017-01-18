@@ -32,7 +32,7 @@ div.article > div.article-continue { margin-right: 10px; text-align: right; font
 div.article > div.article-continue > a { color: #a00; }
 div.article-comment { padding: 20px 10px 0 10px; margin: 20px 10px 0 10px; border-top: 1px dotted #ccc; }
 div.article-comments-title { padding: 20px 10px 0 10px; margin: 20px 10px 0 10px; border-top: 1px dotted #ccc; color: #999; font-size: 1.15em; text-align: center; }
-div.article-comments-list { padding: 20px 10px 0 10px; margin: 20px 10px 0 10px; border-top: 1px dotted #ccc; }
+div.article-comments-list { padding: 20px 10px 0 10px; margin: 20px 10px 0 10px; border-top: 1px dotted #ccc; color: #666; }
 div.article-comments-header { font-size: 0.75em; }
 div.article-comments-header > img { padding: 0px 10px 0px 10px; margin: 10px 0px 10px 0px; }
 div.article-comments-content > p { font-size: 0.95em; font-style: italic; padding: 0 10px; }

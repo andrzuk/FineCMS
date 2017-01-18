@@ -95,6 +95,11 @@ class Users_Controller extends Controller
 					if ($id) $this->app->get_page()->set_message(MSG_INFORMATION, 'Konto użytkownika zostało pomyślnie utworzone.');
 					else $this->app->get_page()->set_message(MSG_ERROR, 'Konto użytkownika nie zostało utworzone.');
 
+					if ($this->app->get_user()->super_admin() == FALSE) // jeśli nie super-admin
+					{
+						header('Location: index.php?route='.MODULE_NAME);
+						exit;
+					}
 					header('Location: index.php?route='.MODULE_NAME.'&action=edit&id='.$id.'&check=true');
 					exit;
 				}
