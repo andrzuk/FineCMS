@@ -20,6 +20,7 @@ class Category_View extends View
 					if ($key == 'id') $id = $value;
 					if ($key == 'title') $title = $value;
 					if ($key == 'contents') $contents = $value;
+					if ($key == 'description') $description = $value;
 					if ($key == 'user_login') $user_login = $value;
 					if ($key == 'modified') $modified = $value;
 					if ($key == 'previews') $previews = $value;
@@ -68,7 +69,7 @@ class Category_View extends View
 					}
 					else
 					{
-						$result .= $contents;
+						$result .= $description;
 					}
 					$result .= '</div>';
 					$result .= '<div class="article-continue">';
