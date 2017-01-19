@@ -201,6 +201,21 @@ class Users_Model extends Model
 
 		try
 		{
+			// sprawdza, czy istnieją komentarze usera:
+
+			$query =	'SELECT COUNT(*) AS licznik FROM comments' .
+						' WHERE user_id = :user_id';
+
+			$statement = $this->db->prepare($query);
+			
+			$statement->bindValue(':user_id', $id, PDO::PARAM_INT); 
+
+			$statement->execute();
+			
+			$this->row_item = $statement->fetch(PDO::FETCH_ASSOC);
+
+			if ($this->row_item['licznik']) return NULL;
+
 			// sprawdza, czy istnieją archiwa usera:
 
 			$query =	'SELECT COUNT(*) AS licznik FROM archives' .

@@ -137,8 +137,7 @@ class Roles_Controller extends Controller
 				}
 				else // nie ma userów bez przypisanej roli
 				{
-					header('Location: index.php?route='.MODULE_NAME);
-					exit;
+					parent::RolesLocked();
 				}
 			}			
 		}

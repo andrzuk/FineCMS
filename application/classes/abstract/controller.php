@@ -43,6 +43,24 @@ class Controller
 		$this->app->get_page()->set_content($this->app->get_view_object()->ShowDialog());
 	}
 
+	public function RolesLocked()
+	{
+		$layout = $this->app->get_settings()->get_config_key('page_template_default');
+
+		$this->app->get_page()->set_layout($layout);
+
+		$this->app->get_page()->set_dialog(
+			MSG_WARNING, 
+			'Role użytkowników', 
+			'Wszyscy użytkownicy mają przypisaną rolę. Aby dodać dla użytkownika nową rolę, najpierw usuń istniejącą.',
+			array(
+				array('link' => 'index.php?route=' . MODULE_NAME, 'caption' => 'Anuluj', 'onclick' => NULL),
+				)
+			);
+
+		$this->app->get_page()->set_content($this->app->get_view_object()->ShowDialog());
+	}
+
 	public function Index_Action()
 	{
 		$date_from = isset($_SESSION['date_from']) ? $_SESSION['date_from'] : date("Y-m-d");

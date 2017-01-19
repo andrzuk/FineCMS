@@ -63,9 +63,9 @@ class Admin_Controller extends Controller
 							),
 						array(
 							'profile' => ADMIN,
-							'caption' => 'ACL ('.$this->app->get_model_object()->GetTableCount('Role').')', 
+							'caption' => 'Dostęp ('.$this->app->get_model_object()->GetTableCount('Role').')', 
 							'link' => 'index.php?route=roles', 
-							'icon' => '09.png',
+							'icon' => '60.png',
 							),
 						),
 					),

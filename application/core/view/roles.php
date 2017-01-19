@@ -10,7 +10,7 @@ class Roles_View extends View
 	public function ShowList($columns, $data)
 	{
 		$title = 'Role użytkowników';
-		$image = 'img/32x32/contact.png';
+		$image = 'img/32x32/lock_go.png';
 
 		$attribs = array(
 			array('width' => '5%',  'align' => 'center', 'visible' => '1'),
