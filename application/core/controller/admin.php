@@ -134,6 +134,7 @@ class Admin_Controller extends Controller
 			unset($_SESSION['last_url']);
 			unset($_SESSION['form_fields']);
 			unset($_SESSION['form_failed']);
+			unset($_SESSION['sort_field']);
 			unset($_SESSION['messages_list_mode']);
 			unset($_SESSION['comments_list_mode']);
 
