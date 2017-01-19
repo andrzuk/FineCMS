@@ -120,6 +120,9 @@ class Images_Model extends Model
 								$statement->execute();
 			
 								$inserted_id = $this->db->lastInsertId();
+								
+								// tworzy katalog dla galerii obrazków:
+								if (!file_exists(GALLERY_DIR . IMG_DIR)) mkdir(GALLERY_DIR . IMG_DIR, 0777, true);
 
 								// zapisuje oryginalny obrazek na serwer:
 								move_uploaded_file($tmp_name, GALLERY_DIR . IMG_DIR . $inserted_id);

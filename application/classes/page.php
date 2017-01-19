@@ -51,7 +51,7 @@ class Page
 	{
 		if (isset($_SESSION['install_mode']))
 		{
-			$logo = GALLERY_DIR . 'logo/1';
+			$logo = PAGE_LOGO;
 		}
 		else
 		{
