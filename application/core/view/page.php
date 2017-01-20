@@ -17,6 +17,7 @@ class Page_View extends View
 			{
 				if ($key == 'title') $title = $value;
 				if ($key == 'contents') $contents = $value;
+				if ($key == 'user_id') $user_id = $value;
 				if ($key == 'user_login') $user_login = $value;
 				if ($key == 'modified') $modified = $value;
 				if ($key == 'previews') $previews = $value;
@@ -31,7 +32,7 @@ class Page_View extends View
 			$result .= '<h3>' . $title . '</h3>';
 			$result .= '</div>';
 			$result .= '<div class="article-timestamp">';
-			$result .= '<img src="img/16x16/user.png" />' . $user_login;
+			$result .= '<img src="img/16x16/user.png" />' . '<a href="index.php?route=users&action=view&id='.$user_id.'">' . $user_login. '</a>';
 			$result .= '<img src="img/16x16/date.png" />' . $modified;
 			$result .= '<img src="img/16x16/web.png" />' . $previews;
 			$result .= $social_buttons;
@@ -39,11 +40,11 @@ class Page_View extends View
 			$result .= '<div class="article-skip">';
 			$result .= '<span class="skip-left">';
 			if ($skip_bar['prev'])
-				$result .= '<a href="'.$skip_bar['prev']['link'].'">« '.$skip_bar['prev']['caption'].'</a>';
+				$result .= '<a href="index.php?route=page&id='.$skip_bar['prev']['id'].'">« '.$skip_bar['prev']['caption'].'</a>';
 			$result .= '</span>';
 			$result .= '<span class="skip-right">';
 			if ($skip_bar['next'])
-				$result .= '<a href="'.$skip_bar['next']['link'].'">'.$skip_bar['next']['caption'].' »</a>';
+				$result .= '<a href="index.php?route=page&id='.$skip_bar['next']['id'].'">'.$skip_bar['next']['caption'].' »</a>';
 			$result .= '</span>';
 			$result .= '</div>';
 			$result .= '<div class="article-content">';

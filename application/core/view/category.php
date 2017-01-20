@@ -48,6 +48,7 @@ class Category_View extends View
 					$result .= '<img src="img/16x16/web.png" />' . $previews;
 					$result .= $social_buttons;
 					$result .= '</div>';
+					/*
 					$result .= '<div class="article-skip">';
 					$result .= '<span class="skip-left">';
 					if ($skip_bar['prev'])
@@ -58,7 +59,7 @@ class Category_View extends View
 						$result .= '<a href="'.$skip_bar['next']['link'].'">'.$skip_bar['next']['caption'].' »</a>';
 					$result .= '</span>';
 					$result .= '</div>';
-
+					*/
 					$result .= '<div class="article-content">';
 					if (is_array($contents))
 					{
@@ -98,6 +99,7 @@ class Category_View extends View
 					$result .= '<img src="img/16x16/web.png" />' . $previews;
 					$result .= $social_buttons;
 					$result .= '</div>';
+					/*
 					$result .= '<div class="article-skip">';
 					$result .= '<span class="skip-left">';
 					if ($skip_bar['prev'])
@@ -108,6 +110,7 @@ class Category_View extends View
 						$result .= '<a href="'.$skip_bar['next']['link'].'">'.$skip_bar['next']['caption'].' »</a>';
 					$result .= '</span>';
 					$result .= '</div>';
+					*/
 					$result .= '<div class="article-content">';
 					if (is_array($contents))
 					{

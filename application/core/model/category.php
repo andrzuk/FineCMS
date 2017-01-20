@@ -56,20 +56,36 @@ class Category_Model extends Model
 	private function UpdatePreviews($id)
 	{
 		$affected_rows = 0;
+		$visible = 1;
 
 		try
 		{
-			$query =	'UPDATE ' . $this->table_name .
-						' SET previews = previews + 1' .
-						' WHERE category_id = :category_id';
+			$query =	'SELECT COUNT(*) AS licznik FROM ' . $this->table_name .
+						' WHERE category_id = :category_id AND visible = :visible';
 
 			$statement = $this->db->prepare($query);
-
-			$statement->bindValue(':category_id', $id, PDO::PARAM_INT); 
 			
+			$statement->bindValue(':category_id', $id, PDO::PARAM_INT); 
+			$statement->bindValue(':visible', $visible, PDO::PARAM_INT); 
+
 			$statement->execute();
 			
-			$affected_rows = $statement->rowCount();
+			$this->row_item = $statement->fetch(PDO::FETCH_ASSOC);
+			
+			if ($this->row_item['licznik'] == 1) // category has exactly one article
+			{
+				$query =	'UPDATE ' . $this->table_name .
+							' SET previews = previews + 1' .
+							' WHERE category_id = :category_id';
+
+				$statement = $this->db->prepare($query);
+
+				$statement->bindValue(':category_id', $id, PDO::PARAM_INT); 
+				
+				$statement->execute();
+
+				$affected_rows = $statement->rowCount();
+			}			
 		}
 		catch (PDOException $e)
 		{

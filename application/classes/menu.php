@@ -136,6 +136,49 @@ class Menu
 			}
 		}
 	}
+
+	public function GetSiblings($category_id, $page_id)
+	{
+		$prev = NULL;
+		$next = NULL;
+		$visible = 1;
+
+		try
+		{
+			$query =	'SELECT id, title' .
+						' FROM pages' .
+						' WHERE category_id = :category_id AND visible = :visible' .
+						' ORDER BY id';
+			
+			$statement = $this->db->prepare($query);
+
+			$statement->bindParam(':category_id', $category_id, PDO::PARAM_INT);
+			$statement->bindParam(':visible', $visible, PDO::PARAM_INT);
+			
+			$statement->execute();
+			
+			$this->rows_list = $statement->fetchAll(PDO::FETCH_ASSOC);
+		}
+		catch (PDOException $e)
+		{
+			die ($e->getMessage());
+		}
+		
+		foreach ($this->rows_list as $row)
+		{
+			if ($row['id'] < $page_id)
+			{
+				$prev = array('id' => $row['id'], 'caption' => $row['title']);
+			}
+			if ($row['id'] > $page_id)
+			{
+				$next = array('id' => $row['id'], 'caption' => $row['title']);
+				break;
+			}
+		}
+
+		return array('id' => $page_id, 'prev' => $prev, 'next' => $next);
+	}
 }
 
 ?>

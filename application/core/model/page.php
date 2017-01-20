@@ -24,7 +24,7 @@ class Page_Model extends Model
 
 		try
 		{
-			$query = 	'SELECT title, contents, description, category_id, user_login, ' . $this->table_name . '.modified, previews' .
+			$query = 	'SELECT title, contents, description, category_id, user_login, ' . $this->table_name . '.modified, previews, ' . $this->table_name . '.author_id AS user_id' .
 						' FROM ' . $this->table_name .
 						' INNER JOIN users ON users.id = ' . $this->table_name . '.author_id' .
 						' WHERE (:show_all_types OR main_page = :main_page AND system_page = :system_page)' .

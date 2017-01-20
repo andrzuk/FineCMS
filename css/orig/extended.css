@@ -46,7 +46,7 @@ span.st_linkedin { margin: 0px; padding: 0px; }
 
 p.sup { border-top: 1px solid #ddd; font-size: 0.8em; padding-top: 10px; }
 
-/* pagination: */
+/* articles pagination (JS based): */
 
 div#pageNavPosition {
 	text-align: center;
@@ -61,14 +61,14 @@ div#pageNavPosition > span {
 	padding: 5px;
 }
 .pg-normal {
-  color: #666;
-  font-weight: normal;
-  text-decoration: none;    
-  cursor: pointer;    
+	color: #666;
+	font-weight: normal;
+	text-decoration: none;    
+	cursor: pointer;    
 }
 .pg-selected {
-  color: #369;
-  font-weight: bold;        
-  text-decoration: underline;
-  cursor: pointer;
+	color: #369;
+	font-weight: bold;        
+	text-decoration: underline;
+	cursor: pointer;
 }
