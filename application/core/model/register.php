@@ -25,6 +25,7 @@ class Register_Model extends Model
 		$email = substr($email, 0, 64);
 		$user_password = sha1($password);
 		$registered = date("Y-m-d H:i:s");
+		$null_date = '2000-01-01 00:00:00';
 		$status = 3;
 		$active = 1;
 
@@ -48,8 +49,6 @@ class Register_Model extends Model
 			}
 			else // nie ma takiego konta - można rejestrować
 			{
-				$null_date = '2000-01-01 00:00:00';
-
 				$query =	'INSERT INTO ' . $this->table_name .
 							' (user_login, user_password, user_name, user_surname, email, status, registered, logged_in, modified, logged_out, active) VALUES' .
 							' (:user_login, :user_password, :user_name, :user_surname, :email, :status, :registered, :null_date, :null_date, :null_date, :active)';

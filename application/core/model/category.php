@@ -25,7 +25,7 @@ class Category_Model extends Model
 		try
 		{
 			$query = 	'SELECT ' . $this->table_name . '.id, title, contents, description,' .
-						' user_login, permission, ' . $this->table_name . '.modified, previews' .
+						' user_login, permission, ' . $this->table_name . '.modified, previews,' . $this->table_name . '.author_id AS user_id' .
 						' FROM ' . $this->table_name .
 						' INNER JOIN users ON users.id = ' . $this->table_name . '.author_id' .
 						' INNER JOIN categories ON categories.id = ' . $this->table_name . '.category_id' .

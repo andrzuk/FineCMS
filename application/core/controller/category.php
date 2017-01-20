@@ -41,6 +41,8 @@ class Category_Controller extends Controller
 				}
 				// load article comments:
 				$data[0]['comments'] = $this->app->get_model_object()->GetComments($id);
+				// set pagination:
+				$data[0]['articles_per_page'] = $this->app->get_settings()->get_config_key('articles_per_page');
 
 				$this->app->get_page()->set_content($this->app->get_view_object()->ShowPage($data));
 			}

@@ -13,11 +13,15 @@ class Category_View extends View
 
 		if (is_array($data))
 		{
+			$result .= '<table width="100%" cellpadding="5" cellspacing="5" align="center" id="results">';
+
 			foreach ($data as $k => $v)
 			{
 				foreach ($v as $key => $value)
 				{
 					if ($key == 'id') $id = $value;
+					if ($key == 'category_id') $category_id = $value;
+					if ($key == 'user_id') $user_id = $value;
 					if ($key == 'title') $title = $value;
 					if ($key == 'contents') $contents = $value;
 					if ($key == 'description') $description = $value;
@@ -28,6 +32,8 @@ class Category_View extends View
 					if ($key == 'social_buttons') $soc_buttons = $value;
 				}
 
+				$result .= '<tr><td width="100%">';
+
 				if (count($data) > 1) // kilka artykułów
 				{
 					$social_buttons = str_replace(array('{{_url_}}', '{{_title_}}'), array($_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['SERVER_NAME'].'/index.php?route=page&id='.$id, $title), $soc_buttons);
@@ -37,7 +43,7 @@ class Category_View extends View
 					$result .= '<h3>' . '<a href="index.php?route=page&id='.$id.'">' . $title . '</a>' . '</h3>';
 					$result .= '</div>';
 					$result .= '<div class="article-timestamp">';
-					$result .= '<img src="img/16x16/user.png" />' . $user_login;
+					$result .= '<img src="img/16x16/user.png" />' . '<a href="index.php?route=users&action=view&id='.$user_id.'">' . $user_login. '</a>';
 					$result .= '<img src="img/16x16/date.png" />' . $modified;
 					$result .= '<img src="img/16x16/web.png" />' . $previews;
 					$result .= $social_buttons;
@@ -52,6 +58,7 @@ class Category_View extends View
 						$result .= '<a href="'.$skip_bar['next']['link'].'">'.$skip_bar['next']['caption'].' »</a>';
 					$result .= '</span>';
 					$result .= '</div>';
+
 					$result .= '<div class="article-content">';
 					if (is_array($contents))
 					{
@@ -167,7 +174,22 @@ class Category_View extends View
 						}
 					}
 				}
+				$result .= '</td></tr>';
 			}
+			
+			$result .= '</table>';
+			$result .= '<div id="pageNavPosition"></div>';
+			
+			$articles_per_page = intval($data[0]['articles_per_page']) > 1 ? intval($data[0]['articles_per_page']) : 4;
+
+			$result .= '
+				<script type="text/javascript">
+					var pager = new Pager("results", '.$articles_per_page.');
+					pager.init();
+					pager.showPageNav("pager", "pageNavPosition");
+					pager.showPage(0);
+				</script>
+			';
 		}
 
 		return $result;

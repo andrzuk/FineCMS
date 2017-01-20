@@ -45,3 +45,30 @@ span.st_facebook { margin: 0px; padding: 0px; }
 span.st_linkedin { margin: 0px; padding: 0px; }
 
 p.sup { border-top: 1px solid #ddd; font-size: 0.8em; padding-top: 10px; }
+
+/* pagination: */
+
+div#pageNavPosition {
+	text-align: center;
+	color: #ccc;
+	margin: 20px 0 20px 0;
+	padding: 10px;
+	border-top: 1px dotted #999;
+}
+div#pageNavPosition > span {
+	color: #666;
+	font-size: small;
+	padding: 5px;
+}
+.pg-normal {
+  color: #666;
+  font-weight: normal;
+  text-decoration: none;    
+  cursor: pointer;    
+}
+.pg-selected {
+  color: #369;
+  font-weight: bold;        
+  text-decoration: underline;
+  cursor: pointer;
+}
