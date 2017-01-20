@@ -8,7 +8,7 @@ class Contact_Controller extends Controller
 		
 		$this->app->get_page()->set_path(array(
 			'index.php' => 'Strona główna',
-			'index.php?route=contact' => 'Kontakt z serwisem',
+			'index.php?route='.MODULE_NAME => 'Kontakt z serwisem',
 			));
 
 		$this->required = array('login', 'email', 'contents');

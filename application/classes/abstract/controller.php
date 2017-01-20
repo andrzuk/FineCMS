@@ -52,7 +52,7 @@ class Controller
 		$this->app->get_page()->set_dialog(
 			MSG_WARNING, 
 			'Role użytkowników', 
-			'Wszyscy użytkownicy mają przypisaną rolę. Aby dodać dla użytkownika nową rolę, najpierw usuń istniejącą.',
+			'Wszyscy użytkownicy już mają przypisaną rolę. Aby dodać dla użytkownika nową rolę, najpierw usuń istniejącą.',
 			array(
 				array('link' => 'index.php?route=' . MODULE_NAME, 'caption' => 'Anuluj', 'onclick' => NULL),
 				)

@@ -1,6 +1,6 @@
 <?php
 
-class Login_Controller extends Controller
+class Register_Controller extends Controller
 {
 	public function __construct($app)
 	{
@@ -8,8 +8,10 @@ class Login_Controller extends Controller
 		
 		$this->app->get_page()->set_path(array(
 			'index.php' => 'Strona główna',
-			'index.php?route='.MODULE_NAME => 'Logowanie',
+			'index.php?route='.MODULE_NAME => 'Rejestracja',
 			));
+		
+		$this->required = array('login', 'name', 'surname', 'email', 'password');
 	}
 
 	public function Index_Action()
@@ -21,21 +23,23 @@ class Login_Controller extends Controller
 		}
 		else // nie zalogowany
 		{
-			$this->app->get_page()->set_content($this->app->get_view_object()->ShowLoginForm());
+			$this->app->get_page()->set_content($this->app->get_view_object()->ShowRegisterForm());
 
 			$layout = $this->app->get_settings()->get_config_key('page_template_default');
 
 			$this->app->get_page()->set_layout($layout);
 
-			$this->app->get_page()->set_template('login');
+			$this->app->get_page()->set_template('register');
 		}
 	}
 
 	public function Check_Action()
 	{
-		$data = $this->app->get_model_object()->Authenticate($_POST['login'], $_POST['password']);
+		parent::Add_Action();
 
-		if ($data) // logowanie poprawne
+		$data = $this->app->get_model_object()->Register($_POST['name'], $_POST['surname'], $_POST['login'], $_POST['email'], $_POST['password']);
+
+		if ($data) // rejestracja poprawna
 		{
 			$_SESSION['user_id'] = $data['id'];
 			$_SESSION['user_status'] = $data['status'];
@@ -44,16 +48,16 @@ class Login_Controller extends Controller
 			$_SESSION['user_login'] = $data['user_login'];
 			$_SESSION['user_email'] = $data['email'];
 
-			$this->app->get_page()->set_message(MSG_INFORMATION, 'Zostałeś pomyślnie zalogowany do serwisu.');
+			$this->app->get_page()->set_message(MSG_INFORMATION, 'Zostałeś pomyślnie zarejestrowany w serwisie.');
 			
 			header('Location: index.php?route=admin');
 			exit;
 		}
-		else // logowanie nieudane
+		else // rejestracja nieudana
 		{
-			$this->app->get_page()->set_message(MSG_ERROR, 'Login lub e-mail lub hasło są nieprawidłowe lub też konto zostało zablokowane bądź usunięte.');
+			$this->app->get_page()->set_message(MSG_ERROR, 'Podany login lub e-mail już istnieje. Podaj inny lub się zaloguj.');
 
-			header('Location: index.php?route=login');
+			header('Location: index.php?route=register');
 			exit;
 		}
 	}

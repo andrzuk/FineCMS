@@ -8,7 +8,7 @@ class Search_Controller extends Controller
 		
 		$this->app->get_page()->set_path(array(
 			'index.php' => 'Strona główna',
-			'index.php?route=search' => 'Wyszukiwanie stron',
+			'index.php?route='.MODULE_NAME => 'Wyszukiwanie stron',
 			));
 	}
 	

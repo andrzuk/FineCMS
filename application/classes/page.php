@@ -220,6 +220,11 @@ class Page
 					'icon' => 'img/top/user.png'
 				),
 				array (
+					'link' => 'index.php?route=register',
+					'caption' => 'Rejestruj',
+					'icon' => 'img/top/register.png'
+				),
+				array (
 					'link' => 'index.php?route=contact',
 					'caption' => 'Kontakt',
 					'icon' => 'img/top/contact.png'

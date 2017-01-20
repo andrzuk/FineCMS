@@ -8,7 +8,7 @@ class Password_Controller extends Controller
 		
 		$this->app->get_page()->set_path(array(
 			'index.php' => 'Strona główna',
-			'index.php?route=password' => 'Reset hasła',
+			'index.php?route='.MODULE_NAME => 'Reset hasła',
 			));
 	}
 

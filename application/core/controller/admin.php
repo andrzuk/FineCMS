@@ -8,7 +8,7 @@ class Admin_Controller extends Controller
 		
 		$this->app->get_page()->set_path(array(
 			'index.php' => 'Strona główna',
-			'index.php?route=admin' => 'Admin Panel',
+			'index.php?route='.MODULE_NAME => 'Admin Panel',
 			));
 	}
 	

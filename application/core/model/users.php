@@ -92,9 +92,11 @@ class Users_Model extends Model
 
 			if ($this->row_item['licznik'] == 0) // user nie istnieje
 			{
+				$null_date = '2000-01-01 00:00:00';
+
 				$query =	'INSERT INTO ' . $this->table_name .
-							' (user_login, user_password, user_name, user_surname, email, status, registered, active) VALUES' .
-							' (:user_login, :user_password, :user_name, :user_surname, :email, :status, :registered, :active)';
+							' (user_login, user_password, user_name, user_surname, email, status, registered, logged_in, modified, logged_out, active) VALUES' .
+							' (:user_login, :user_password, :user_name, :user_surname, :email, :status, :registered, :null_date, :null_date, :null_date, :active)';
 
 				$statement = $this->db->prepare($query);
 
@@ -105,6 +107,7 @@ class Users_Model extends Model
 				$statement->bindValue(':email', $record['email'], PDO::PARAM_STR); 
 				$statement->bindValue(':status', $record['status'], PDO::PARAM_INT); 
 				$statement->bindValue(':registered', $record['registered'], PDO::PARAM_STR); 
+				$statement->bindValue(':null_date', $null_date, PDO::PARAM_STR); 
 				$statement->bindValue(':active', $record['active'], PDO::PARAM_INT); 
 				
 				$statement->execute();

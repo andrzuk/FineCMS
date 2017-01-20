@@ -8,7 +8,7 @@ class Install_Controller extends Controller
 		
 		$this->app->get_page()->set_path(array(
 			'index.php' => 'Strona główna',
-			'index.php?route=install' => 'Instalacja serwisu',
+			'index.php?route='.MODULE_NAME => 'Instalacja serwisu',
 			));
 	}
 
