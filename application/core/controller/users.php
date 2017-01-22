@@ -285,6 +285,7 @@ class Users_Controller extends Controller
 
 			$id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 			
+			/*
 			if ($this->app->get_user()->get_value('user_status') == USER)
 			{
 				if ($this->app->get_user()->get_value('user_id') != $id) // obce konto
@@ -293,6 +294,7 @@ class Users_Controller extends Controller
 					return;
 				}
 			}
+			*/
 			
 			if (isset($_POST['cancel_button']))
 			{

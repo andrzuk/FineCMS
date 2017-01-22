@@ -31,7 +31,7 @@ class Comments_Controller extends Controller
 
 	public function Index_Action()
 	{
-		if ($this->app->get_acl()->allowed(OPERATOR)) // są uprawnienia
+		if ($this->app->get_acl()->allowed(USER)) // są uprawnienia
 		{
 			parent::Index_Action();
 
@@ -69,12 +69,113 @@ class Comments_Controller extends Controller
 		}
 	}
 
+	public function Edit_Action()
+	{
+		if ($this->app->get_acl()->allowed(USER)) // są uprawnienia
+		{
+			parent::Edit_Action();
+
+			$id = isset($_GET['id']) ? intval($_GET['id']) : 0;
+			
+			if ($this->app->get_user()->super_admin() == FALSE) // jeśli nie super-admin
+			{
+				if ($this->app->get_user()->get_value('user_id') != $this->app->get_model_object()->GetAuthorId($id)) // obcy komentarz
+				{
+					parent::AccessDenied();
+					return;
+				}
+			}
+
+			if (!empty($_POST))
+			{
+				$record = array(
+					'comment_content' => $_POST['comment_content'],
+					);
+
+				if (isset($_POST['save_button']))
+				{
+					$result = $this->app->get_model_object()->Update($id, $record);
+
+					if ($result) $this->app->get_page()->set_message(MSG_INFORMATION, 'Zmiany zostały pomyślnie zapisane.');
+					else $this->app->get_page()->set_message(MSG_ERROR, 'Zmiany nie zostały zapisane.');
+
+					header('Location: index.php?route='.MODULE_NAME.'&action=edit&id='.$id.'&check=true');
+					exit;
+				}
+				else if (isset($_POST['update_button']))
+				{
+					$result = $this->app->get_model_object()->Update($id, $record);
+
+					if ($result) $this->app->get_page()->set_message(MSG_INFORMATION, 'Zmiany zostały pomyślnie zapisane.');
+					else $this->app->get_page()->set_message(MSG_ERROR, 'Zmiany nie zostały zapisane.');
+
+					header('Location: index.php?route='.MODULE_NAME);
+					exit;
+				}
+				else // button Anuluj
+				{
+					header('Location: index.php?route='.MODULE_NAME);
+					exit;
+				}
+			}
+			else // wczytany formularz
+			{
+				$options = array(
+					array(
+						'link' => 'index.php?route='.MODULE_NAME.'&action=confirm&id='.$id,
+						'caption' => 'Zatwierdź komentarz',
+						'icon' => 'img/accept.png',
+						),
+					array(
+						'link' => 'index.php?route='.MODULE_NAME.'&action=disable&id='.$id,
+						'caption' => 'Zablokuj komentarz',
+						'icon' => 'img/remove.png',
+						),
+					array(
+						'link' => 'index.php?route='.MODULE_NAME.'&action=view&id='.$id,
+						'caption' => 'Podgląd komentarza',
+						'icon' => 'img/info.png',
+						),
+					array(
+						'link' => 'index.php?route='.MODULE_NAME.'&action=delete&id='.$id,
+						'caption' => 'Usuń komentarz',
+						'icon' => 'img/trash.png',
+						),
+					array(
+						'link' => 'index.php?route='.MODULE_NAME,
+						'caption' => 'Zamknij',
+						'icon' => 'img/stop.png',
+						),
+					);
+
+				$data = $this->app->get_model_object()->GetOne($id);
+
+				$this->app->get_page()->set_options($options);
+
+				$this->app->get_page()->set_content($this->app->get_view_object()->ShowForm($data));
+			}
+		}
+		else // brak uprawnień
+		{
+			parent::AccessDenied();
+		}
+	}
+
 	public function Confirm_Action()
 	{
 		if ($this->app->get_acl()->allowed(OPERATOR)) // są uprawnienia
 		{
 			$id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 			
+			if ($this->app->get_user()->super_admin() == FALSE) // jeśli nie super-admin
+			{
+				if ($this->app->get_user()->get_value('user_id') != $this->app->get_model_object()->GetAuthorId($id)) // obcy komentarz
+				{
+					parent::AccessDenied();
+					return;
+				}
+			}
+
 			$record = array(
 				'visible' => 1,
 				);
@@ -99,6 +200,15 @@ class Comments_Controller extends Controller
 		{
 			$id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 			
+			if ($this->app->get_user()->super_admin() == FALSE) // jeśli nie super-admin
+			{
+				if ($this->app->get_user()->get_value('user_id') != $this->app->get_model_object()->GetAuthorId($id)) // obcy komentarz
+				{
+					parent::AccessDenied();
+					return;
+				}
+			}
+
 			$record = array(
 				'visible' => 0,
 				);
@@ -125,6 +235,15 @@ class Comments_Controller extends Controller
 
 			$id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 
+			if ($this->app->get_user()->super_admin() == FALSE) // jeśli nie super-admin
+			{
+				if ($this->app->get_user()->get_value('user_id') != $this->app->get_model_object()->GetAuthorId($id)) // obcy komentarz
+				{
+					parent::AccessDenied();
+					return;
+				}
+			}
+
 			if (isset($_GET['confirm']))
 			{
 				$result = $this->app->get_model_object()->Delete($id);
@@ -148,7 +267,7 @@ class Comments_Controller extends Controller
 
 	public function View_Action()
 	{
-		if ($this->app->get_acl()->allowed(OPERATOR)) // są uprawnienia
+		if ($this->app->get_acl()->allowed(USER)) // są uprawnienia
 		{
 			parent::View_Action();
 
@@ -171,6 +290,11 @@ class Comments_Controller extends Controller
 						'link' => 'index.php?route='.MODULE_NAME.'&action=disable&id='.$id,
 						'caption' => 'Zablokuj komentarz',
 						'icon' => 'img/remove.png',
+						),
+					array(
+						'link' => 'index.php?route='.MODULE_NAME.'&action=edit&id='.$id,
+						'caption' => 'Edytuj komentarz',
+						'icon' => 'img/edit.png',
 						),
 					array(
 						'link' => 'index.php?route='.MODULE_NAME.'&action=delete&id='.$id,

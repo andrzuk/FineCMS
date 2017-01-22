@@ -16,6 +16,7 @@ class Comments_Model extends Model
 		$this->rows_list = array();
 
 		$condition = isset($_SESSION['comments_list_mode']) ? ' AND ' . $this->table_name . '.visible = ' . $_SESSION['comments_list_mode'] : NULL;
+		$condition .= $_SESSION['user_status'] == USER ? ' AND user_id = ' . $_SESSION['user_id'] : NULL;
 
 		$fields_list = array('ip', 'title', 'user_login', 'comment_content');
 
@@ -50,11 +51,13 @@ class Comments_Model extends Model
 	public function GetOne($id)
 	{
 		$this->row_item = array();
+		
+		$condition = $_SESSION['user_status'] == USER ? ' AND user_id = ' . $_SESSION['user_id'] : NULL;
 
 		try
 		{
 			$query =	'SELECT * FROM ' . $this->table_name .
-						' WHERE id = :id';
+						' WHERE id = :id' . $condition;
 
 			$statement = $this->db->prepare($query);
 			
@@ -99,6 +102,33 @@ class Comments_Model extends Model
 		return $affected_rows;
 	}
 
+	public function Update($id, $record)
+	{
+		$affected_rows = 0;
+
+		try
+		{
+			$query =	'UPDATE ' . $this->table_name .
+						' SET comment_content = :comment_content' .
+						' WHERE id = :id';
+
+			$statement = $this->db->prepare($query);
+
+			$statement->bindValue(':id', $id, PDO::PARAM_INT); 
+			$statement->bindValue(':comment_content', $record['comment_content'], PDO::PARAM_STR); 
+			
+			$statement->execute();
+		
+			$affected_rows = $statement->rowCount();
+		}
+		catch (PDOException $e)
+		{
+			die ($e->getMessage());
+		}
+
+		return $affected_rows;
+	}
+
 	public function Delete($id)
 	{
 		$affected_rows = 0;
@@ -122,6 +152,31 @@ class Comments_Model extends Model
 		}
 
 		return $affected_rows;
+	}
+
+	public function GetAuthorId($id)
+	{
+		$this->row_item = array();
+
+		try
+		{
+			$query =	'SELECT user_id FROM ' . $this->table_name .
+						' WHERE id = :id';
+
+			$statement = $this->db->prepare($query);
+			
+			$statement->bindValue(':id', $id, PDO::PARAM_INT); 
+
+			$statement->execute();
+			
+			$this->row_item = $statement->fetch(PDO::FETCH_ASSOC);
+		}
+		catch (PDOException $e)
+		{
+			die ($e->getMessage());
+		}
+
+		return $this->row_item['user_id'];
 	}
 }
 

@@ -243,6 +243,7 @@ class Users_View extends View
 		{
 			foreach ($data as $key => $value) 
 			{
+				if (in_array($key, array('user_password', 'status', 'active'))) continue;
 				$view_inputs[] = array('caption' => $key, 'value' => $value);
 			}
 		}

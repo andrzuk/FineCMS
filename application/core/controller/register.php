@@ -48,6 +48,20 @@ class Register_Controller extends Controller
 			$_SESSION['user_login'] = $data['user_login'];
 			$_SESSION['user_email'] = $data['email'];
 
+			$message_options = array(
+				'base_domain' => $this->app->get_settings()->get_config_key('base_domain'),
+				'email_host' => $this->app->get_settings()->get_config_key('email_host'),
+				'email_port' => $this->app->get_settings()->get_config_key('email_port'),
+				'email_password' => $this->app->get_settings()->get_config_key('email_password'),
+				'email_sender_name' => $this->app->get_settings()->get_config_key('email_sender_name'),
+				'email_sender_address' => $this->app->get_settings()->get_config_key('email_sender_address'),
+				'email_register_subject' => $this->app->get_settings()->get_config_key('email_register_subject'),
+				'email_register_body_1' => $this->app->get_settings()->get_config_key('email_register_body_1'),
+				'email_register_body_2' => $this->app->get_settings()->get_config_key('email_register_body_2'),
+				);
+
+			$this->app->get_model_object()->Inform($data, $message_options);
+	
 			$this->app->get_page()->set_message(MSG_INFORMATION, 'Zostałeś pomyślnie zarejestrowany w serwisie.');
 			
 			header('Location: index.php?route=admin');

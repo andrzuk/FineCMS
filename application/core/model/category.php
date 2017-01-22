@@ -195,7 +195,7 @@ class Category_Model extends Model
 
 		try
 		{
-			$query = 	'SELECT ip, user_login, comment_content, send_date FROM comments' . 
+			$query = 	'SELECT ip, user_id, user_login, comment_content, send_date FROM comments' . 
 						' INNER JOIN users ON users.id = comments.user_id' .
 						' WHERE page_id = :id AND visible = :visible' .
 						' ORDER BY comments.id';

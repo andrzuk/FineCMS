@@ -71,7 +71,7 @@ class Register_Model extends Model
 
 				// dopisuje role usera:
 
-				$granted_roles = array(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); // funkcje przydzielone nowemu userowi
+				$granted_roles = array(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0); // funkcje przydzielone nowemu userowi
 
 				$query =	'INSERT INTO user_roles' .
 							' (user_id, function_id, access) VALUES' .
@@ -109,6 +109,46 @@ class Register_Model extends Model
 		}
 
 		return $this->row_item;
+	}
+
+	public function Inform($data, $message_options)
+	{
+		foreach ($message_options as $key => $value)
+		{
+			if ($key == 'base_domain') $base_domain = $value;
+			if ($key == 'email_host') $email_host = $value;
+			if ($key == 'email_port') $email_port = $value;
+			if ($key == 'email_password') $email_password = $value;
+			if ($key == 'email_sender_name') $email_sender_name = $value;
+			if ($key == 'email_sender_address') $email_sender_address = $value;
+			if ($key == 'email_register_subject') $email_register_subject = $value;
+			if ($key == 'email_register_body_1') $email_register_body_1 = $value;
+			if ($key == 'email_register_body_2') $email_register_body_2 = $value;
+		}
+
+		include LIB_DIR . 'mailer/class.phpmailer.php';
+		include LIB_DIR . 'mailer/class.smtp.php';
+		
+		$mail = new PHPMailer();
+		
+		$mail->IsSMTP();
+		$mail->SMTPDebug = 0;
+		$mail->SMTPAuth = true;
+		$mail->Host = $email_host;
+		$mail->Port = $email_port;
+		$mail->Username = $email_sender_address;
+		$mail->Password = $email_password;
+		$mail->SetFrom($email_sender_address, $email_sender_name);
+		$mail->Subject = $email_register_subject;
+		$mail->CharSet = "UTF-8";
+
+		// wysyła e-maila do usera z informacją o zarejestrowaniu:
+		$mail_body = "Szanowny użytkowniku,\n\n" . $email_register_body_1 ."\n\nImię i nazwisko: <b>". $data['user_name'] ." ". $data['user_surname'] ."</b>\nLogin: <b>". $data['user_login'] ."</b>\n\nLogowanie do serwisu: <a href=\"". $base_domain ."?route=login\">". $base_domain . "?route=login</a>\n\n" . $email_register_body_2 . "\n\nPozdrawiamy,\n\n" . $base_domain . "\n";
+		$mail_html = $this->convert_to_html($email_register_subject, $mail_body);
+		$mail->AddAddress($data['email'], $data['user_login']);
+		$mail->MsgHTML($mail_html);
+		$mail->AltBody = $mail_body;
+		$mail->send();
 	}
 }
 

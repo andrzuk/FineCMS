@@ -82,12 +82,13 @@ class Page_View extends View
 						foreach ($comment as $key => $value)
 						{
 							if ($key == 'ip') $ip = $value;
+							if ($key == 'user_id') $user_id = $value;
 							if ($key == 'user_login') $user_login = $value;
 							if ($key == 'comment_content') $comment_content = $value;
 							if ($key == 'send_date') $send_date = $value;
 						}
 						$result .= '<div class="article-comments-header">';
-						$result .= '<img src="img/16x16/user.png" />' . $user_login;
+						$result .= '<img src="img/16x16/user.png" />' . '<a href="index.php?route=users&action=view&id='.$user_id.'">' . $user_login. '</a>';
 						$result .= '<img src="img/16x16/date.png" />' . $send_date;
 						$result .= '<img src="img/16x16/web.png" />' . $ip;
 						$result .= '</div>';

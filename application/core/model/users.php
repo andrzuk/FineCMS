@@ -15,7 +15,7 @@ class Users_Model extends Model
 	{
 		$this->rows_list = array();
 
-		$condition = NULL;
+		$condition = $_SESSION['user_status'] == USER ? ' AND id = ' . $_SESSION['user_id'] : NULL;
 
 		$fields_list = array('user_login', 'user_name', 'user_surname', 'email');
 
@@ -46,11 +46,13 @@ class Users_Model extends Model
 	public function GetOne($id)
 	{
 		$this->row_item = array();
+		
+		$condition = $_SESSION['user_status'] == USER ? ' AND id = ' . $_SESSION['user_id'] : NULL;
 
 		try
 		{
 			$query =	'SELECT * FROM ' . $this->table_name .
-						' WHERE id = :id';
+						' WHERE id = :id' . $condition;
 
 			$statement = $this->db->prepare($query);
 			
@@ -116,7 +118,7 @@ class Users_Model extends Model
 	
 				// dopisuje role usera:
 
-				$granted_roles = array(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); // funkcje przydzielone nowemu userowi
+				$granted_roles = array(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0); // funkcje przydzielone nowemu userowi
 
 				$query =	'INSERT INTO user_roles' .
 							' (user_id, function_id, access) VALUES' .

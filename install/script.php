@@ -333,9 +333,12 @@ $sql_script = array(
 				(33, 'email_report_subject', 'Raport serwisu', 'temat maila raportującego zdarzenie', 1, 1, :save_time),
 				(34, 'email_report_body_1', 'Raport o zdarzeniu w serwisie', 'treść maila rapotującego - część przed zmiennymi', 2, 1, :save_time),
 				(35, 'email_report_body_2', '(brak)', 'treść maila rapotującego - część za zmiennymi', 2, 1, :save_time),
-				(36, 'email_remindpwd_subject', 'Nowe hasło do konta', 'temat generowanego maila z nowym hasłem', 1, 1, :save_time),
-				(37, 'email_remindpwd_body_1', 'Na Twoją prośbę przesyłamy Ci nowe hasło logowania.', 'treść generowanego maila z nowym hasłem - przed hasłem', 2, 1, :save_time),
-				(38, 'email_remindpwd_body_2', 'Zaloguj się, a następnie zmień hasło na swoje własne.', 'treść generowanego maila z nowym hasłem - za hasłem', 2, 1, :save_time);
+				(36, 'email_register_subject', 'Rejestracja w serwisie', 'temat generowanego maila przy rejestracji konta', 1, 1, :save_time),
+				(37, 'email_register_body_1', 'Informujemy, że Twoje konto w serwisie zostało poprawnie zarejestrowane. Zostałeś zarejestrowany jako:', 'treść generowanego maila po rejestracji - przed parametrami', 2, 1, :save_time),
+				(38, 'email_register_body_2', 'Jako zarejestrowany użytkownik możesz pisać komentarze do artykułów i nimi zarządzać.', 'treść generowanego maila po rejestracji - za parametrami', 2, 1, :save_time),
+				(39, 'email_remindpwd_subject', 'Nowe hasło do konta', 'temat generowanego maila z nowym hasłem', 1, 1, :save_time),
+				(40, 'email_remindpwd_body_1', 'Na Twoją prośbę przesyłamy Ci nowe hasło logowania.', 'treść generowanego maila z nowym hasłem - przed hasłem', 2, 1, :save_time),
+				(41, 'email_remindpwd_body_2', 'Zaloguj się, a następnie zmień hasło na swoje własne.', 'treść generowanego maila z nowym hasłem - za hasłem', 2, 1, :save_time);
 			",
 			"
 				INSERT INTO `pages` (`id`, `main_page`, `system_page`, `category_id`, `title`, `contents`, `description`, `author_id`, `visible`, `modified`, `previews`) VALUES

@@ -89,7 +89,7 @@ class Admin_Controller extends Controller
 							'icon' => '04.png',
 							),
 						array(
-							'profile' => OPERATOR,
+							'profile' => USER,
 							'caption' => 'Komentarze ('.$this->app->get_model_object()->GetTableCount('Komentarze').')', 
 							'link' => 'index.php?route=comments', 
 							'icon' => '01.png',
