@@ -78,7 +78,7 @@ class Comments_Model extends Model
 	public function Save($id, $record)
 	{
 		$affected_rows = 0;
-
+		
 		try
 		{
 			$query =	'UPDATE ' . $this->table_name .
@@ -106,11 +106,13 @@ class Comments_Model extends Model
 	{
 		$affected_rows = 0;
 
+		$condition = $_SESSION['user_status'] == USER ? ' AND user_id = ' . $_SESSION['user_id'] : NULL;
+
 		try
 		{
 			$query =	'UPDATE ' . $this->table_name .
 						' SET comment_content = :comment_content' .
-						' WHERE id = :id';
+						' WHERE id = :id' . $condition;
 
 			$statement = $this->db->prepare($query);
 
@@ -133,10 +135,12 @@ class Comments_Model extends Model
 	{
 		$affected_rows = 0;
 
+		$condition = $_SESSION['user_status'] == USER ? ' AND user_id = ' . $_SESSION['user_id'] : NULL;
+
 		try
 		{
 			$query =	'DELETE FROM ' . $this->table_name .
-						' WHERE id = :id';
+						' WHERE id = :id' . $condition;
 
 			$statement = $this->db->prepare($query);
 

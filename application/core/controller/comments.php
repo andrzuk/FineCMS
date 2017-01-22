@@ -167,15 +167,6 @@ class Comments_Controller extends Controller
 		{
 			$id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 			
-			if ($this->app->get_user()->super_admin() == FALSE) // jeśli nie super-admin
-			{
-				if ($this->app->get_user()->get_value('user_id') != $this->app->get_model_object()->GetAuthorId($id)) // obcy komentarz
-				{
-					parent::AccessDenied();
-					return;
-				}
-			}
-
 			$record = array(
 				'visible' => 1,
 				);
@@ -200,15 +191,6 @@ class Comments_Controller extends Controller
 		{
 			$id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 			
-			if ($this->app->get_user()->super_admin() == FALSE) // jeśli nie super-admin
-			{
-				if ($this->app->get_user()->get_value('user_id') != $this->app->get_model_object()->GetAuthorId($id)) // obcy komentarz
-				{
-					parent::AccessDenied();
-					return;
-				}
-			}
-
 			$record = array(
 				'visible' => 0,
 				);
@@ -229,7 +211,7 @@ class Comments_Controller extends Controller
 
 	public function Delete_Action()
 	{
-		if ($this->app->get_acl()->allowed(OPERATOR)) // są uprawnienia
+		if ($this->app->get_acl()->allowed(USER)) // są uprawnienia
 		{
 			parent::Delete_Action();
 

@@ -53,7 +53,7 @@ class Admin_Model extends Model
 			array(
 				'module' => 'Komentarze',
 				'table' => 'comments',
-				'condition' => 'visible = 0',
+				'condition' => 'visible = 1',
 			),
 			array(
 				'module' => 'Odwiedziny',

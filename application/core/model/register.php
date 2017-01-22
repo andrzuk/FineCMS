@@ -26,7 +26,7 @@ class Register_Model extends Model
 		$user_password = sha1($password);
 		$registered = date("Y-m-d H:i:s");
 		$null_date = '2000-01-01 00:00:00';
-		$status = 3;
+		$status = USER;
 		$active = 1;
 
 		try

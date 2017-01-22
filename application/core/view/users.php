@@ -94,11 +94,11 @@ class Users_View extends View
 			$main_user_name = NULL;
 			$main_user_surname = NULL;
 			$main_email = NULL;
-			$main_status = 3;
 			$main_registered = NULL;
 			$main_logged_in = NULL;
 			$main_modified = NULL;
 			$main_logged_out = NULL;
+			$main_status = USER;
 			$main_active = 1;
 		}
 
