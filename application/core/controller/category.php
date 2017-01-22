@@ -33,6 +33,7 @@ class Category_Controller extends Controller
 				$data[0]['skip_bar'] = $this->app->get_menu()->GetSkipBar($id);
 				$data[0]['social_buttons'] = $this->app->get_settings()->get_config_key('social_buttons');
 				$data[0]['comments_panel_visible'] = $this->app->get_settings()->get_config_key('comments_panel_visible') == 'true';
+				$data[0]['articles_pagination_enabled'] = $this->app->get_settings()->get_config_key('articles_pagination_enabled') == 'true';
 				$data[0]['logged_in'] = $user_status > 0;
 
 				if (empty($data[0]['contents'])) // strona bez treści - ładuje podkategorie
