@@ -16,6 +16,7 @@ class Settings
 	public function get_config_key($key)
 	{
 		$config_value = NULL;
+		$active = 1;
 
 		if (isset($_SESSION['install_mode']))
 		{			
@@ -26,11 +27,12 @@ class Settings
 
 		try
 		{
-			$query = 'SELECT * FROM configuration WHERE key_name = :key_name';
+			$query = 'SELECT * FROM configuration WHERE key_name = :key_name AND active = :active';
 
 			$statement = $this->db->prepare($query);
 
 			$statement->bindParam(':key_name', $key, PDO::PARAM_STR);
+			$statement->bindParam(':active', $active, PDO::PARAM_INT);
 			
 			$statement->execute();
 			

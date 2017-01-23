@@ -204,7 +204,7 @@ class Images_Controller extends Controller
 					array(
 						'link' => 'index.php?route='.MODULE_NAME.'&action=preview&id='.$id,
 						'caption' => 'Podgląd obrazka',
-						'icon' => 'img/picture.png',
+						'icon' => 'img/image_size.png',
 						),
 					array(
 						'link' => 'index.php?route='.MODULE_NAME.'&action=view&id='.$id,
@@ -289,7 +289,7 @@ class Images_Controller extends Controller
 					array(
 						'link' => 'index.php?route='.MODULE_NAME.'&action=preview&id='.$id,
 						'caption' => 'Podgląd obrazka',
-						'icon' => 'img/picture.png',
+						'icon' => 'img/image_size.png',
 						),
 					array(
 						'link' => 'index.php?route='.MODULE_NAME.'&action=edit&id='.$id,
