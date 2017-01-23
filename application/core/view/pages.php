@@ -336,18 +336,6 @@ class Pages_View extends View
 			$result .= '<img src="img/16x16/web.png" />' . $previews;
 			$result .= $social_buttons;
 			$result .= '</div>';
-			/*
-			$result .= '<div class="article-skip">';
-			$result .= '<span class="skip-left">';
-			if ($skip_bar['prev'])
-				$result .= '<a href="'.$skip_bar['prev']['link'].'">« '.$skip_bar['prev']['caption'].'</a>';
-			$result .= '</span>';
-			$result .= '<span class="skip-right">';
-			if ($skip_bar['next'])
-				$result .= '<a href="'.$skip_bar['next']['link'].'">'.$skip_bar['next']['caption'].' »</a>';
-			$result .= '</span>';
-			$result .= '</div>';
-			*/
 			$result .= '<div class="article-content">';
 			if (is_array($contents))
 			{

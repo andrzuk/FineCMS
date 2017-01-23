@@ -89,12 +89,16 @@ div.page-content > div.row > div.categories { margin-top: -10px; border-right: 1
 div.page-content > div.row > div.content { margin-top: -25px; }
 
 th.TitleCell { padding: 5px; }
-td.DataCell { color: #333; padding: 5px; font-size: small; }
+td.DataCell { color: #555; padding: 5px; font-size: small; }
 td.DataLock { color: #d00; padding: 5px; font-size: small; }
 td.ActionCell { }
 td.ActionCell > a { }
 td.ActionCell > a > img.ActionIcon { margin: 5px; }
 td.DataCellMsg { color: #c00; text-align: center; font-weight: bold; font-size: small; }
+tr.DataRowBright { background-color: #fff; }
+tr.DataRowDark { background-color: #f6f6f6; }
+tr.DataRowBright > td { color: #555; padding: 5px; font-size: small; }
+tr.DataRowDark > td { color: #555; padding: 5px; font-size: small; }
 
 div.panel-heading > h3.panel-title > img { padding-right: 20px; }
 div.panel-heading > h3.panel-title { font-weight: bold; color: #e0500a; }
@@ -112,7 +116,7 @@ td.GroupElement > a { color: #777; }
 td.GroupElement > a:hover  { color: #c00; text-decoration: none; }
 
 td.ViewKey { color: #777; padding-right: 10px; width: 20%; border-bottom: 1px dotted #eee; font-size: small; }
-td.ViewData { color: #333; padding-left: 10px; width: 80%; border-bottom: 1px dotted #eee; font-size: small; }
+td.ViewData { color: #555; padding-left: 10px; width: 80%; border-bottom: 1px dotted #eee; font-size: small; }
 
 tr.install > td > p { line-height: 20px; margin: 10px; }
 tr.install > td > ol > li { line-height: 20px; margin: 10px; }
@@ -124,3 +128,4 @@ span.gallery_item > a > img:hover { cursor: pointer; border: 1px solid #00f; }
 p.warning { color: red; }
 
 div.action-bar { text-align: center; }
+

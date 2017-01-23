@@ -47,7 +47,6 @@ class Page_Controller extends Controller
 				$data['id'] = $id;
 				$data['skip_bar'] = $this->app->get_menu()->GetSiblings($data['category_id'], $id);
 				$data['social_buttons'] = $this->app->get_settings()->get_config_key('social_buttons');
-				$data['comments_panel_visible'] = $this->app->get_settings()->get_config_key('comments_panel_visible') == 'true';
 				$data['logged_in'] = $user_status > 0;
 
 				if (empty($data['contents'])) // strona bez treści - ładuje podkategorie
@@ -55,6 +54,7 @@ class Page_Controller extends Controller
 					$data['contents'] = $this->app->get_model_object()->GetChildren($id);
 				}
 				// load article comments:
+				$data['comments_panel_visible'] = $this->app->get_settings()->get_config_key('comments_panel_visible') == 'true';
 				$data['comments'] = $this->app->get_model_object()->GetComments($id);
 
 				$this->app->get_page()->set_content($this->app->get_view_object()->ShowPage($data));
