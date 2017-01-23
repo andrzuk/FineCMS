@@ -158,12 +158,12 @@ class Category_View extends View
 			}
 			
 			$result .= '</table>';
-			$result .= '<div id="pageNavPosition"></div>';
 			
 			$articles_per_page = intval($data[0]['articles_per_page']) > 1 ? intval($data[0]['articles_per_page']) : 4;
 
 			if ($data[0]['articles_pagination_enabled'])
 			{
+				$result .= '<div id="pageNavPosition"></div>';
 				$result .= '
 					<script type="text/javascript">
 						var pager = new Pager("results", '.$articles_per_page.');
