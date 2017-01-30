@@ -29,6 +29,10 @@ div.page-header > form.navbar-form.navbar-right { margin: 20px 10px 0px 5px; }
 div.page-header > div.navbar-text.navbar-right { margin: 28px 10px 0px 10px; }
 div.page-header > div.navbar-text.navbar-right > a.navbar-link > img { margin: 0px 10px 0px 0px; }
 
+div.page-header > form > div#search-group { display: flex; }
+div.page-header > form > div#search-group > input#search-input { }
+div.page-header > form > div#search-group > button#search-button { margin: 0 5px; }
+
 div.page-path > ol.breadcrumb { padding: 20px 10px 0px 30px; }
 div.page-path > div.navbar-text.navbar-right { padding: 5px 15px 5px 2px; }
 

@@ -45,14 +45,14 @@ $main_layout_content = '
 
   <body>
     <div class="page-header">
+      <a class="logo" href="index.php"><img src="'.$this->get_logo().'" class="img-logo" alt="logo" /><span class="company">'.$this->get_metadata('company_name').'</span></a>
       <form action="index.php?route=search" class="navbar-form navbar-right" role="search" method="post">
-        <div class="form-group">
-          <input type="text" name="text-search" class="form-control" placeholder="Wyszukaj artykuł">
+        <div id="search-group" class="form-group">
+          <input type="text" name="text-search" id="search-input" class="form-control" placeholder="Wyszukaj artykuł">
+          <button type="submit" name="button-search" id="search-button" class="btn btn-info"><i class="glyphicon glyphicon-search"></i> Szukaj</button>
         </div>
-        <button type="submit" name="button-search" class="btn btn-info"><i class="glyphicon glyphicon-search"></i> Szukaj</button>
       </form>
       '.$this->get_links().'
-      <a class="logo" href="index.php"><img src="'.$this->get_logo().'" class="img-logo" alt="logo" /><span class="company">'.$this->get_metadata('company_name').'</span></a>
     </div>
 
     <nav class="navbar navbar-default" role="navigation">
