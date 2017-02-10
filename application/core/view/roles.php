@@ -14,7 +14,7 @@ class Roles_View extends View
 
 		$attribs = array(
 			array('width' => '5%',  'align' => 'center', 'visible' => '1'),
-			array('width' => '10%', 'align' => 'center', 'visible' => '1'),
+			array('width' => '10%', 'align' => 'center', 'visible' => '1', 'image' => '1'),
 			array('width' => '15%', 'align' => 'center', 'visible' => '1'),
 			array('width' => '10%', 'align' => 'center', 'visible' => '1'),
 			array('width' => '50%', 'align' => 'center', 'visible' => '1'),
@@ -27,6 +27,20 @@ class Roles_View extends View
 			array('action' => 'delete', 'icon' => 'trash.png', 'title' => 'Usuń'),
 		);
 	
+		foreach ($data as $k => $v)
+		{
+			foreach ($v as $key => $value)
+			{
+				if ($key == 'user_login')
+				{
+					if ($value == $_SESSION['user_login'])
+					{
+						$data[$k]['user_login'] = '<b style="color: blue;">' . $data[$k]['user_login'] . '</b>';
+					}
+				}
+			}
+		}
+
 		include GENER_DIR . 'list.php';
 
 		$list_object = new ListBuilder();
