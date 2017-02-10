@@ -49,9 +49,8 @@ function Pager(tableName, itemsPerPage) {
 	}
     
 	this.next = function() {
-		if (this.currentPage < this.pages - 1) {
+		if (this.currentPage < this.pages - 1)
 			this.showPage(this.currentPage + 1);
-		}
 	}                        
     
 	this.init = function() {
