@@ -88,7 +88,7 @@ class Application
 
 		$class_file = APP_DIR . 'controller/' . MODULE_NAME . '.php';
 		$class_name = ucfirst(MODULE_NAME) . '_Controller';
-		$class_method = ucfirst($action) . '_Action';
+		$class_method = ucfirst(strip_tags($action)) . '_Action';
 
 		// tworzy obiekt kontrolera:
 

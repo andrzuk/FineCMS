@@ -13,11 +13,11 @@ class Roles_View extends View
 		$image = 'img/32x32/lock_go.png';
 
 		$attribs = array(
-			array('width' => '5%',  'align' => 'center', 'visible' => '1'),
-			array('width' => '10%', 'align' => 'center', 'visible' => '1', 'image' => '1'),
-			array('width' => '15%', 'align' => 'center', 'visible' => '1'),
-			array('width' => '10%', 'align' => 'center', 'visible' => '1'),
-			array('width' => '50%', 'align' => 'center', 'visible' => '1'),
+			array('width' => '10%',  'align' => 'center', 'visible' => '1'),
+			array('width' => '15%', 'align' => 'left', 'visible' => '1', 'image' => '1'),
+			array('width' => '20%', 'align' => 'left', 'visible' => '1'),
+			array('width' => '10%', 'align' => 'left', 'visible' => '1'),
+			array('width' => '30%', 'align' => 'left', 'visible' => '1'),
 			array('width' => '10%', 'align' => 'center', 'visible' => '1'),
 		);
 		
