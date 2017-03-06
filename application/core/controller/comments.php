@@ -89,7 +89,7 @@ class Comments_Controller extends Controller
 			if (!empty($_POST))
 			{
 				$record = array(
-					'comment_content' => $_POST['comment_content'],
+					'comment_content' => strip_tags($_POST['comment_content']),
 					);
 
 				if (isset($_POST['save_button']))

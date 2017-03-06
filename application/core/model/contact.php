@@ -83,7 +83,7 @@ class Contact_Model extends Model
 
 		$login = $record['login'];
 		$email = $record['email'];
-		$contents = $record['contents'];
+		$contents = strip_tags($record['contents']);
 
 		foreach ($message_options as $key => $value)
 		{

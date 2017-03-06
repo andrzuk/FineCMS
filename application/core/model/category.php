@@ -153,7 +153,7 @@ class Category_Model extends Model
 
 		$user_id = $record['user_id'];
 		$page_id = $record['page_id'];
-		$contents = $record['contents'];
+		$contents = strip_tags($record['contents']);
 		$send_date = date("Y-m-d H:i:s");
 		$visible = $record['visible'];
 
