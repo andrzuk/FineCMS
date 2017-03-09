@@ -102,6 +102,7 @@ class Page
 		$items = NULL;
 
 		if ($this->app->get_settings()->get_config_key('options_panel_visible') != 'true') return NULL;
+		$show_border = $this->app->get_settings()->get_config_key('options_panel_border') == 'true';
 
 		if (count($this->options))
 		{
@@ -115,12 +116,20 @@ class Page
 				}
 				$items .= '<span class="options-item"><a href="'.$link.'"><img src="'.$icon.'" alt="'.$caption.'" />'.$caption.'</a></span>';
 			}
-			
-			$result .= '<div class="panel panel-default">';
-			$result .= '<div class="panel-body">';
-			$result .= $items;
-			$result .= '</div>';
-			$result .= '</div>';
+			if ($show_border)
+			{
+				$result .= '<div class="panel panel-default">';
+				$result .= '<div class="panel-body">';
+				$result .= $items;
+				$result .= '</div>';
+				$result .= '</div>';
+			}
+			else
+			{
+				$result .= '<div class="row">';
+				$result .= $items;
+				$result .= '</div>';
+			}
 		}
 
 		return $result;
