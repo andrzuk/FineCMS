@@ -84,13 +84,13 @@ class List_Paginator
 		
 		if ($this->current_pointer == 0)
 		{
-			$output .= '<li class="disabled"><a class="PagePointerDisabled">&lt;&lt;</a></li>';
-			$output .= '<li class="disabled"><a class="PagePointerDisabled">&lt;</a></li>';
+			$output .= '<li class="disabled"><a class="PagePointerDisabled"><i class="glyphicon glyphicon-fast-backward"></i></a></li>';
+			$output .= '<li class="disabled"><a class="PagePointerDisabled"><i class="glyphicon glyphicon-backward"></i></a></li>';
 		}
 		else
 		{
-			$output .= '<li><a href="'.$this->base_link.'&skip=first" class="PagePointer">&lt;&lt;</a></li>';
-			$output .= '<li><a href="'.$this->base_link.'&skip=prev" class="PagePointer">&lt;</a></li>';
+			$output .= '<li><a href="'.$this->base_link.'&skip=first" class="PagePointer"><i class="glyphicon glyphicon-fast-backward"></i></a></li>';
+			$output .= '<li><a href="'.$this->base_link.'&skip=prev" class="PagePointer"><i class="glyphicon glyphicon-backward"></i></a></li>';
 		}
 
 		$shown = 1;
@@ -115,13 +115,13 @@ class List_Paginator
 
 		if (intval($this->current_pointer) == intval($this->pointer_count - 1) || $this->pointer_count == 0)
 		{
-			$output .= '<li class="disabled"><a class="PagePointerDisabled">&gt;</a></li>';
-			$output .= '<li class="disabled"><a class="PagePointerDisabled">&gt;&gt;</a></li>';
+			$output .= '<li class="disabled"><a class="PagePointerDisabled"><i class="glyphicon glyphicon-forward"></i></a></li>';
+			$output .= '<li class="disabled"><a class="PagePointerDisabled"><i class="glyphicon glyphicon-fast-forward"></i></a></li>';
 		}
 		else
 		{
-			$output .= '<li><a href="'.$this->base_link.'&skip=next" class="PagePointer">&gt;</a></li>';
-			$output .= '<li><a href="'.$this->base_link.'&skip=last" class="PagePointer">&gt;&gt;</a></li>';
+			$output .= '<li><a href="'.$this->base_link.'&skip=next" class="PagePointer"><i class="glyphicon glyphicon-forward"></i></a></li>';
+			$output .= '<li><a href="'.$this->base_link.'&skip=last" class="PagePointer"><i class="glyphicon glyphicon-fast-forward"></i></a></li>';
 		}
 		
 		$output .= '</ul>';
