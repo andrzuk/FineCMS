@@ -16,6 +16,7 @@ class Sites_Model extends Model
 		$this->rows_list = array();
 
 		$condition = ' AND category_id = 0 ';
+		$condition .= $_SESSION['user_status'] == USER ? ' AND ' . $this->table_name . '.author_id = ' . $_SESSION['user_id'] : NULL;
 
 		$fields_list = array('title', 'contents', 'description');
 

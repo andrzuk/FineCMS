@@ -15,7 +15,7 @@ class Images_Model extends Model
 	{
 		$this->rows_list = array();
 
-		$condition = NULL;
+		$condition = $_SESSION['user_status'] == USER ? ' AND ' . $this->table_name . '.owner_id = ' . $_SESSION['user_id'] : NULL;
 
 		$fields_list = array('file_name');
 

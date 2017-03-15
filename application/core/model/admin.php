@@ -98,6 +98,26 @@ class Admin_Model extends Model
 				if ($key == 'table') $table = $value;
 				if ($key == 'condition') $condition = $value;
 			}
+			switch ($table)
+			{
+				case 'users':
+					$condition .= $_SESSION['user_status'] == USER ? ' AND users.id = ' . $_SESSION['user_id'] : NULL;
+					break;
+				case 'pages':
+					$condition .= $_SESSION['user_status'] == USER ? ' AND pages.author_id = ' . $_SESSION['user_id'] : NULL;
+					break;
+				case 'sites':
+					$condition .= $_SESSION['user_status'] == USER ? ' AND pages.author_id = ' . $_SESSION['user_id'] : NULL;
+					break;
+				case 'images':
+					$condition .= $_SESSION['user_status'] == USER ? ' AND images.owner_id = ' . $_SESSION['user_id'] : NULL;
+					break;
+				case 'comments':
+					$condition .= $_SESSION['user_status'] == USER ? ' AND comments.user_id = ' . $_SESSION['user_id'] : NULL;
+					break;
+				default:
+					break;
+			}
 
 			if ($module == $module_name)
 			{
