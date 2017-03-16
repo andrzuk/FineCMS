@@ -423,9 +423,9 @@ class Page
 	{
 		if ($this->app->get_settings()->get_config_key('aside_panel_visible') != 'true') return NULL;
 
-		$aside_content = $this->app->get_settings()->get_config_key('page_aside_content');
+		$result = $this->app->get_settings()->get_config_key('page_aside_content');
 		
-		return $aside_content;
+		return $result;
 	}
 
 	public function get_footer()
