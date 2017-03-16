@@ -58,14 +58,24 @@ $main_layout_content = '
       '.$this->get_links().'
     </div>
 
-    <nav class="navbar navbar-default" role="navigation">
-      <div class="container">
-        '.$this->get_navbar().'
-      </div>
-    </nav>
+    <div class="page-navigation">
+      '.$this->get_navbar().'
+    </div>
 
     <div class="page-content">
-      '.$this->get_content().'
+      <div class="containter">
+        <div class="row">
+          <div class="col-lg-1">
+            '.$this->get_categories().'
+          </div>
+          <div class="col-lg-10">
+            '.$this->get_content().'
+          </div>
+          <div class="col-lg-1">
+            '.$this->get_aside().'
+          </div>
+        </div>
+      </div>
     </div>
 
     <div class="page-footer">

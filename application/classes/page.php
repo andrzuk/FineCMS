@@ -102,6 +102,7 @@ class Page
 		$items = NULL;
 
 		if ($this->app->get_settings()->get_config_key('options_panel_visible') != 'true') return NULL;
+		
 		$show_border = $this->app->get_settings()->get_config_key('options_panel_border') == 'true';
 
 		if (count($this->options))
@@ -303,6 +304,8 @@ class Page
 
 		if ($this->app->get_settings()->get_config_key('navbar_panel_visible') != 'true') return NULL;
 
+		$result .= '<nav class="navbar navbar-default" role="navigation">';
+		$result .= '<div class="container">';
 		$result .= '<ul class="nav nav-justified navbar-nav">';
 
 		$this->navbar = $this->app->get_menu()->GetItems(NAVIGATOR);
@@ -340,6 +343,8 @@ class Page
 		}
 
 		$result .= '</ul>';
+		$result .= '</div>';
+		$result .= '</nav>';
 
 		return $result;
 	}
@@ -412,6 +417,15 @@ class Page
 	public function get_selected()
 	{
 		return $this->selected;
+	}
+
+	public function get_aside()
+	{
+		if ($this->app->get_settings()->get_config_key('aside_panel_visible') != 'true') return NULL;
+
+		$aside_content = $this->app->get_settings()->get_config_key('page_aside_content');
+		
+		return $aside_content;
 	}
 
 	public function get_footer()

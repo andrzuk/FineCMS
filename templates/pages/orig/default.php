@@ -55,11 +55,9 @@ $main_layout_content = '
       '.$this->get_links().'
     </div>
 
-    <nav class="navbar navbar-default" role="navigation">
-      <div class="container">
-        '.$this->get_navbar().'
-      </div>
-    </nav>
+    <div class="page-navigation">
+      '.$this->get_navbar().'
+    </div>
 
     <div class="page-content">
       '.$this->get_options().
