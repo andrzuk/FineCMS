@@ -197,6 +197,22 @@ class Page
 		return $line;
 	}
 
+	public function get_search()
+	{
+		$line = NULL;
+
+		if ($this->app->get_settings()->get_config_key('search_panel_visible') != 'true') return NULL;
+
+		$line .= '<form action="index.php?route=search" id="main-search" class="navbar-form navbar-right" role="search" method="post">';
+		$line .= '<div class="form-group">';
+		$line .= '<input type="text" name="text-search" id="search-input" class="form-control" placeholder="Szukaj">';
+		$line .= '<button type="submit" name="button-search" id="search-button" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>';
+		$line .= '</div>';
+		$line .= '</form>';
+
+		return $line;
+	}
+
 	public function get_links()
 	{
 		if ($this->app->get_settings()->get_config_key('links_panel_visible') != 'true') return NULL;
@@ -252,8 +268,12 @@ class Page
 		}
 
 		$line = NULL;
+		
+		$line .= '<div id="navbarCollapse" class="collapse navbar-collapse">';
+		
+		$line .= '<ul class="nav navbar-nav navbar-right">';
 
-		foreach (array_reverse($links) as $items)
+		foreach ($links as $items)
 		{
 			foreach ($items as $key => $value)
 			{
@@ -261,8 +281,14 @@ class Page
 				if ($key == 'caption') $caption = $value;
 				if ($key == 'icon') $icon = $value;
 			}
-			$line .= '<div class="navbar-text navbar-right"><a href="'.$link.'" class="navbar-link"><img src="'.$icon.'" />'.$caption.'</a></div>';
+			$line .= '<li><a href="'.$link.'" class="navbar-link"><img src="'.$icon.'" />'.$caption.'</a></li>';
 		}
+		
+		$line .= '</ul>';
+		
+		$line .= $this->get_search();
+		
+		$line .= '</div>';
 
 		return $line;
 	}

@@ -48,12 +48,6 @@ $main_layout_content = '
 
   <body>
     <div class="page-header">
-      <form action="index.php?route=search" class="navbar-form navbar-right" role="search" method="post">
-        <div class="form-group">
-          <input type="text" name="text-search" class="form-control" placeholder="Wyszukaj artykuł">
-        </div>
-        <button type="submit" name="button-search" class="btn btn-info"><i class="glyphicon glyphicon-search"></i> Szukaj</button>
-      </form>
       '.$this->get_links().'
       <a href="index.php"><img src="'.$this->get_logo().'" class="img-logo" alt="logo" /></a>
     </div>

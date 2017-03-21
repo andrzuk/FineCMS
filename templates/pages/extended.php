@@ -47,15 +47,24 @@ $main_layout_content = '
   </head>
 
   <body>
-    <div class="page-header">
-      <a class="logo" href="index.php"><img src="'.$this->get_logo().'" class="img-logo" alt="logo" /><span class="company">'.$this->get_metadata('company_name').'</span></a>
-      <form action="index.php?route=search" class="navbar-form navbar-right" role="search" method="post">
-        <div id="search-group" class="form-group">
-          <input type="text" name="text-search" id="search-input" class="form-control" placeholder="Wyszukaj artykuł">
-          <button type="submit" name="button-search" id="search-button" class="btn btn-info"><i class="glyphicon glyphicon-search"></i> Szukaj</button>
-        </div>
-      </form>
-      '.$this->get_links().'
+
+    <div class="page-header">	
+      <header>
+        <nav role="navigation" class="navbar navbar-default navbar-fixed-top">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a id="page-logo-brand" href="index.php" class="navbar-brand"><span><img src="'.$this->get_logo().'" alt="'.$this->get_metadata('company_name').'"></span> &nbsp; '.$this->get_metadata('company_name').'</a>
+            </div>
+            '.$this->get_links().'
+          </div>
+        </nav>
+      </header>
     </div>
 
     <div class="page-navigation">
