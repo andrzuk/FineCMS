@@ -56,7 +56,12 @@ $main_layout_content = '
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a id="page-logo-brand" href="index.php" class="navbar-brand"><span><img src="'.$this->get_logo().'" alt="'.$this->get_metadata('company_name').'"></span> &nbsp; '.$this->get_metadata('company_name').'</a>
+              <a id="page-logo-brand" href="index.php" class="navbar-brand">
+                <span>
+                  <img src="'.$this->get_logo().'" alt="'.$this->get_metadata('company_name').'">
+                </span> 
+                '.$this->get_metadata('company_name').'
+              </a>
             </div>
             '.$this->get_links().'
           </div>

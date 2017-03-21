@@ -22,7 +22,7 @@ div.page-footer > div.FooterCopyright { padding-top: 5px; }
 div.page-footer > div.FooterCopyright > a { color: #999; }
 div.page-footer > a { margin: 10px; }
 
-div.page-header > header > nav.navbar > div.container > div.navbar-header > a.navbar-brand > span > img { margin: -7px 0px 0px 0px; }
+div.page-header > header > nav.navbar > div.container > div.navbar-header > a.navbar-brand > span > img { margin: -7px 20px 0px 0px; }
 div.page-header > header > nav.navbar > div.container > div.navbar-collapse > ul.nav { margin: 0px 0px 0px 20px; }
 div.page-header > header > nav.navbar > div.container > div.navbar-collapse > ul.nav > li > a.navbar-link > img { margin: 0px 10px 0px 0px; }
 div.page-header > header > nav.navbar > div.container > div.navbar-collapse > form.navbar-form > div.form-group { display: flex; }
