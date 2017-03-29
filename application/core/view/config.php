@@ -17,7 +17,7 @@ class Config_View extends View
 			array('width' => '20%', 'align' => 'left',   'visible' => '1'),
 			array('width' => '23%', 'align' => 'left',   'visible' => '1'),
 			array('width' => '25%', 'align' => 'left',   'visible' => '1'),
-			array('width' => '5%',  'align' => 'center', 'visible' => '1'),
+			array('width' => '5%',  'align' => 'left',   'visible' => '1'),
 			array('width' => '5%',  'align' => 'center', 'visible' => '0'),
 			array('width' => '10%', 'align' => 'center', 'visible' => '1'),
 			array('width' => '5%',  'align' => 'center', 'visible' => '1'),
@@ -28,6 +28,13 @@ class Config_View extends View
 			array('action' => 'edit',   'icon' => 'edit.png',  'title' => 'Edytuj'),
 			array('action' => 'delete', 'icon' => 'trash.png', 'title' => 'Usuń'),
 		);
+		
+		$types = array(1 => 'string', 2 => 'area', 3 => 'option');
+		
+		foreach ($data as $key => $row)
+		{
+			$data[$key]['field_type'] = $types[$data[$key]['field_type']];
+		}
 	
 		include GENER_DIR . 'list.php';
 
@@ -217,11 +224,15 @@ class Config_View extends View
 		$view_object->set_action($view_action);
 
 		$view_inputs = array();
+		
+		$types = array(1 => 'string', 2 => 'area', 3 => 'option');
 
 		if (is_array($data))
 		{
 			foreach ($data as $key => $value) 
 			{
+				if ($key == 'field_type') $value = $types[$value];
+				if ($key == 'active') $value = $value ? '<span style="color: green;">Tak</span>' : '<span style="color: red;">Nie</span>';
 				$view_inputs[] = array('caption' => $key, 'value' => $value);
 			}
 		}

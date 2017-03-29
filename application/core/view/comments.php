@@ -136,6 +136,8 @@ class Comments_View extends View
 		{
 			foreach ($data as $key => $value) 
 			{
+				if (in_array($key, array('user_id', 'page_id'))) continue;
+				if ($key == 'visible') $value = $value ? '<span style="color: green;">Tak</span>' : '<span style="color: red;">Nie</span>';
 				$view_inputs[] = array('caption' => $key, 'value' => $value);
 			}
 		}

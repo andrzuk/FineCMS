@@ -135,7 +135,9 @@ class Admin_Controller extends Controller
 			unset($_SESSION['form_fields']);
 			unset($_SESSION['form_failed']);
 			unset($_SESSION['sort_field']);
+			unset($_SESSION['categories_list_mode']);
 			unset($_SESSION['messages_list_mode']);
+			unset($_SESSION['logins_list_mode']);
 			unset($_SESSION['comments_list_mode']);
 
 			$this->app->get_page()->set_options($options);

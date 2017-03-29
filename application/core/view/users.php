@@ -35,7 +35,7 @@ class Users_View extends View
 			array('action' => 'delete',  'icon' => 'trash.png',  'title' => 'Usuń'),
 		);
 	
-		$group_names = array('Guest', 'Adm', 'Opr', 'Usr');
+		$group_names = array('Guest', 'Admin', 'Operator', 'User');
 
 		foreach ($data as $k => $v)
 		{
@@ -238,12 +238,16 @@ class Users_View extends View
 		$view_object->set_action($view_action);
 
 		$view_inputs = array();
+		
+		$roles = array(1 => 'Administratorzy', 2 => 'Operatorzy', 3 => 'Zarejestrowani');
 
 		if (is_array($data))
 		{
 			foreach ($data as $key => $value) 
 			{
-				if (in_array($key, array('user_password', 'status', 'active'))) continue;
+				if (in_array($key, array('user_password'))) continue;
+				if ($key == 'status') $value = $roles[$value];
+				if ($key == 'active') $value = $value ? '<span style="color: green;">Tak</span>' : '<span style="color: red;">Nie</span>';
 				$view_inputs[] = array('caption' => $key, 'value' => $value);
 			}
 		}

@@ -36,6 +36,15 @@ class Categories_View extends View
 			array('action' => 'delete', 'icon' => 'trash.png',     'title' => 'Usuń'),
 		);
 	
+		$sections = array(1 => 'navi', 2 => 'side');
+		$permissions = array(1 => 'admin', 2 => 'operator', 3 => 'user', 4 => 'public');
+		
+		foreach ($data as $key => $row)
+		{
+			$data[$key]['section'] = $sections[$data[$key]['section']];
+			$data[$key]['permission'] = $permissions[$data[$key]['permission']];
+		}
+	
 		include GENER_DIR . 'list.php';
 
 		$list_object = new ListBuilder();
@@ -245,10 +254,19 @@ class Categories_View extends View
 
 		$view_inputs = array();
 
+		$sections = array(1 => 'navi', 2 => 'side');
+		$permissions = array(1 => 'admin', 2 => 'operator', 3 => 'user', 4 => 'public');
+		$targets = array(0 => 'stay', 1 => 'expand');
+		
 		if (is_array($data))
 		{
 			foreach ($data as $key => $value) 
 			{
+				if (in_array($key, array('author_id'))) continue;
+				if ($key == 'section') $value = $sections[$value];
+				if ($key == 'permission') $value = $permissions[$value];
+				if ($key == 'target') $value = $targets[$value];
+				if ($key == 'visible') $value = $value ? '<span style="color: green;">Tak</span>' : '<span style="color: red;">Nie</span>';
 				$view_inputs[] = array('caption' => $key, 'value' => $value);
 			}
 		}

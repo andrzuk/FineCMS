@@ -56,8 +56,10 @@ class Comments_Model extends Model
 
 		try
 		{
-			$query =	'SELECT * FROM ' . $this->table_name .
-						' WHERE id = :id' . $condition;
+			$query =	'SELECT ' . $this->table_name . '.*, title, user_login FROM ' . $this->table_name .
+						' INNER JOIN users ON users.id = ' . $this->table_name . '.user_id' .
+						' INNER JOIN pages ON pages.id = ' . $this->table_name . '.page_id' .
+						' WHERE ' . $this->table_name . '.id = :id' . $condition;
 
 			$statement = $this->db->prepare($query);
 			

@@ -16,8 +16,8 @@ class Logins_View extends View
 			array('width' => '5%',  'align' => 'center', 'visible' => '1'),
 			array('width' => '35%', 'align' => 'left',   'visible' => '1'),
 			array('width' => '15%', 'align' => 'left',   'visible' => '1'),
-			array('width' => '5%',  'align' => 'center', 'visible' => '1'),
-			array('width' => '20%', 'align' => 'center', 'visible' => '1'),
+			array('width' => '10%', 'align' => 'left',   'visible' => '1'),
+			array('width' => '15%', 'align' => 'left',   'visible' => '1'),
 			array('width' => '10%', 'align' => 'center', 'visible' => '0'),
 			array('width' => '10%', 'align' => 'center', 'visible' => '1'),
 			array('width' => '10%', 'align' => 'center', 'visible' => '1'),
@@ -62,6 +62,7 @@ class Logins_View extends View
 		{
 			foreach ($data as $key => $value) 
 			{
+				if (in_array($key, array('password'))) continue;
 				$view_inputs[] = array('caption' => $key, 'value' => $value);
 			}
 		}

@@ -63,6 +63,7 @@ class Messages_View extends View
 		{
 			foreach ($data as $key => $value) 
 			{
+				if ($key == 'requested') $value = $value == 1 ? '<span style="color: green;">Waiting</span>' : '<span style="color: red;">Closed</span>';
 				$view_inputs[] = array('caption' => $key, 'value' => $value);
 			}
 		}
