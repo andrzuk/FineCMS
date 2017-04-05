@@ -204,9 +204,11 @@ class Page
 		if ($this->app->get_settings()->get_config_key('search_panel_visible') != 'true') return NULL;
 
 		$line .= '<form action="index.php?route=search" id="main-search" class="navbar-form navbar-right" role="search" method="post">';
-		$line .= '<div class="form-group">';
+		$line .= '<div class="input-group">';
 		$line .= '<input type="text" name="text-search" id="search-input" class="form-control" placeholder="Szukaj">';
+		$line .= '<span class="input-group-btn">';
 		$line .= '<button type="submit" name="button-search" id="search-button" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>';
+		$line .= '</span>';
 		$line .= '</div>';
 		$line .= '</form>';
 
@@ -286,8 +288,6 @@ class Page
 		
 		$line .= '</ul>';
 		
-		$line .= $this->get_search();
-		
 		$line .= '</div>';
 
 		return $line;
@@ -332,7 +332,19 @@ class Page
 
 		$result .= '<nav class="navbar navbar-default" role="navigation">';
 		$result .= '<div class="container">';
-		$result .= '<ul class="nav nav-justified navbar-nav">';
+		$result .= '<div class="navbar-header">';
+		$result .= '<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#categories-navbar">';
+		$result .= '<span class="sr-only">Rozwiń nawigację</span>';
+		$result .= '<span class="icon-bar"></span>';
+		$result .= '<span class="icon-bar"></span>';
+		$result .= '<span class="icon-bar"></span>';
+		$result .= '</button>';
+		$result .= '</div>';
+		$result .= '<div class="collapse navbar-collapse" id="categories-navbar">';
+		
+		$result .= $this->get_search();
+		
+		$result .= '<ul class="nav navbar-nav">';
 
 		$this->navbar = $this->app->get_menu()->GetItems(NAVIGATOR);
 
@@ -369,9 +381,11 @@ class Page
 		}
 
 		$result .= '</ul>';
+		
 		$result .= '</div>';
-		$result .= '</nav>';
-
+		$result .= '</div>';
+		$result .= '</nav>';	
+		
 		return $result;
 	}
 

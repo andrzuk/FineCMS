@@ -2,7 +2,7 @@
 
 $main_template_content = '
 
-	<div class="panel panel-default center" style="width: 70%;">
+	<div class="panel panel-default center" style="width: 100%;">
 
 		<div class="panel-heading">
 
