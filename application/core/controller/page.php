@@ -45,7 +45,9 @@ class Page_Controller extends Controller
 				$this->app->get_page()->set_metadata('main_description', $data['description']);
 
 				$data['id'] = $id;
+				$data['skip_bar_visible'] = $this->app->get_settings()->get_config_key('skip_bar_visible') == 'true';
 				$data['skip_bar'] = $this->app->get_menu()->GetSiblings($data['category_id'], $id);
+				$data['social_buttons_visible'] = $this->app->get_settings()->get_config_key('social_buttons_visible') == 'true';
 				$data['social_buttons'] = $this->app->get_settings()->get_config_key('social_buttons');
 				$data['logged_in'] = $user_status > 0;
 

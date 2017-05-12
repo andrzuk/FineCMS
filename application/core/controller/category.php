@@ -30,7 +30,9 @@ class Category_Controller extends Controller
 				$this->app->get_page()->set_metadata('main_description', $data[0]['description']);
 
 				$data[0]['category_id'] = $id;
+				$data[0]['skip_bar_visible'] = $this->app->get_settings()->get_config_key('skip_bar_visible') == 'true';
 				$data[0]['skip_bar'] = $this->app->get_menu()->GetSkipBar($id);
+				$data[0]['social_buttons_visible'] = $this->app->get_settings()->get_config_key('social_buttons_visible') == 'true';
 				$data[0]['social_buttons'] = $this->app->get_settings()->get_config_key('social_buttons');
 				$data[0]['logged_in'] = $user_status > 0;
 

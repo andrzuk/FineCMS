@@ -442,7 +442,9 @@ class Pages_Controller extends Controller
 
 			$data = $this->app->get_model_object()->Preview($id);
 
+			$data['skip_bar_visible'] = $this->app->get_settings()->get_config_key('skip_bar_visible') == 'true';
 			$data['skip_bar'] = $this->app->get_menu()->GetSkipBar($data['category_id']);
+			$data['social_buttons_visible'] = $this->app->get_settings()->get_config_key('social_buttons_visible') == 'true';
 			$data['social_buttons'] = $this->app->get_settings()->get_config_key('social_buttons');
 
 			$this->app->get_page()->set_content($this->app->get_view_object()->ShowPage($data));

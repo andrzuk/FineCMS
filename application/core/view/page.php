@@ -22,7 +22,9 @@ class Page_View extends View
 				if ($key == 'modified') $modified = $value;
 				if ($key == 'previews') $previews = $value;
 				if ($key == 'skip_bar') $skip_bar = $value;
+				if ($key == 'skip_bar_visible') $skip_bar_visible = $value;
 				if ($key == 'social_buttons') $social_buttons = $value;
+				if ($key == 'social_buttons_visible') $social_buttons_visible = $value;
 			}
 
 			$social_buttons = str_replace(array('{{_url_}}', '{{_title_}}'), array($_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'], $title), $social_buttons);
@@ -35,18 +37,22 @@ class Page_View extends View
 			$result .= '<img src="img/16x16/user.png" />' . '<a href="index.php?route=users&action=view&id='.$user_id.'">' . $user_login. '</a>';
 			$result .= '<img src="img/16x16/date.png" />' . $modified;
 			$result .= '<img src="img/16x16/web.png" />' . $previews;
-			$result .= $social_buttons;
+			if ($social_buttons_visible)
+				$result .= $social_buttons;
 			$result .= '</div>';
-			$result .= '<div class="article-skip">';
-			$result .= '<span class="skip-left">';
-			if ($skip_bar['prev'])
-				$result .= '<a href="index.php?route=page&id='.$skip_bar['prev']['id'].'">« '.$skip_bar['prev']['caption'].'</a>';
-			$result .= '</span>';
-			$result .= '<span class="skip-right">';
-			if ($skip_bar['next'])
-				$result .= '<a href="index.php?route=page&id='.$skip_bar['next']['id'].'">'.$skip_bar['next']['caption'].' »</a>';
-			$result .= '</span>';
-			$result .= '</div>';
+			if ($skip_bar_visible)
+			{
+				$result .= '<div class="article-skip">';
+				$result .= '<span class="skip-left">';
+				if ($skip_bar['prev'])
+					$result .= '<a href="index.php?route=page&id='.$skip_bar['prev']['id'].'">« '.$skip_bar['prev']['caption'].'</a>';
+				$result .= '</span>';
+				$result .= '<span class="skip-right">';
+				if ($skip_bar['next'])
+					$result .= '<a href="index.php?route=page&id='.$skip_bar['next']['id'].'">'.$skip_bar['next']['caption'].' »</a>';
+				$result .= '</span>';
+				$result .= '</div>';
+			}
 			$result .= '<div class="article-content">';
 			if (is_array($contents))
 			{
