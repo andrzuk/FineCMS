@@ -73,9 +73,9 @@ class Config_Controller extends Controller
 			if (!empty($_POST))
 			{
 				$record = array(
-					'key_name' => $_POST['key_name'],
-					'key_value' => $_POST['key_value'],
-					'meaning' => $_POST['meaning'],
+					'key_name' => htmlspecialchars($_POST['key_name']),
+					'key_value' => htmlspecialchars($_POST['key_value']),
+					'meaning' => htmlspecialchars($_POST['meaning']),
 					'field_type' => $_POST['field_type'],
 					'active' => $_POST['active'],
 					'modified' => date("Y-m-d H:i:s"),
@@ -141,9 +141,9 @@ class Config_Controller extends Controller
 			if (!empty($_POST))
 			{
 				$record = array(
-					'key_name' => $_POST['key_name'],
-					'key_value' => $_POST['key_value'],
-					'meaning' => $_POST['meaning'],
+					'key_name' => htmlspecialchars($_POST['key_name']),
+					'key_value' => htmlspecialchars($_POST['key_value']),
+					'meaning' => htmlspecialchars($_POST['meaning']),
 					'field_type' => $_POST['field_type'],
 					'active' => $_POST['active'],
 					'modified' => date("Y-m-d H:i:s"),
