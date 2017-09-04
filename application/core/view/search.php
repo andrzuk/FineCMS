@@ -16,6 +16,7 @@ class Search_View extends View
 		$attribs = array(
 			array('style' => 'font-size: medium; font-weight: bold; padding: 10px 0px 5px 20px; color: #900;', 'visible' => '1'),
 			array('style' => 'font-size: small; padding: 0px 20px 0px 20px; color: #666;', 'visible' => '1'),
+			array('style' => 'font-size: small; padding: 0px 20px 0px 20px; color: #369;', 'visible' => '0'),
 			array('style' => NULL, 'visible' => '0'),
 			array('style' => 'font-size: 0.85em; padding: 5px 20px 0px 0px; color: #999; text-align: right;', 'visible' => '1'),
 		);

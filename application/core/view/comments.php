@@ -84,7 +84,7 @@ class Comments_View extends View
 			array(
 				'caption' => 'Treść', 
 				'data' => array(
-					'type' => 'textarea', 'id' => 'comment_content', 'name' => 'comment_content', 'rows' => 5, 'value' => $main_contents, 'required' => 'required',
+					'type' => 'textarea', 'id' => 'comment_content', 'name' => 'comment_content', 'rows' => 15, 'value' => $main_contents, 'required' => 'required',
 					),
 				),
 			);

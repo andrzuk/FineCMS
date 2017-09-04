@@ -24,7 +24,7 @@ class Search_Model extends Model
 
 		try
 		{
-			$query = 	"SELECT pages.title, pages.contents, pages.id," .
+			$query = 	"SELECT pages.title, pages.description, pages.contents, pages.id," .
 						" CONCAT(users.user_login, ' @ ', pages.modified)" . 
 						" FROM " . $this->table_name . 
 						" INNER JOIN users ON users.id = pages.author_id" .

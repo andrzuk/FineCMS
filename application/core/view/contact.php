@@ -39,7 +39,7 @@ class Contact_View extends View
 			array(
 				'caption' => 'Treść', 
 				'data' => array(
-					'type' => 'textarea', 'id' => 'contents', 'name' => 'contents', 'rows' => 5, 'value' => NULL, 'required' => 'required',
+					'type' => 'textarea', 'id' => 'contents', 'name' => 'contents', 'rows' => 6, 'value' => NULL, 'required' => 'required',
 					),
 				),
 			array(

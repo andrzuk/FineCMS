@@ -143,7 +143,7 @@ class Statistics_View extends View
 					),
 				),
 			array(
-				'caption' => '', 
+				'caption' => NULL, 
 				'data' => array(
 					'type' => 'list',
 					'id' => 'counters', 'name' => 'counters', 'style' => 'text-align: center; padding: 10px;',
