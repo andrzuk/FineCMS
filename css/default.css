@@ -98,6 +98,8 @@ ul.categories > li.category-selected > a { color: #ff300a; }
 div.page-content > div.row > div.categories { margin-top: -10px; border-right: 1px dotted #aaa; }
 div.page-content > div.row > div.content { margin-top: -25px; }
 
+div.page-content { min-height: calc(100vh - 177px); }
+
 th.TitleCell { padding: 5px; }
 tr.DataRowBright { background-color: #fff; }
 tr.DataRowDark { background-color: #f6f6f6; }

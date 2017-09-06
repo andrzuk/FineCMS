@@ -2,6 +2,8 @@
  *  Własne style dla strony - szablon ADMIN
  */
 
+div.page-content { min-height: calc(100vh - 127px); }
+
 div.GroupName { font-size: small; text-align: center; color: #ccc; margin: 10px; border-bottom: 1px dotted #ddd; }
 div.GroupElements { text-align: center; }
 td.GroupElement { padding: 10px 0px 10px 0px; margin: 10px; width: 300px; }

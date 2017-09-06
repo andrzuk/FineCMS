@@ -44,9 +44,6 @@ $main_layout_content = '
     <![endif]-->
     <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
     <script type="text/javascript">stLight.options({publisher: "f890c644-7945-4561-a1c5-f54d2aebffde", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>
-    <style>
-      div.page-content { min-height: calc(100vh - 177px); }
-    </style>
   </head>
 
   <body>

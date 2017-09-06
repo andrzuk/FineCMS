@@ -24,9 +24,6 @@ $main_layout_content = '
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/'.$this->get_layout().'.js"></script>
-    <style>
-      div.page-content { min-height: calc(100vh - 127px); }
-    </style>
   </head>
 
   <body>
