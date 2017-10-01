@@ -12,7 +12,7 @@
 * Database: MySQL
 * DB interface: PDO
 * User Interface: Bootstrap 3
-* On-line: http://mvc.net.pl
+* On-line: http://andrzej-zukowski.com.pl
 
 ### Installation:
 * create new empty database on hosting account
