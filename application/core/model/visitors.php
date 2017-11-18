@@ -46,7 +46,7 @@ class Visitors_Model extends Model
 
 		$condition = NULL;
 
-		$fields_list = array('visitor_ip', 'http_referer', 'request_uri');
+		$fields_list = array('visitor_ip', 'http_referer', 'request_uri', 'server_name');
 
 		$filter = empty($_SESSION['list_filter']) ? NULL : $this->make_filter($fields_list);
 
@@ -54,7 +54,9 @@ class Visitors_Model extends Model
 
 		try
 		{
-			$query = 	'SELECT * FROM ' . $this->table_name . ' WHERE 1' . $condition . $filter . $date_range . $excludes .
+			$query = 	'SELECT ' . $this->table_name . '.* FROM ' . $this->table_name . 
+						' INNER JOIN hosts ON hosts.server_ip = ' . $this->table_name . '.visitor_ip' .
+						' WHERE 1' . $condition . $filter . $date_range . $excludes .
 						' ORDER BY ' . $this->list_params['sort_field'] . ' ' . $this->list_params['sort_order'] . 
 						' LIMIT ' . $this->list_params['start_from'] . ', ' . $this->list_params['show_rows'];
 
@@ -77,7 +79,7 @@ class Visitors_Model extends Model
 					}
 					if ($key == 'http_referer' || $key == 'request_uri')
 					{
-						$this->rows_list[$k][$key] = str_replace(array("?", "&", "=", "%"), array(" ? ", " & ", " = ", " % "), $this->rows_list[$k][$key]);
+						$this->rows_list[$k][$key] = str_replace(array("?", "&", "=", "%", "/", "."), array(" ? ", " & ", " = ", " % ", " / ", ". "), $this->rows_list[$k][$key]);
 					}
 				}
 			}
@@ -122,7 +124,7 @@ class Visitors_Model extends Model
 				{
 					$this->row_item[$key] = array(
 						'original' => $this->row_item[$key],
-						'converted' => str_replace(array("?", "&", "=", "%", "/"), array(" ? ", " & ", " = ", " % ", " / "), $this->row_item[$key]),
+						'converted' => str_replace(array("?", "&", "=", "%", "/", ".", "Q", "V", "X", "Y"), array(" ? ", " & ", " = ", " % ", " / ", ". ", " Q ", " V ", " X ", " Y "), $this->row_item[$key]),
 					);
 				}
 			}
