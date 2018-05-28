@@ -4,12 +4,12 @@
 
 div.page-content { min-height: calc(100vh - 127px); }
 
-div.GroupName { font-size: small; text-align: center; color: #ccc; margin: 10px; border-bottom: 1px dotted #ddd; }
-div.GroupElements { text-align: center; }
-td.GroupElement { padding: 10px 0px 10px 0px; margin: 10px; width: 300px; }
-td.GroupElement > a > p { margin: 0px; padding: 0px; font-size: small; }
-td.GroupElement > a { color: #777; }
-td.GroupElement > a:hover  { color: #c00; text-decoration: none; }
+div.AdminGroupName { color: #c00; padding-top: 30px; }
+div.AdminGroupElements { padding: 0px 0px 20px 100px; }
+td.AdminGroupElement { text-align: center; width: 150px; vertical-align: top; }
+td.AdminGroupElement > a > p { margin: 0px; padding: 0px; font-size: small; }
+td.AdminGroupElement > a { color: #777; }
+td.AdminGroupElement > a:hover  { color: #c00; text-decoration: none; }
 
 td.ViewKey { color: #777; padding-right: 10px; width: 20%; border-bottom: 1px dotted #eee; }
 td.ViewData { color: #333; padding-left: 10px; width: 80%; border-bottom: 1px dotted #eee; }

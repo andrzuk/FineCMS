@@ -22,14 +22,14 @@ class Admin_View extends View
 				{
 					$group = $v;
 
-					$item .= '<div class="GroupName">';
+					$item .= '<div class="AdminGroupName">';
 					$item .= $group;
 					$item .= '</div>';
 				}
 				if ($k == 'elements')
 				{
-					$item .= '<div class="GroupElements">';
-					$item .= '<table align="center">';
+					$item .= '<div class="AdminGroupElements">';
+					$item .= '<table>';
 					$item .= '<tr>';
 
 					foreach ($v as $kk => $vv)
@@ -43,7 +43,7 @@ class Admin_View extends View
 						}
 						if ($user->get_value('user_status') <= $profile)
 						{
-							$item .= '<td class="GroupElement">';
+							$item .= '<td class="AdminGroupElement">';
 							$item .= '<a href="'.$link.'">';
 							$item .= '<p>';
 							$item .= '<img src="img/48x48/'.$icon.'" alt="" />';

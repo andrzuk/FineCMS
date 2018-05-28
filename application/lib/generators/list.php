@@ -75,37 +75,39 @@ class ListBuilder extends Builder
 						
 		$paginator->init($base_link, $this->params['show_page'], $this->params['page_counter'], $this->params['page_band']);
 		
-		$main_text .= '<div class="panel panel-default">';
-		$main_text .= '<div class="panel-heading">';
+		$main_text .= '<table class="table table-bordered">';
 
+		// listwa tytułowa:
+		
+		$main_text .= '<tr>';
+		$main_text .= '<td class="TableHeadingBar" colspan="'.count($active_fields).'">';
 		$main_text .= '<span class="FormIcon">';
 		$main_text .= '<img src="'.$this->image.'" alt="'.$this->title.'" />';
 		$main_text .= '</span>';
 		$main_text .= '<span class="FormTitle">';
 		$main_text .= $this->title;
 		$main_text .= '</span>';
-		$main_text .= '<span class="FormSearch">';
-		$main_text .= '<form action="index.php?route=' . MODULE_NAME . '&sort=' . $this->params['sort_column'] . '&order=' . $this->params['sort_order'] . '" class="navbar-form" role="search" method="post">';
-		$main_text .= '<div class="form-group">';
-		$main_text .= '<input type="text" id="ListSearchText" name="ListSearchText" value="" class="form-control" />&nbsp;';
-		$main_text .= '</div>';
-		$main_text .= '<button type="submit" name="ListSearchButton" id="ListSearchButton" class="btn btn-default">Szukaj</button>';
-		$main_text .= '</form>';
-		$main_text .= '</span>';
+		$main_text .= '</td>';
+		$main_text .= '</tr>';
+		
+		// listwa kontrolna:
+		
+		$main_text .= '<tr>';
+		$main_text .= '<td class="TableControlBar" colspan="'.count($active_fields).'" style="text-align: right;">';
 		if ($this->dates)
 		{
-			$main_text .= '<span class="FormDates">';
-			$main_text .= '<form action="index.php?route=' . MODULE_NAME . '&sort=' . $this->params['sort_column'] . '&order=' . $this->params['sort_order'] . '" class="navbar-form" role="search" method="post">';
+			$main_text .= '<form style="display: inline;" action="index.php?route=' . MODULE_NAME . '&sort=' . $this->params['sort_column'] . '&order=' . $this->params['sort_order'] . '" class="navbar-form" role="search" method="post">';
 			$main_text .= '<input type="date" id="date_from" name="date_from" value="'.$_SESSION['date_from'].'" class="form-control" />&nbsp;-&nbsp;';
 			$main_text .= '<input type="date" id="date_to" name="date_to" value="'.$_SESSION['date_to'].'" class="form-control" />&nbsp;';
 			$main_text .= '<button type="submit" id="SetDatesButton" name="SetDatesButton" class="btn btn-default">OK</button>';
 			$main_text .= '</form>';
-			$main_text .= '</span>';
 		}
-
-		$main_text .= '</div>';
-
-		$main_text .= '<table class="table">';
+		$main_text .= '<form style="display: inline;" action="index.php?route=' . MODULE_NAME . '&sort=' . $this->params['sort_column'] . '&order=' . $this->params['sort_order'] . '" class="navbar-form" role="search" method="post">';
+		$main_text .= '<input type="text" id="ListSearchText" name="ListSearchText" value="" class="form-control" />&nbsp;';
+		$main_text .= '<button type="submit" name="ListSearchButton" id="ListSearchButton" class="btn btn-default">Szukaj</button>';
+		$main_text .= '</form>';
+		$main_text .= '</td>';
+		$main_text .= '</tr>';
 		
 		// jeśli wprowadzono filtr:
 		
@@ -114,7 +116,7 @@ class ListBuilder extends Builder
 			$main_text .= '<tr>';
 			$main_text .= '<td class="FormSearchBar" colspan="'.count($active_fields).'">';
 			$main_text .= '<form id="form_search_close" action="index.php?route=' . MODULE_NAME . '&sort=' . $this->params['sort_column'] . '&order=' . $this->params['sort_order'] . '" method="post">';
-			$main_text .= '<span class="FormSearchCaption">Wyszukiwanie:</span>&nbsp;';
+			$main_text .= '<span class="FormSearchCaption">Filtr:</span>&nbsp;';
 			$main_text .= '<span class="FormSearchValue">" <b>' . $_SESSION['list_filter'] . '</b> "</span>';
 			$main_text .= '<span class="FormSearchClose">';
 			$main_text .= '<input type="hidden" name="ListSearchClose" value="Close" />';
@@ -155,11 +157,11 @@ class ListBuilder extends Builder
 
 				if ($sorting) // kolumna sortowalna
 				{
-					$main_text .= '<th class="TitleCell" style="width: '.$this->attribs[$idx]['width'].'; text-align: '.$this->attribs[$idx]['align'].';">'.'<a href="index.php?route='.MODULE_NAME.'&sort='.$k.'&order='.$order.'">'.$column_name.'</a>'.'<div class="sorting">'.'<img src="'.$sort_icon.'" />'.'</div>'.'</th>';
+					$main_text .= '<th class="TitleCell" style="width: '.$this->attribs[$idx]['width'].'; text-align: '.$this->attribs[$idx]['align'].';">'.'&nbsp;<br><a href="index.php?route='.MODULE_NAME.'&sort='.$k.'&order='.$order.'">'.$column_name.'</a>'.'<div class="sorting">'.'<img src="'.$sort_icon.'" />'.'</div>'.'</th>';
 				}
 				else // kolumna niesortowalna
 				{
-					$main_text .= '<th class="TitleCell">'.$column_name.'</th>';
+					$main_text .= '<th class="TitleCell" style="vertical-align: middle;">'.$column_name.'</th>';
 				}
 			}
 			$idx++;
@@ -238,11 +240,15 @@ class ListBuilder extends Builder
 			$main_text .= '</tr>';
 		}
 
-		$main_text .= '</table>';
-		$main_text .= '<div class="panel-footer">';
+		// paginator:
+		
+		$main_text .= '<tr>';
+		$main_text .= '<td class="PaginatorCell" colspan="'.count($active_fields).'">';
 		$main_text .= $paginator->show();
-		$main_text .= '</div>';
-		$main_text .= '</div>';
+		$main_text .= '</td>';
+		$main_text .= '</tr>';
+		
+		$main_text .= '</table>';
 
 		return $main_text;
 	}

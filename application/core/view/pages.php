@@ -103,7 +103,7 @@ class Pages_View extends View
 
 		$form_title = $data ? 'Edycja strony' : 'Nowa strona';
 		$form_image = 'img/32x32/list_edit.png';
-		$form_width = '90%';
+		$form_width = '100%';
 		
 		$form_object->init($form_title, $form_image, $form_width);
 

@@ -75,22 +75,22 @@ class Statistics_View extends View
 					),
 				),
 			array(
-				'caption' => 'Liczniki odwiedzin', 
+				'caption' => NULL, 
 				'data' => array(
 					'type' => 'list',
 					'id' => 'counters', 'name' => 'counters', 'style' => 'text-align: center; padding: 10px;',
 					'items' => array(
 						array(
-							'value' => 'Dzienny: <b>'.$data['day']['period_counter'].'</b>', 'style' => 'display: inline; margin: 5px;',
+							'value' => 'Dziennie: <b>'.$data['day']['period_counter'].'</b>', 'style' => 'display: inline; margin: 5px;',
 							),
 						array(
-							'value' => 'Tygodniowy: <b>'.$data['week']['period_counter'].'</b>', 'style' => 'display: inline; margin: 5px;',
+							'value' => 'Tygodniowo: <b>'.$data['week']['period_counter'].'</b>', 'style' => 'display: inline; margin: 5px;',
 							),
 						array(
-							'value' => 'Miesięczny: <b>'.$data['month']['period_counter'].'</b>', 'style' => 'display: inline; margin: 5px;',
+							'value' => 'Miesięcznie: <b>'.$data['month']['period_counter'].'</b>', 'style' => 'display: inline; margin: 5px;',
 							),
 						array(
-							'value' => 'Narastający: <b>'.$data['all']['period_counter'].'</b>', 'style' => 'display: inline; margin: 5px;',
+							'value' => 'Narastająco: <b>'.$data['all']['period_counter'].'</b>', 'style' => 'display: inline; margin: 5px;',
 							),
 						array(
 							'value' => '<a href="/?route=statistics&mode=ip">Statystyka adresów IP</a>', 'style' => 'display: inline; margin: 5px;',

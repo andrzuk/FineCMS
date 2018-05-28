@@ -49,38 +49,18 @@ class List_Paginator
 	{
 		$output = NULL;
 		
-		$output .= '<table class="NaviBar" width="100%" align="center" cellpadding="2" cellspacing="2">';
+		$output .= '<table class="" width="100%">';
 		$output .= '<tr>';
 		
-		$output .= '<td class="NaviPointersLeft">';
-
-		$output .= '<form action="'.$this->base_link.'" method="get" class="FormShowRows">';
-		if ($this->route)
-			$output .= '<input type="hidden" name="route" value="'.$this->route.'" />';
-		if ($this->action)
-			$output .= '<input type="hidden" name="action" value="'.$this->action.'" />';
-		$output .= '<select name="page_rows" id="page_rows" class="form-control" onchange="submit()">';
-		foreach ($this->page_rows as $key => $value) 
-		{
-			$selected = NULL;
-			if (isset($_SESSION['page_list_rows']))
-			{
-				if ($value == $_SESSION['page_list_rows'])
-					$selected = 'selected="selected"';
-				if ($key == 0) continue;
-			}
-			$output .= '<option '.$selected.'>';
-			$output .= $value;
-			$output .= '</option>';
-		}
-		$output .= '</select>';
-		$output .= '</form>';	
-
+		$output .= '<td width="20%">';
+		$output .= 'Pozycji: <b>' . number_format($_SESSION['result_capacity'], 0, ',', '.') . '</b>';
+		$output .= '&nbsp; ▪ &nbsp;';
+		$output .= 'Stron: <b>' . number_format($_SESSION['page_counter'], 0, ',', '.') . '</b>';
 		$output .= '</td>';
 		
-		$output .= '<td class="NaviPointers">';
+		$output .= '<td width="70%">';
 
-		$output .= '<ul class="pagination">';
+		$output .= '<ul class="pagination" style="padding: 5px 20px 0 20px;">';
 		
 		if ($this->current_pointer == 0)
 		{
@@ -126,34 +106,40 @@ class List_Paginator
 		
 		$output .= '</ul>';
 
-		$output .= '</td>';
-		
-		$output .= '<td class="NaviPointersRight">';
-		
-		$output .= '<form action="'.$this->base_link.'" method="get" class="FormGoToPage">';
-		$output .= '<div class="col-lg-6" id="goto-container">';
-		$output .= '<div class="input-group" id="goto-page">';
+		$output .= '<td width="5%">';
+		$output .= '<form action="'.$this->base_link.'" method="get" class="navbar-form" style="display: flex;">';
 		if ($this->route)
 			$output .= '<input type="hidden" name="route" value="'.$this->route.'" />';
 		if ($this->action)
 			$output .= '<input type="hidden" name="action" value="'.$this->action.'" />';
-		$output .= '<input type="text" name="page" id="page-number" class="form-control">';
-		$output .= '<span class="input-group-btn">';
-		$output .= '<button class="btn btn-default" name="navi" type="submit" value="go">idź</button>';
-		$output .= '</span>';
-		$output .= '</div>';
-		$output .= '</div>';
+		$output .= '<select name="page_rows" id="page_rows" class="form-control" onchange="submit()">';
+		foreach ($this->page_rows as $key => $value) 
+		{
+			$selected = NULL;
+			if (isset($_SESSION['page_list_rows']))
+			{
+				if ($value == $_SESSION['page_list_rows'])
+					$selected = 'selected="selected"';
+				if ($key == 0) continue;
+			}
+			$output .= '<option '.$selected.'>';
+			$output .= $value;
+			$output .= '</option>';
+		}
+		$output .= '</select>';
+		$output .= '</form>';	
+		$output .= '</td>';
+
+		$output .= '<td width="5%">';
+		$output .= '<form action="'.$this->base_link.'" method="get" class="navbar-form" style="display: flex;">';
+		if ($this->route)
+			$output .= '<input type="hidden" name="route" value="'.$this->route.'" />';
+		if ($this->action)
+			$output .= '<input type="hidden" name="action" value="'.$this->action.'" />';
+		$output .= '<input type="text" name="page" id="page-number" class="form-control" style="width: 80px; margin: 2px;">';
+		$output .= '<button class="btn btn-default" name="navi" type="submit" value="go" style="margin: 2px;">idź</button>';
 		$output .= '</form>';
 
-		$output .= '</td>';
-		
-		$output .= '</tr>';
-		$output .= '<tr>';
-
-		$output .= '<td colspan="3" class="NaviPointersCount">';
-		$output .= 'Pozycji: <b>' . number_format($_SESSION['result_capacity'], 0, ',', '.') . '</b>';
-		$output .= '&nbsp; ▪ &nbsp;';
-		$output .= 'Stron: <b>' . number_format($_SESSION['page_counter'], 0, ',', '.') . '</b>';
 		$output .= '</td>';
 		
 		$output .= '</tr>';

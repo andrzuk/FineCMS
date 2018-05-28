@@ -93,7 +93,7 @@ class Dialog
 			$idx++;
 			$main_dialog_body .= '<td class="MsgButtons">';
 			$main_dialog_body .= '<form action="'. $link .'" method="post" role="form">';
-			$main_dialog_body .= '<button type="submit" value="'. $caption .'" name="confirm_'. $idx .'" class="btn btn-'.$btn_type[$idx].'" onClick="'. $onclick .'">' . $caption . '</button>';
+			$main_dialog_body .= '<button type="submit" value="'. $caption .'" name="confirm_'. $idx .'" id="dialog_button_'.$idx.'" class="btn btn-'.$btn_type[$idx].'" onClick="'. $onclick .'">' . $caption . '</button>';
 			$main_dialog_body .= '</form>';
 			$main_dialog_body .= '</td>';
 		}
@@ -104,6 +104,14 @@ class Dialog
 		$main_dialog_body .= '</div>';
 
 		$main_dialog_body .= '</div>';
+
+		$main_dialog_body .= '<script>';
+		$main_dialog_body .= 'setTimeout(function() { $("#dialog_button_1").focus(); }, 500);';
+		$main_dialog_body .= '</script>';
+
+		$main_dialog_body .= '<style>';
+		$main_dialog_body .= 'div.page-content { padding: 100px 20px 0px 20px; }';
+		$main_dialog_body .= '</style>';
 		
 		return $main_dialog_body;
 	}

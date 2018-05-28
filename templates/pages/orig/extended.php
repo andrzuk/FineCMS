@@ -38,10 +38,6 @@ $main_layout_content = '
       ga(\'create\', \'UA-16941734-21\', \'auto\');
       ga(\'send\', \'pageview\');
     </script>
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
     <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
     <script type="text/javascript">stLight.options({publisher: "f890c644-7945-4561-a1c5-f54d2aebffde", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>
   </head>
@@ -96,15 +92,6 @@ $main_layout_content = '
       '.$this->get_footer().'
     </div>
 
-    <script src="js/prettify.js"></script>
-    <script>
-      !function ($) {
-        $(function(){
-          window.prettyPrint && prettyPrint()
-        })
-      }(window.jQuery)
-    </script>
-	
   </body>
   
 </html>
