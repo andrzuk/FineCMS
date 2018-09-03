@@ -12,7 +12,7 @@
 * Database: MySQL
 * DB interface: PDO
 * User Interface: Bootstrap 3
-* On-line: http://metodycznie.pl
+* On-line: http://metodycznie.com.pl
 
 ### Installation:
 * create new empty database on hosting account
