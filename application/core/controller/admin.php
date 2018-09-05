@@ -95,6 +95,12 @@ class Admin_Controller extends Controller
 							'icon' => '01.png',
 							),
 						array(
+							'profile' => USER,
+							'caption' => 'Notatki ('.$this->app->get_model_object()->GetTableCount('Notatki').')', 
+							'link' => 'index.php?route=notes', 
+							'icon' => '03.png',
+							),
+						array(
 							'profile' => OPERATOR,
 							'caption' => 'Galeria ('.$this->app->get_model_object()->GetTableCount('Galeria').')', 
 							'link' => 'index.php?route=images', 

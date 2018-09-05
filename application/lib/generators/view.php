@@ -8,6 +8,7 @@ include GENER_DIR . 'builder.php';
 
 class ViewBuilder extends Builder
 {
+	private $id;
 	private $image;
 	private $title;
 	private $width;
@@ -27,6 +28,11 @@ class ViewBuilder extends Builder
 		$this->width = $form_width;
 	}
 	
+	public function set_id($form_id)
+	{
+		$this->id = $form_id;
+	}
+
 	public function set_action($form_address)
 	{
 		$this->action = $form_address;
@@ -53,7 +59,7 @@ class ViewBuilder extends Builder
 	{
 		$main_text = NULL;
 		
-		$main_text .= '<form action="'. $this->action .'" method="post" role="form">';
+		$main_text .= '<form id="'. $this->id .'" action="'. $this->action .'" method="post" role="form">';
 
 		$main_text .= '<div class="panel panel-default center" style="width: '. $this->width .';">';
 
@@ -123,10 +129,15 @@ class ViewBuilder extends Builder
 				if ($i == 'id') $id = $j;
 				if ($i == 'name') $name = $j;
 				if ($i == 'value') $value = $j;
+				if ($i == 'onclick') $onclick = $j;
 			}
 			if ($type == 'submit')
 			{
 				$main_text .= '<button type="'.$type.'" id="'.$id.'" name="'.$name.'" class="btn btn-primary" value="'.$value.'">'.$value.'</button>';
+			}
+			else if ($type == 'skip')
+			{
+				$main_text .= '<button type="'.$type.'" id="'.$id.'" name="'.$name.'" class="btn btn-info" value="'.$value.'" onclick="'.$onclick.'">'.$value.'</button>';
 			}
 			else // anuluj
 			{
@@ -139,6 +150,16 @@ class ViewBuilder extends Builder
 		$main_text .= '</div>';
 
 		$main_text .= '</form>';
+		
+		$main_text .= '
+			<script>
+				document.addEventListener("keydown", function(event) {
+					var keyCode = event.keyCode;
+					if (keyCode == 37) $("button#prev_button").click();
+					if (keyCode == 39) $("button#next_button").click();
+				});
+			</script>
+		';
 		
 		return $main_text;
 	}

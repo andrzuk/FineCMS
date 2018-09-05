@@ -56,6 +56,11 @@ class Admin_Model extends Model
 				'condition' => 'visible = 1',
 			),
 			array(
+				'module' => 'Notatki',
+				'table' => 'notes',
+				'condition' => 'author_id > 0',
+			),
+			array(
 				'module' => 'Odwiedziny',
 				'table' => 'visitors',
 				'condition' => '1',

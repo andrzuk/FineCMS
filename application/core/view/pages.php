@@ -17,11 +17,11 @@ class Pages_View extends View
 			array('width' => '8%',  'align' => 'center', 'visible' => '0'),
 			array('width' => '5%',  'align' => 'center', 'visible' => '0'),
 			array('width' => '10%', 'align' => 'left',   'visible' => '1'),
-			array('width' => '10%', 'align' => 'left',   'visible' => '1'),
-			array('width' => '25%', 'align' => 'left',   'visible' => '1'),
 			array('width' => '15%', 'align' => 'left',   'visible' => '1'),
+			array('width' => '25%', 'align' => 'left',   'visible' => '0'),
+			array('width' => '35%', 'align' => 'left',   'visible' => '1'),
 			array('width' => '5%',  'align' => 'center', 'visible' => '1'),
-			array('width' => '10%', 'align' => 'center', 'visible' => '1'),
+			array('width' => '5%', 'align' => 'center', 'visible' => '1'),
 			array('width' => '10%', 'align' => 'center', 'visible' => '0'),
 			array('width' => '5%',  'align' => 'center', 'visible' => '1'),
 			array('width' => '15%', 'align' => 'center', 'visible' => '1'),
@@ -195,7 +195,7 @@ class Pages_View extends View
 
 		$view_title = 'Szczegóły strony';
 		$view_image = 'img/32x32/list_information.png';
-		$view_width = '50%';
+		$view_width = '85%';
 		
 		$view_object->init($view_title, $view_image, $view_width);
 
@@ -210,7 +210,7 @@ class Pages_View extends View
 			foreach ($data as $key => $value) 
 			{
 				if (in_array($key, array('main_page', 'system_page', 'category_id', 'author_id', 'previews'))) continue;
-				if ($key == 'contents') $value = strip_tags($value);
+				if ($key == 'contents') $value = str_replace(chr(13).chr(10), '<br>', strip_tags($value));
 				if ($key == 'visible') $value = $value ? '<span style="color: green;">Tak</span>' : '<span style="color: red;">Nie</span>';
 				$view_inputs[] = array('caption' => $key, 'value' => $value);
 			}

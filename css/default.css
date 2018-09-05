@@ -119,7 +119,7 @@ td.ActionCell > a > img.ActionIcon { margin: 5px; }
 
 div.panel-heading > h3.panel-title > img { padding-right: 20px; }
 div.panel-heading > h3.panel-title { font-weight: bold; color: #e0500a; }
-div.panel-footer > button { margin: 5px; }
+div.panel-footer > button { margin: 5px; width: 100px; }
 
 td.MsgIcon { padding: 0px 10px 0px 0px; vertical-align: middle; }
 td.MsgMessage { padding: 0px 5px 0px 10px; vertical-align: middle; font-size: small; }
@@ -132,8 +132,8 @@ td.GroupElement > a > p { margin: 0px; padding: 0px; font-size: small; }
 td.GroupElement > a { color: #777; }
 td.GroupElement > a:hover  { color: #c00; text-decoration: none; }
 
-td.ViewKey { color: #777; padding-right: 10px; width: 20%; border-bottom: 1px dotted #eee; font-size: small; }
-td.ViewData { color: #555; padding-left: 10px; width: 80%; border-bottom: 1px dotted #eee; font-size: small; }
+td.ViewKey { color: #777; padding-right: 10px; width: 15%; border-bottom: 1px dotted #eee; font-size: small; vertical-align: top; }
+td.ViewData { color: #555; padding-left: 10px; width: 85%; border-bottom: 1px dotted #eee; font-size: small; }
 
 tr.install > td > p { line-height: 20px; margin: 10px; }
 tr.install > td > ol > li { line-height: 20px; margin: 10px; }

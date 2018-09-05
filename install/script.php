@@ -6,6 +6,7 @@ $sql_script = array(
 			'ALTER TABLE `images` DROP FOREIGN KEY `fk_images_users`;',
 			'ALTER TABLE `categories` DROP FOREIGN KEY `fk_categories_users`;',
 			'ALTER TABLE `pages` DROP FOREIGN KEY `fk_pages_users`;',
+			'ALTER TABLE `notes` DROP FOREIGN KEY `fk_notes_users`;',
 			'ALTER TABLE `user_roles` DROP FOREIGN KEY `fk_roles_users`;',
 			'ALTER TABLE `user_roles` DROP FOREIGN KEY `fk_roles_functions`;',
 			'ALTER TABLE `archives` DROP FOREIGN KEY `fk_archives_users`;',
@@ -26,6 +27,7 @@ $sql_script = array(
 			'DROP TABLE IF EXISTS `images`;',
 			'DROP TABLE IF EXISTS `logins`;',
 			'DROP TABLE IF EXISTS `pages`;',
+			'DROP TABLE IF EXISTS `notes`;',
 			'DROP TABLE IF EXISTS `searches`;',
 			'DROP TABLE IF EXISTS `users`;',
 			'DROP TABLE IF EXISTS `user_messages`;',
@@ -175,6 +177,17 @@ $sql_script = array(
 				) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=1 ;
 			",
 			"
+				CREATE TABLE IF NOT EXISTS `notes` (
+				  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+				  `title` varchar(512) CHARACTER SET utf8 NOT NULL,
+				  `contents` longtext CHARACTER SET utf8,
+				  `author_id` int(11) unsigned NOT NULL,
+				  `modified` datetime NOT NULL,
+				  PRIMARY KEY (`id`),
+				  KEY `fk_notes_users` (`author_id`)
+				) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=1 ;
+			",
+			"
 				CREATE TABLE IF NOT EXISTS `searches` (
 				  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
 				  `agent` varchar(250) NOT NULL,
@@ -290,11 +303,12 @@ $sql_script = array(
 				(10, 'categories', 'Kategorie', 'categories'),
 				(11, 'pages', 'Strony', 'pages'),
 				(12, 'sites', 'Opisy', 'sites'),
-				(13, 'comments', 'Komentarze', 'comments'),
-				(14, 'messages', 'Wiadomości', 'messages'),
-				(15, 'searches', 'Wyszukiwania', 'searches'),
-				(16, 'logins', 'Logowania', 'logins'),
-				(17, 'excludes', 'Wykluczenia adresów', 'excludes');
+				(13, 'notes', 'Notatki', 'notes'),
+				(14, 'comments', 'Komentarze', 'comments'),
+				(15, 'messages', 'Wiadomości', 'messages'),
+				(16, 'searches', 'Wyszukiwania', 'searches'),
+				(17, 'logins', 'Logowania', 'logins'),
+				(18, 'excludes', 'Wykluczenia adresów', 'excludes');
 			",
 			"
 				INSERT INTO `configuration` (`id`, `key_name`, `key_value`, `meaning`, `field_type`, `active`, `modified`) VALUES
@@ -380,7 +394,8 @@ $sql_script = array(
 				(14, 1, 14, 1),
 				(15, 1, 15, 1),
 				(16, 1, 16, 1),
-				(17, 1, 17, 1);
+				(17, 1, 17, 1),
+				(18, 1, 18, 1);
 			",
 		),
 	),
@@ -397,6 +412,10 @@ $sql_script = array(
 			'
 				ALTER TABLE `pages`
 				  ADD CONSTRAINT `fk_pages_users` FOREIGN KEY (`author_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+			',
+			'
+				ALTER TABLE `notes`
+				  ADD CONSTRAINT `fk_notes_users` FOREIGN KEY (`author_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 			',
 			'
 				ALTER TABLE `user_roles`

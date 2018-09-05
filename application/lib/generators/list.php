@@ -203,7 +203,7 @@ class ListBuilder extends Builder
 					}
 					else // normalne dane
 					{
-						$main_text .= '<td class="'.$data_class_name.'" style="text-align: '.$this->attribs[$idx]['align'].'">'.$this->get_split_text(strip_tags($value), 20).'</td>';
+						$main_text .= '<td class="'.$data_class_name.'" style="text-align: '.$this->attribs[$idx]['align'].'">'.$this->get_split_text(strip_tags($value), 32).'</td>';
 					}
 				}
 				$idx++;
