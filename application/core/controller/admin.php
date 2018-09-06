@@ -92,13 +92,13 @@ class Admin_Controller extends Controller
 							'profile' => USER,
 							'caption' => 'Komentarze ('.$this->app->get_model_object()->GetTableCount('Komentarze').')', 
 							'link' => 'index.php?route=comments', 
-							'icon' => '01.png',
+							'icon' => '19.png',
 							),
 						array(
 							'profile' => USER,
 							'caption' => 'Notatki ('.$this->app->get_model_object()->GetTableCount('Notatki').')', 
 							'link' => 'index.php?route=notes', 
-							'icon' => '03.png',
+							'icon' => '01.png',
 							),
 						array(
 							'profile' => OPERATOR,

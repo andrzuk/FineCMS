@@ -10,7 +10,7 @@ class Notes_View extends View
 	public function ShowList($columns, $data)
 	{
 		$title = 'Notatki użytkownika';
-		$image = 'img/32x32/messages.png';
+		$image = 'img/32x32/archives.png';
 
 		$attribs = array(
 			array('width' => '5%',  'align' => 'center', 'visible' => '1'),

@@ -149,8 +149,6 @@ class Notes_Model extends Model
 
 		try
 		{
-			// usuwa notatkę:
-
 			$query =	'DELETE FROM ' . $this->table_name .
 						' WHERE author_id = :author_id AND id = :id';
 
@@ -169,36 +167,6 @@ class Notes_Model extends Model
 		}
 
 		return $affected_rows;
-	}
-
-	public function Preview($id)
-	{
-		$this->row_item = array();
-
-		$author_id = $_SESSION['user_id'];
-
-		try
-		{
-			$query = 	'SELECT title, contents, user_login, modified' .
-						' FROM notes' .
-						' INNER JOIN users ON users.id = notes.author_id' .
-						' WHERE author_id = :author_id AND notes.id = :id';
-			
-			$statement = $this->db->prepare($query);
-
-			$statement->bindValue(':id', $id, PDO::PARAM_INT); 
-			$statement->bindValue(':author_id', $author_id, PDO::PARAM_INT); 
-
-			$statement->execute();
-			
-			$this->row_item = $statement->fetch(PDO::FETCH_ASSOC);			
-		}
-		catch (PDOException $e)
-		{
-			die ($e->getMessage());
-		}
-
-		return $this->row_item;
 	}
 }
 
