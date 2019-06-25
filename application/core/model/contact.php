@@ -99,7 +99,8 @@ class Contact_Model extends Model
 			if ($key == 'email_report_body_1') $email_report_body_1 = $value;
 			if ($key == 'email_report_body_2') $email_report_body_2 = $value;
 		}
-		
+
+		/*
 		include LIB_DIR . 'mailer/class.phpmailer.php';
 		include LIB_DIR . 'mailer/class.smtp.php';
 		
@@ -115,16 +116,24 @@ class Contact_Model extends Model
 		$mail->SetFrom($email_sender_address, $email_sender_name);
 		$mail->Subject = $email_report_subject;
 		$mail->CharSet = "UTF-8";
+		*/
 
 		if ($send_new_message_report == 'true')
 		{
 			// wysyła e-mailem informację do admina o napisaniu wiadomosci przez usera:
 			$mail_body = $email_report_body_1 ."\n\nUżytkownik {".$login."} (e-mail: ".$email.") napisał do serwisu wiadomość:\n\n\"".$contents."\"\n\n".$base_domain."\n";
 			$mail_html = $this->convert_to_html($email_report_subject, $mail_body);
+			/*
 			$mail->AddAddress($email_report_address, $email_sender_name);
 			$mail->MsgHTML($mail_html);
 			$mail->AltBody = $mail_body;
 			$mail->send();
+			*/
+			$recipient = $email_report_address;
+			$subject = $email_report_subject;
+			$header = "From: ". $email_sender_name . " <" . $email_sender_address . ">\r\n";
+			$header = "MIME-Versio: 1.0\r\n" . "Content-type: text/html; charset=UTF-8\r\n" . $header;
+			mail($recipient, $subject, $mail_html, $header);
 		}
 
 		if ($sendme)
@@ -132,10 +141,17 @@ class Contact_Model extends Model
 			// wysyła e-mailem kopie wiadomosci do autora:
 			$mail_body = "Drogi Użytkowniku,\n\nPodając się jako {".$login."} napisałe(a)ś do serwisu wiadomość:\n\n\"".$contents."\"\n\nBardzo dziękujemy.\n\n".$base_domain."\n";
 			$mail_html = $this->convert_to_html($email_report_subject, $mail_body);
+			/*
 			$mail->AddAddress($email, $login);
 			$mail->MsgHTML($mail_html);
 			$mail->AltBody = $mail_body;
 			$mail->send();
+			*/
+			$recipient = $email;
+			$subject = $email_report_subject;
+			$header = "From: ". $email_sender_name . " <" . $email_sender_address . ">\r\n";
+			$header = "MIME-Versio: 1.0\r\n" . "Content-type: text/html; charset=UTF-8\r\n" . $header;
+			mail($recipient, $subject, $mail_html, $header);
 		}
 
 		$result = $this->Store($login, $email, $contents); // rejestruje wiadomość

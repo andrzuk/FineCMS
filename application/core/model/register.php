@@ -125,7 +125,7 @@ class Register_Model extends Model
 			if ($key == 'email_register_body_1') $email_register_body_1 = $value;
 			if ($key == 'email_register_body_2') $email_register_body_2 = $value;
 		}
-
+		/*
 		include LIB_DIR . 'mailer/class.phpmailer.php';
 		include LIB_DIR . 'mailer/class.smtp.php';
 		
@@ -143,12 +143,20 @@ class Register_Model extends Model
 		$mail->CharSet = "UTF-8";
 
 		// wysyła e-maila do usera z informacją o zarejestrowaniu:
+		*/
 		$mail_body = "Szanowny użytkowniku,\n\n" . $email_register_body_1 ."\n\nImię i nazwisko: <b>". $data['user_name'] ." ". $data['user_surname'] ."</b>\nLogin: <b>". $data['user_login'] ."</b>\n\nLogowanie do serwisu: <a href=\"". $base_domain ."?route=login\">". $base_domain . "?route=login</a>\n\n" . $email_register_body_2 . "\n\nPozdrawiamy,\n\n" . $base_domain . "\n";
 		$mail_html = $this->convert_to_html($email_register_subject, $mail_body);
+		/*
 		$mail->AddAddress($data['email'], $data['user_login']);
 		$mail->MsgHTML($mail_html);
 		$mail->AltBody = $mail_body;
 		$mail->send();
+		*/
+		$recipient = $data['email'];
+		$subject = $email_register_subject;
+		$header = "From: ". $email_sender_name . " <" . $email_sender_address . ">\r\n";
+		$header = "MIME-Versio: 1.0\r\n" . "Content-type: text/html; charset=UTF-8\r\n" . $header;
+		mail($recipient, $subject, $mail_html, $header);
 	}
 }
 
