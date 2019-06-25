@@ -15,6 +15,8 @@ if ($_SERVER['REMOTE_ADDR'] != $_SESSION['ip'])
 
 error_reporting(E_ALL);
 
+ob_start();
+
 include 'config/config.php';
 
 include CLASS_DIR . 'application.php';
@@ -50,5 +52,7 @@ $app->set_controller($route_controller, $route_action);
 $app->get_page()->render();
 
 $app->stop();
+
+ob_end_flush();
 
 ?>
