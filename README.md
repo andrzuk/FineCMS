@@ -1,5 +1,6 @@
 # FineCMS
 ## Full featured CMS based on my own MVC architecture.
+## Attention! Improved version was released: https://github.com/PrivateAccount/NotesCMS
 ### Application features:
 * users authentication (ACL)
 * admin panel (settings, templates, styles, scripts, navigation, articles, gallery)
